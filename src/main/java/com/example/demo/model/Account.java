@@ -14,7 +14,7 @@ public class Account {
 	}
 
 	public Account(Integer id) {
-
+		this.id = id;
 	}
 
 	//ゲッターセッター

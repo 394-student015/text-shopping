@@ -16,7 +16,7 @@ public class Cart {
 	//教科書リスト
 	private List<Textbook> textbookList = new ArrayList<>();
 
-	//教科書リストゲッター
+	//教科書リストのゲッター
 	public List<Textbook> getTextbookList() {
 		return textbookList;
 	}
