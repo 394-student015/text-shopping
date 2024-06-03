@@ -5,6 +5,44 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h3>以下の内容で登録しました</h3>
+
+	<table border="1">
+		<form action="/account/confirm" method="post">
+			<tr>
+				<th>名前</th>
+					<td th:text="${member.name}"></td>
+			</tr>
+			
+			<tr>
+				<th>メールアドレス</th>
+					<td th:text="${member.email}"></td>
+					</td>
+			</tr>
+			
+			<tr>
+				<th>電話番号</th>
+					<td th:text="${member.tel}"></td>
+					</td>
+			</tr>
+			
+			<tr>
+				<th>住所</th>
+					<td th:text="${member.address}"></td>
+					</td>
+			</tr>
+			
+			<tr>
+				<th>パスワード</th>
+					<td th:text="${member.password}"></td>
+					</td>
+			</tr>
+			
+		</form>
+		
+		</table>	
+	
+	<a href="/create">ログイン画面へ</a>
 
 </body>
 </html>

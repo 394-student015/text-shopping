@@ -2,9 +2,34 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>注文確認</title>
 </head>
 <body>
-
+	<main>
+		<h3>ご注文商品</h3>
+		<!--注文画面を持ってくる-->
+		<span th:replace="cartItem"></span>
+		<form action="/order">
+		
+		<!--totalPriceは（）メソッドから呼んでくる-->
+		総計：<th:text="'総計：'+${@cart.totalPrice}"><br>
+	
+		<!--受け取り方法-->
+		受け取り方法：<th:text="'受け取り方法：'+${@cart.receive}"><br>
+		
+		<!--クーポン情報取得-->
+		保有クーポン：<br>
+		
+		<!--決済方法選択-->
+		決済方法：
+		<select name="receive">
+			<option value="1">現金</option>
+			<option value="2">クレジットカード</option>
+		</select><br>
+		
+		<button>注文を確定する</button>
+		
+		
+	</main>
 </body>
 </html>

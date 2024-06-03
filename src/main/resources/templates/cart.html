@@ -2,9 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>カート画面</title>
 </head>
 <body>
+	<main>
+		
+		<p>ご注文商品</p>
+		
+		<!--注文画面を持ってくる-->
+		<span th:replace="cartItem"></span>
+		<form action="/order">
+		
+		
+			<button>注文する</button>
+		</form>
+	<a href="/order">買い物を続ける</a>
+	</main>
 
 </body>
 </html>
