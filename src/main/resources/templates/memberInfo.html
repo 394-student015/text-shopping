@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
 
+<head>
+	<meta charset="UTF-8">
+	<title>会員情報表示</title>
+</head>
+
+<body>
+	<h1>会員情報</h1>
+
+	</form>
+	<table border="1">
+		<tr>
+			<th>名前</th>
+			<td th:text="${member_name}"></td>
+		</tr>
+
+		<tr>
+			<th>住所</th>
+			<td th:text="${address}"></td>
+		</tr>
+
+		<tr>
+			<th>電話番号</th>
+			<td th:text="${tel}"></td>
+		</tr>
+
+		<tr>
+			<th>メールアドレス</th>
+			<td th:text="${email}"></td>
+		</tr>
+
+		<tr>
+			<th>パスワード</th>
+			<td th:text="${member_pass}"></td>
+		</tr>
+
+		<tr>
+			<th>クーポンの所持数（枚）</th>
+			<td th:text="${coupon}"></td>
+		</tr>
+	</table>
+
+	<button>更新する</button>
+	</form>
+	<br>
+	<br>
+	※更新しない情報は空欄のままで差し支えありません。
+	
+	<br>
+	<br>
+	<a href="memberDelete.html">退会する</a>
 </body>
+
 </html>

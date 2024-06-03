@@ -2,9 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>削除画面確認</title>
 </head>
 <body>
-
+	一度退会すると、お客様の会員情報は一切使用できなくなります。
+	<br>
+	本当によろしいですか？
+	<form action="/memberDelete" method="post">
+		<a href="login.html">はい。退会します</a>
+	</form>
+	<br>
+	<a href="memberInfo.html">会員情報画面に戻る</a>
 </body>
 </html>
