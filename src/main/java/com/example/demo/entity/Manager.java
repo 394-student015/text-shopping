@@ -7,14 +7,23 @@ import jakarta.persistence.Table;
 @Table(name = "management")
 //内部設計書CL06参照
 public class Manager {
-	private Integer password;
+	private Integer id;
+	private String password;
 
-	public Integer getPassword() {
+	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(Integer password) {
+	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 }
