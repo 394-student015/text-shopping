@@ -6,14 +6,14 @@ import org.springframework.web.context.annotation.SessionScope;
 //内部設計書CL022参照
 @Component
 @SessionScope
-public class Account {
+public class Member {
 	private Integer id;
 
 	//メソッド
-	public Account() {
+	public Member() {
 	}
 
-	public Account(Integer id) {
+	public Member(Integer id) {
 		this.id = id;
 	}
 
