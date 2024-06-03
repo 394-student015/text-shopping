@@ -18,6 +18,7 @@ public class InformationController {
 	InformationRepository informationRepository;
 
 	//内部設計書CL016参照
+	//購入者側履歴表示
 	@GetMapping("/information/{member_id}")
 	public String information(
 			@PathVariable("member_id") Integer id,
@@ -28,5 +29,6 @@ public class InformationController {
 
 		return "menu";
 	}
+	//管理者側履歴表示
 
 }
