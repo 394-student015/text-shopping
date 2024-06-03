@@ -67,7 +67,7 @@ CREATE TABLE information(
 /* テーブル名: 管理者テーブル */
 /**********************************/
 CREATE TABLE management(
-		id SERIAL INTEGER NOT NULL,
+		id SERIAL NOT NULL,
 		password VARCHAR(10) NOT NULL
 		
 );

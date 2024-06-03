@@ -30,10 +30,11 @@ public class Information {
 	private Integer receive;
 
 	//コンストラクタ
-	Information() {
+	public Information() {
 	}
 
-	Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice, Integer payment,
+	public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
+			Integer payment,
 			Integer receive) {
 		this.id = id;
 		this.memberId = memberId;

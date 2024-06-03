@@ -2,11 +2,10 @@ package com.example.demo.repository;
 
 import java.util.List;
 
-public class InformationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-	public List<Information> findByInfomationId(Integer infoId) {
+public interface InformationRepository extends JpaRepository<Information, Integer> {
 
-		return null;
-	}
+	List<Information> findAll(Integer id);
 
 }
