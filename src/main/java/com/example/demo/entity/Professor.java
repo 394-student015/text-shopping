@@ -17,11 +17,10 @@ public class Professor {
 	private String major;
 
 	//コンストラクタ
-	Professor() {
+	public Professor() {
 	}
 
-	Professor(Integer id, String name, String major) {
-		this.id = id;
+	public Professor(String name, String major) {
 		this.name = name;
 		this.major = major;
 	}
