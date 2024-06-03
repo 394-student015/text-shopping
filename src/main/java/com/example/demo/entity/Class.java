@@ -13,4 +13,23 @@ public class Class {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String name;
+
+	//コントローラー
+	Class() {
+	}
+
+	Class(Integer id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+	//ゲッター
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
 }
