@@ -1,15 +1,17 @@
-DROP TABLE management IF EXISTS;
-DROP TABLE information IF EXISTS;
-DROP TABLE textbook IF EXISTS;
-DROP TABLE professor IF EXISTS;
-DROP TABLE class IF EXISTS;
-DROP TABLE member IF EXISTS;
+
+ DROP TABLE IF EXISTS management;
+DROP TABLE IF EXISTS information;
+DROP TABLE IF EXISTS textbook;
+DROP TABLE IF EXISTS professor;
+DROP TABLE IF EXISTS class;
+DROP TABLE IF EXISTS member;
+
 
 /**********************************/
 /* テーブル名: 会員テーブル */
 /**********************************/
 CREATE TABLE member(
-		id INTEGER DEFAULT 1 NOT NULL IDENTITY,
+		id SERIAL NOT NULL,
 		name VARCHAR(30) NOT NULL,
 		address VARCHAR(40) NOT NULL,
 		tel VARCHAR(12) NOT NULL,
@@ -22,7 +24,7 @@ CREATE TABLE member(
 /* テーブル名: 授業テーブル */
 /**********************************/
 CREATE TABLE class(
-		id INTEGER NOT NULL IDENTITY,
+		id SERIAL NOT NULL,
 		name VARCHAR(30) NOT NULL
 );
 
@@ -30,7 +32,7 @@ CREATE TABLE class(
 /* テーブル名: 教授テーブル */
 /**********************************/
 CREATE TABLE professor(
-		id INTEGER NOT NULL IDENTITY,
+		id SERIAL NOT NULL,
 		name VARCHAR(30) NOT NULL,
 		major VARCHAR(30) NOT NULL
 );
@@ -39,7 +41,7 @@ CREATE TABLE professor(
 /* テーブル名: 教科書テーブル */
 /**********************************/
 CREATE TABLE textbook(
-		id INTEGER NOT NULL IDENTITY,
+		id SERIAL NOT NULL ,
 		title VARCHAR(50) NOT NULL,
 		author VARCHAR(30) NOT NULL,
 		price INTEGER NOT NULL,
@@ -52,7 +54,7 @@ CREATE TABLE textbook(
 /* テーブル名: 購入情報テーブル */
 /**********************************/
 CREATE TABLE information(
-		id INTEGER NOT NULL IDENTITY,
+		id SERIAL NOT NULL,
 		member_id INTEGER NOT NULL,
 		text_id INTEGER NOT NULL,
 		date DATE NOT NULL,
