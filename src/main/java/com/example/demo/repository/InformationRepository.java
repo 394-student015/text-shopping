@@ -1,5 +1,12 @@
 package com.example.demo.repository;
 
+import java.util.List;
+
 public class InformationRepository {
-	//内部設計書CL09参照
+
+	public List<Information> findByInfomationId(Integer infoId) {
+
+		return null;
+	}
+
 }
