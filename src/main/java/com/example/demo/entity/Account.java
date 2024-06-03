@@ -10,8 +10,66 @@ import jakarta.persistence.Table;
 @Table(name = "member")
 //内部設計書CL02参照
 public class Account {
+	//フィールド
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String name;
+	private String address;
+	private String tel;
+	private String email;
+	private String password;
+	private Integer coupon;
+
+	//コンストラクタ
+	Account() {
+	}
+
+	Account(Integer id, String name, String address, String tel, String email, String password) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
+	}
+
+	//ゲッター
+	public Integer getId() {
+		return id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public Integer getCoupon() {
+		return coupon;
+	}
+
+	//セッター
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
 }
