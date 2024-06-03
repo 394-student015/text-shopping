@@ -7,5 +7,22 @@ import org.springframework.web.context.annotation.SessionScope;
 @Component
 @SessionScope
 public class Account {
+	private Integer id;
 
+	//メソッド
+	public Account() {
+	}
+
+	public Account(Integer id) {
+
+	}
+
+	//ゲッターセッター
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 }
