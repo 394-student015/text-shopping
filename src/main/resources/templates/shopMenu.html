@@ -2,9 +2,39 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>購入者初期表示</title>
 </head>
 <body>
-
+	<main>
+		<input type="text" name="serch">
+		<button>検索</button>
+		
+		<table border="1">
+			<tr>
+				<th>NO</th>
+				<th>商品名</th>
+				<th>価格</th>
+				<th></th>
+			</tr>
+			<tr th:each="textbooks:${textbook}">
+				<td th:text="${textbooks.id}"></td>
+				<td>
+					<ul>
+					書名：<th:text="${textbooks.title}"><br>
+					著者：<th:text="${textbooks.author}"><br>
+					在庫：<th:text="${textbooks.stock}"><br>
+					教授：<th:text="${textbooks.professor_id}"><br>
+					授業：<th:text="${textbooks.class=id}"><br>
+					</ul>
+				</td>
+				<td th:text="${textbooks.price}"></td>
+				<td>
+				<button>カートに追加</button>	
+				</td>	
+			</tr>
+			
+		</table>
+		<a href="/">設定</a>
+</main>
 </body>
 </html>
