@@ -68,6 +68,7 @@ CREATE TABLE information(
 /**********************************/
 CREATE TABLE management(
 		password VARCHAR(10) NOT NULL
+		id Integer NOT NULL
 );
 
 
