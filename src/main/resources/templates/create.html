@@ -9,35 +9,44 @@
 		<h3>会員登録</h3>
 		
 		<table border="1">
-		<f action="/account" method="post">
-			<th>名前</th>
-			<td>
-				<input type="text" name="name">
-			</td>
+		<form action="/account" method="post">
+			<tr>
+				<th>名前</th>
+					<td>
+						<input type="text" name="name">
+					</td>
+			</tr>
 			
-			<th>メールアドレス</th>
-			<td>
-			<input type="text" name="email">
-			</td>
+			<tr>
+				<th>メールアドレス</th>
+					<td>
+						<input type="text" name="email">
+					</td>
+			</tr>
 			
-			<th>電話番号</th>
-			<td>
-			<input type="text" name="tel">
-			</td>
+			<tr>
+				<th>電話番号</th>
+					<td>
+						<input type="text" name="tel">
+					</td>
+			</tr>
 			
-			<th>住所</th>
-			<td>
-			<input type="text" name="address">
-			</td>
+			<tr>
+				<th>住所</th>
+					<td>
+						<input type="text" name="address">
+					</td>
+			</tr>
 			
-			<th>パスワード</th>
-			<td>
-			<input type="text" name="password">
-			</td>
-			
-			
+			<tr>
+				<th>パスワード</th>
+					<td>
+						<input type="text" name="password">
+					</td>
+			</tr>
 			
 		</form>
+		
 		</table>
 		<button>登録</button><br>
 	</main>
