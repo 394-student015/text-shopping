@@ -21,10 +21,10 @@ public class InformationController {
 	//購入者側履歴表示
 	@GetMapping("/information/{member_id}")
 	public String information(
-			@PathVariable("member_id") Integer id,
+			@PathVariable("member_id") Integer memberId,
 			Model model) {
 
-		List<Information> informationList = informationRepository.findAll(id);
+		List<Information> informationList = informationRepository.findAll(memberId);
 		model.addAttribute("information", informationList);
 
 		return "menu";
