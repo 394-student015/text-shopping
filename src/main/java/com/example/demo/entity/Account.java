@@ -22,7 +22,12 @@ public class Account {
 	private Integer coupon;
 
 	//コンストラクタ
-	Account() {
+	public Account(String name, String email, String tel, String address, String password) {
+		this.name = name;
+		this.address = address;
+		this.tel = tel;
+		this.email = email;
+		this.password = password;
 	}
 
 	Account(Integer id, String name, String address, String tel, String email, String password) {
@@ -32,6 +37,9 @@ public class Account {
 		this.tel = tel;
 		this.email = email;
 		this.password = password;
+	}
+
+	public Account() {
 	}
 
 	//ゲッター
