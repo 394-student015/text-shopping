@@ -47,7 +47,7 @@ public class CartController {
 			Model model) {
 
 		Textbook textbook = textRepository.findById(id).get();
-		cart.add(textbook);
+		//cart.add(textbook);
 
 		return "redirect:/cart";
 	}
