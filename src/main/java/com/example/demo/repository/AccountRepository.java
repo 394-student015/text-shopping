@@ -14,4 +14,6 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	public List<Account> findAll();
 
+	List<Account> findByName(String name);
+
 }
