@@ -28,7 +28,7 @@ public class AccountController {
 	public String create(Model model) {
 		Account customer = new Account();
 		model.addAttribute("customer", customer);
-		return "";
+		return "create";
 	}
 
 	@PostMapping("/account")
@@ -38,6 +38,7 @@ public class AccountController {
 			@RequestParam(name = "tel") String tel,
 			@RequestParam(name = "address") String address,
 			@RequestParam(name = "password") String password,
+			@RequestParam(name = "coupon", defaultValue = "0") Integer coupon,
 			Model model) {
 		List<String> messages = new ArrayList<String>();
 		if (name.isEmpty()) {
@@ -63,16 +64,27 @@ public class AccountController {
 
 			return "create";
 		}
-		Account registration = new Account(name, email, tel, address, password);
+		Account registration = new Account(name, email, tel, address, password, coupon);
 		accountRepository.save(registration);
 		return "createConfirm";
 
 	}
 
 	@GetMapping("/accont/confirm")
-	public String createConfirm(Model model) {
-		List<Account> accountConfirm = accountRepository.findAll();
-		model.addAttribute("accountConfirm", accountConfirm);
+	public String createConfirm(
+			@RequestParam(name = "name") String name,
+			@RequestParam(name = "email") String email,
+			@RequestParam(name = "tel") String tel,
+			@RequestParam(name = "address") String address,
+			@RequestParam(name = "password") String password,
+			Model model) {
+		//List<Account> accountConfirm = accountRepository.findByNameAndEmailAndTelAndAddressAndPassword(name,
+		//email, tel, address, password);
+		model.addAttribute("name", name);
+		model.addAttribute("email", email);
+		model.addAttribute("tel", tel);
+		model.addAttribute("address", address);
+		model.addAttribute("password", password);
 		return "createConfirm";
 	}
 

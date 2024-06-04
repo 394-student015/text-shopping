@@ -12,6 +12,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	//内部設計書CL08参照
 
-	public List<Account> findAll();
+	List<Account> findByNameAndEmailAndTelAndAddressAndPassword(String name, String email, String tel, String address,
+			String password);
 
 }

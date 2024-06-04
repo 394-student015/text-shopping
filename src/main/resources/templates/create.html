@@ -8,9 +8,10 @@
 	<main>
 		<h3>会員登録</h3>
 		
-		<table border="1">
+		
 		<form action="/account" method="post">
 			<p th:each="messages:${messages}" th:text ="${messages}">
+				<table border="1">
 			<tr>
 				<th>名前</th>
 					<td>
