@@ -9,17 +9,21 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "class")
 //内部設計書CL04参照
-public class Class {
+public class Lesson {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 
 	//コントローラー
-	Class() {
+	public Lesson() {
 	}
 
-	Class(Integer id, String name) {
+	public Lesson(String name) {
+		this.name = name;
+	}
+
+	public Lesson(Integer id, String name) {
 		this.id = id;
 		this.name = name;
 	}
