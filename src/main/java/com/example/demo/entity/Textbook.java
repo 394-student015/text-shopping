@@ -27,10 +27,10 @@ public class Textbook {
 	private Integer classId;
 
 	//コンストラクタ
-	Textbook() {
+	public Textbook() {
 	}
 
-	Textbook(Integer id, String title, String author, Integer price, Integer stock, Integer professorId,
+	public Textbook(Integer id, String title, String author, Integer price, Integer stock, Integer professorId,
 			Integer classId) {
 		this.id = id;
 		this.title = title;
@@ -39,6 +39,11 @@ public class Textbook {
 		this.stock = stock;
 		this.professorId = professorId;
 		this.classId = classId;
+	}
+
+	public Textbook(Integer id, Integer stock) {
+		this.id = id;
+		this.stock = stock;
 	}
 
 	//ゲッター
