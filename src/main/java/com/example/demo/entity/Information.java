@@ -29,13 +29,36 @@ public class Information {
 	private Integer payment;
 	private Integer receive;
 
+<<<<<<< HEAD
+=======
+	private List<Account> informationList;
+	private String title;
+	private Integer stock;
+	private String lessonName;
+	private String proName;
+	private String major;
+
+>>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
 	//コンストラクタ
+<<<<<<< HEAD
 	public Information() {
+=======
+	public Information(List<Account> informationList, Integer textId, String title, Integer stock, String lessonName,
+			String proName, String major, Integer totalprice, Integer receive) {
+		this.informationList = informationList;
+		this.textId = textId;
+		this.title = title;
+		this.stock = stock;
+		this.lessonName = lessonName;
+		this.proName = proName;
+		this.major = major;
+		this.totalprice = totalprice;
+		this.receive = receive;
+>>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
 	}
 
 	public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
-			Integer payment,
-			Integer receive) {
+			Integer payment, Integer receive) {
 		this.id = id;
 		this.memberId = memberId;
 		this.textId = textId;
@@ -102,4 +125,39 @@ public class Information {
 		this.receive = receive;
 	}
 
+<<<<<<< HEAD
+=======
+	public List<Account> getInformationList() {
+		return informationList;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public String getLessonName() {
+		return lessonName;
+	}
+
+	public String getProName() {
+		return proName;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public Integer getTotalPrice() {
+		return totalprice;
+	}
+
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalprice = totalPrice;
+	}
+
+>>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
 }
