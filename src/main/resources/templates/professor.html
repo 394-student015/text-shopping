@@ -6,6 +6,7 @@
 </head>
 <body>
 	<main>
+		<h1>教授情報</h1>
 		<table border="1">
 			<tr>
 				<th>教授名</th>
@@ -15,22 +16,22 @@
 				<th>削除</th>
 			</tr>
 			
-			<tr th:each="professor:${professor}">
-				<td th:text="${professor.name}"></td>
-				<td th:text="${professor.major"></td>
+			<tr th:each="p:${professor}">
+				<td th:text="${p.name}"></td>
+				<td th:text="${p.major}"></td>
 				<td>
-					<form th:action="/professor/add" method="get">
+					<form th:action="@{/professor/{professorId}/add(professorId=${p.id})}" method="get">
 						<button>追加</button>
 					</form>
 				</td>
 				<td>
-					<form th:action="/professor/edit" method="get">
-						<button>更新</button>
+					<form th:action="@{/professor/{professorId}/stock(professorId=${p.id})}" method="get">
+					<button>更新</button>
 					</form>
 				</td>
 				<td>
-					<form th:action="/professor/delete" method="get">
-						<button>削除</button>
+					<form th:action="@{/professor/{professorId}/delete(professorId=${p.id})}" method="post">
+					<button>削除</button>
 					</form>
 				</td>
 			</tr>

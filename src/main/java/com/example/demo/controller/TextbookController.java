@@ -53,9 +53,17 @@ public class TextbookController {
 
 	}
 
+	//教科書表示一覧
+	@GetMapping("/stock")
+	public String stock(Model model) {
+		List<Textbook> textbookList = textRepository.findAll();
+		model.addAttribute("textbook", textbookList);
+		return "stock";
+	}
+
 	//教科書在庫表示
 	@GetMapping("/textbook/{id}/stock")
-	public String stock(
+	public String addStock(
 			@PathVariable("id") Integer id,
 			Model model) {
 		Textbook textbook = textRepository.findById(id).get();
@@ -66,7 +74,7 @@ public class TextbookController {
 
 	//教科書在庫追加
 	@PostMapping("/textbook/{id}/edit")
-	public String addStock(
+	public String addStockConfirm(
 			@PathVariable("id") Integer id,
 			@RequestParam(name = "stock", defaultValue = "") Integer stock,
 			Model model) {
