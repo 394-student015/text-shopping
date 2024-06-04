@@ -29,6 +29,15 @@ public class InformationController {
 
 		return "menu";
 	}
-	//管理者側履歴表示
 
+	//管理者側履歴表示
+	@GetMapping("/orderHistory")
+	public String orderHistory(
+			Model model) {
+
+		List<Information> informationList = informationRepository.findAll();
+		model.addAttribute("information", informationList);
+
+		return "redirect:/manager";
+	}
 }
