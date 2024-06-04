@@ -57,12 +57,12 @@ public class OrderController {
 		//カートに追加された商品を登録する
 
 		//注文情報をDBに格納する
-		Information information = new Information(informationList, textId, title, stock, className,
-				proName, major, totalPrice, receive);
+		Information information = new Information();
 		informationRepository.save(information);
 
 		List<Textbook> textbookList = cart.getTextbookList();
 		List<Information> information2 = new ArrayList<>();
+
 		//		information2.add(textId);
 		//		information2.add();
 		//		for (Textbook informationElement : textbookList) {
@@ -104,7 +104,7 @@ public class OrderController {
 		}
 
 		//セッションスコープのカート情報を削除する
-		cart.clear();
+		//cart.clear();
 
 		//注文完了画面に戻すための購入IDを設定する
 		model.addAttribute("orderNumber", information.getId());
