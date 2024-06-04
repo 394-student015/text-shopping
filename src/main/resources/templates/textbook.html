@@ -5,6 +5,7 @@
 <title>教科書一覧表示</title>
 </head>
 <body>
+<h1>教科書管理</h1>
 <table border="1">
 	<tr>
 		<th>教科書ID</th>
@@ -12,32 +13,33 @@
 		<th>著者名</th>
 		<th>価格</th>
 		<th>在庫</th>
-		<th>追加</th>
+		<!--<th>追加</th>-->
 		<th>更新</th>
 		<th>削除</th>
 	</tr>
-	<tr th:each="textbooks:${textbook}">
-		<td th:text="${textbooks.id}"></td>
-		<td th:text="${textbooks.title}"></td>
-		<td th:text="${textbooks.author}"></td>
-		<td th:text="${textbooks.price}"></td>
-		<td th:text="${textbooks.stock}"></td>
-		<td>
-			<form th:action="@{/textbook/{textbookId}/add(textbook=&{textbook.id})}" method="get">
-			<button>登録</button>
-			</form>
-		</td>
-		<td>
-			<form th:action="@{/textbook/{textbookId}/edit(textbook=&{textbook.id})}" method="get">
+	<tr th:each="t:${textbook}">
+		<td th:text="${t.id}"></td>
+		<td th:text="${t.title}"></td>
+		<td th:text="${t.author}"></td>
+		<td th:text="${t.price}"></td>
+		<td th:text="${t.stock}"></td>
+		<!--<td>
+			<form th:action="@{/textbook/{textId}/add(textId=${t.id})}" method="get">
 			<button>追加</button>
 			</form>
+		</td>-->
+		<td>
+			<form th:action="@{/textbook/{textId}/stock(textId=${t.id})}" method="get">
+			<button>更新</button>
+			</form>
 		</td>
 		<td>
-			<form th:action="@{/textbook/{textbookId}/delete(textbook=&{textbook.id})}" method="post">
+			<form th:action="@{/textbook/{textId}/delete(textId=${t.id})}" method="post">
 			<button>削除</button>
 			</form>
 		</td>
 	</tr>
+	
 </table>
 </body>
 </html>

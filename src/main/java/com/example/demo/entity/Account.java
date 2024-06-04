@@ -80,4 +80,8 @@ public class Account {
 		this.name = name;
 	}
 
+	public void setCoupon(Integer coupon) {
+		this.coupon = coupon;
+	}
+
 }

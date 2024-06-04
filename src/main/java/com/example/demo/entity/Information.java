@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,8 +30,27 @@ public class Information {
 	private Integer payment;
 	private Integer receive;
 
+	private List<Account> informationList;
+	private String title;
+	private Integer stock;
+	private String className;
+	private String proName;
+	private String major;
+	private Integer totalPrice;
+
 	//コンストラクタ
-	public Information() {
+	public Information(List<Account> informationList, Integer textId, String title, Integer stock, String className,
+			String proName, String major, Integer totalPrice, Integer receive) {
+		this.informationList = informationList;
+		this.textId = textId;
+		this.title = title;
+		this.stock = stock;
+		this.className = className;
+		this.proName = proName;
+		this.major = major;
+		this.totalPrice = totalPrice;
+		this.receive = receive;
+
 	}
 
 	public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
@@ -101,4 +121,37 @@ public class Information {
 	public void setReceive(Integer receive) {
 		this.receive = receive;
 	}
+
+	public List<Account> getInformationList() {
+		return informationList;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public Integer getStock() {
+		return stock;
+	}
+
+	public String getClassName() {
+		return className;
+	}
+
+	public String getProName() {
+		return proName;
+	}
+
+	public String getMajor() {
+		return major;
+	}
+
+	public Integer getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(Integer totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
 }
