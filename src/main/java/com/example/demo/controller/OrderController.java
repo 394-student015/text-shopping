@@ -71,20 +71,6 @@ public class OrderController {
 
 		//		informationRepository.saveAll();
 
-		//合計金額５０００円以上の場合、AccountRepositoryに10%OFFクーポンを格納する
-		if (information.getTotalprice() >= 5000) {
-			//乱数生成
-			Random rand = new Random();
-			int num = rand.nextInt(5);
-
-			String result = null;
-			if (num == 0) {
-				result = "win";
-			} else {
-				result = "lose";
-			}
-		}
-
 		//クーポンの所持数をレポジトリから呼び出す
 		List<Account> account = accountRepository.findByName(name);
 
@@ -93,11 +79,26 @@ public class OrderController {
 		int newCoupon = 0;
 		int newTotalprice = 0;
 
+		//合計金額５０００円以上の場合、AccountRepositoryに10%OFFクーポンを格納する
+		if (information.getTotalprice() >= 5000) {
+			//乱数生成
+			Random rand = new Random();
+			int num = rand.nextInt(5);
+
+			if (num == 0) {
+				//クーポン所持数を1枚増やす
+				newCoupon = ((Account) account).getCoupon() + 1;
+				//割引された合計金額をエンティティにセットする
+				((Account) account).setCoupon(newCoupon);
+			}
+		}
+
 		if (((Account) account).getCoupon() > 0) { // クーポン所持数1枚以上
 			//合計金額から10％割引する
 			newTotalprice = (int) (information.getTotalprice() * 0.9);
+			information.setTotalprice(newTotalprice);
 			//クーポン所持数を1枚減らす
-			newCoupon--;
+			newCoupon = ((Account) account).getCoupon() - 1;
 			//割引された合計金額をエンティティにセットする
 			((Account) account).setCoupon(newCoupon);
 		}
