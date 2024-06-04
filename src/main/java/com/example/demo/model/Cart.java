@@ -64,4 +64,8 @@ public class Cart {
 			}
 		}
 	}
+
+	public void clear() {
+		textbookList = new ArrayList<>();
+	}
 }

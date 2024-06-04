@@ -46,7 +46,7 @@ public class OrderController {
 			@RequestParam(name = "className", defaultValue = "") String className,
 			@RequestParam(name = "proName", defaultValue = "") String proName,
 			@RequestParam(name = "major", defaultValue = "") String major,
-			@RequestParam(name = "totalPrice", defaultValue = "") Integer totalPrice,
+			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
 			Model model) {
 
@@ -58,7 +58,7 @@ public class OrderController {
 
 		//注文情報をDBに格納する
 		Information information = new Information(informationList, textId, title, stock, className,
-				proName, major, totalPrice, receive);
+				proName, major, totalprice, receive);
 		informationRepository.save(information);
 
 		List<Textbook> textbookList = cart.getTextbookList();

@@ -33,29 +33,26 @@ public class Information {
 	private List<Account> informationList;
 	private String title;
 	private Integer stock;
-	private String className;
+	private String lessonName;
 	private String proName;
 	private String major;
-	private Integer totalPrice;
 
 	//コンストラクタ
-	public Information(List<Account> informationList, Integer textId, String title, Integer stock, String className,
-			String proName, String major, Integer totalPrice, Integer receive) {
+	public Information(List<Account> informationList, Integer textId, String title, Integer stock, String lessonName,
+			String proName, String major, Integer totalprice, Integer receive) {
 		this.informationList = informationList;
 		this.textId = textId;
 		this.title = title;
 		this.stock = stock;
-		this.className = className;
+		this.lessonName = lessonName;
 		this.proName = proName;
 		this.major = major;
-		this.totalPrice = totalPrice;
+		this.totalprice = totalprice;
 		this.receive = receive;
-
 	}
 
 	public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
-			Integer payment,
-			Integer receive) {
+			Integer payment, Integer receive) {
 		this.id = id;
 		this.memberId = memberId;
 		this.textId = textId;
@@ -134,8 +131,8 @@ public class Information {
 		return stock;
 	}
 
-	public String getClassName() {
-		return className;
+	public String getLessonName() {
+		return lessonName;
 	}
 
 	public String getProName() {
@@ -147,11 +144,11 @@ public class Information {
 	}
 
 	public Integer getTotalPrice() {
-		return totalPrice;
+		return totalprice;
 	}
 
 	public void setTotalPrice(Integer totalPrice) {
-		this.totalPrice = totalPrice;
+		this.totalprice = totalPrice;
 	}
 
 }
