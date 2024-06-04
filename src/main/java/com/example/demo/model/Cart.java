@@ -30,12 +30,12 @@ public class Cart {
 		return total;
 	}
 
-	//カート追加
+	/*//カート追加
 	public void add(Cart newCart) {
 		Cart existsCart=null;
 		for(Cart cart:textbookList) {
 			if(cart.getId()==newCart.getId())
 				
 		}
-	}
+	}*/
 }
