@@ -30,13 +30,13 @@ public class Account {
 		this.password = password;
 	}
 
-	Account(Integer id, String name, String address, String tel, String email, String password) {
-		this.id = id;
+	public Account(String name, String email, String tel, String address, String password, Integer coupon) {
 		this.name = name;
 		this.address = address;
 		this.tel = tel;
 		this.email = email;
 		this.password = password;
+		this.coupon = coupon;
 	}
 
 	public Account() {

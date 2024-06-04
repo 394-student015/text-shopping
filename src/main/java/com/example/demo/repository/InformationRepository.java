@@ -8,6 +8,7 @@ import com.example.demo.entity.Information;
 
 public interface InformationRepository extends JpaRepository<Information, Integer> {
 
-	List<Information> findAll(Integer id);
+	//List<Information> findAll(Integer id);
+	List<Information> findByMemberId(Integer memberId);
 
 }

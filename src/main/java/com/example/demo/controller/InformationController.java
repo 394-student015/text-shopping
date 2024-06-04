@@ -24,11 +24,20 @@ public class InformationController {
 			@PathVariable("member_id") Integer memberId,
 			Model model) {
 
-		List<Information> informationList = informationRepository.findAll(memberId);
+		List<Information> informationList = informationRepository.findByMemberId(memberId);
 		model.addAttribute("information", informationList);
 
 		return "menu";
 	}
-	//管理者側履歴表示
 
+	//管理者側履歴表示
+	@GetMapping("/orderHistory")
+	public String orderHistory(
+			Model model) {
+
+		List<Information> informationList = informationRepository.findAll();
+		model.addAttribute("information", informationList);
+
+		return "redirect:/manager";
+	}
 }

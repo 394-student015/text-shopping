@@ -8,6 +8,7 @@ import org.springframework.web.context.annotation.SessionScope;
 @SessionScope
 public class Member {
 	private Integer id;
+	private String name;
 
 	//メソッド
 	public Member() {
@@ -24,5 +25,13 @@ public class Member {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

@@ -23,6 +23,7 @@ public class AccountController {
 	@Autowired
 	HttpSession session;
 
+	//会員登録画面表示
 	@GetMapping("/account")
 	public String create(Model model) {
 		Account customer = new Account();
@@ -30,7 +31,7 @@ public class AccountController {
 		return "";
 	}
 
-	@PostMapping("/login")
+	@PostMapping("/account")
 	public String store(
 			@RequestParam(name = "name") String name,
 			@RequestParam(name = "email") String email,
@@ -75,12 +76,14 @@ public class AccountController {
 		return "createConfirm";
 	}
 
+	//購入者のログイン画面表示
 	@GetMapping("/")
 	public String index() {
 		session.invalidate();
 		return "login";
 	}
 
+	//購入者のログイン処理
 	@PostMapping("/login")
 	public String login(
 			@RequestParam("email") String email,

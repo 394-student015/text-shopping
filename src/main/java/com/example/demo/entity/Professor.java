@@ -25,6 +25,12 @@ public class Professor {
 		this.major = major;
 	}
 
+	public Professor(Integer id, String name, String major) {
+		this.id = id;
+		this.name = name;
+		this.major = major;
+	}
+
 	//ゲッター
 	public Integer getId() {
 		return id;
