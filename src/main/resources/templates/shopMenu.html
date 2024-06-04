@@ -28,9 +28,13 @@
 					</ul>
 				</td>
 				<td th:text="${textbooks.price}"></td>
+				
 				<td>
-				<button>カートに追加</button>	
+					<form action="/cart">
+						<button>カートに追加</button>
+					</form>
 				</td>	
+				
 			</tr>
 			
 		</table>
