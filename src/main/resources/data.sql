@@ -7,3 +7,5 @@ INSERT INTO textbook(title,author,price,stock,professor_id,class_id) VALUES('ご
 INSERT INTO textbook(title,author,price,stock,professor_id,class_id) VALUES('幸せなたぬき', '佐藤一郎',2500,3,1,1);
 -- 管理者テーブルデータ
 INSERT INTO management(id,password) VALUES(1,'himitu');
+--会員テーブルデータ
+INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(1,'watanabe','aaa','aaa','qqq','himitu',2);
