@@ -55,7 +55,7 @@ public class CartController {
 	public String deleteCart(
 			@RequestParam("textbookId") Integer textbookId) {
 
-		cart.delete(textbookId);
+		//cart.delete(textbookId);
 
 		return "redirect:/cart";
 	}
