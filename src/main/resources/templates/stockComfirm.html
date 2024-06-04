@@ -2,9 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>在庫追加確認</title>
 </head>
 <body>
+	<h3>以下の内容で追加してよろしいでしょうか</h3>
+	
+	<!--教科書情報と入力した内容を表示する-->
+	<span th;replace="stock"></span>
+	
+	<form action="/stock/confirm" method="post">
 
+	<a href="/stockAdd">前の画面に戻る</a>
+	
 </body>
 </html>
