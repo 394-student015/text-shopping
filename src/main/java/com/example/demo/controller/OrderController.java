@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -39,30 +40,23 @@ public class OrderController {
 
 	@PostMapping("/order/confirm")
 	public String orderConfirm(
-			@RequestParam(name = "name", defaultValue = "") String name,
-			@RequestParam(name = "textId", defaultValue = "") Integer textId,
-			@RequestParam(name = "title", defaultValue = "") String title,
-			@RequestParam(name = "stock", defaultValue = "") Integer stock,
-			@RequestParam(name = "className", defaultValue = "") String className,
-			@RequestParam(name = "proName", defaultValue = "") String proName,
-			@RequestParam(name = "major", defaultValue = "") String major,
+			@PathVariable("id") Integer id,
+			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
+			@RequestParam(name = "textId", defaultValue = "") String textId,
 			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
+			@RequestParam(name = "major", defaultValue = "") Integer payment,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
 			Model model) {
 
 		//顧客情報をまとめる？
-		List<Account> informationList = accountRepository.findByName(name);
+		List<Account> informationList = accountRepository.findAll();
 
 		//セッションスコープのcartを取得する
 		//カートに追加された商品を登録する
 
 		//注文情報をDBに格納する
-<<<<<<< HEAD
 		Information information = new Information();
-=======
-		Information information = new Information(informationList, textId, title, stock, className,
-				proName, major, totalprice, receive);
->>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
+
 		informationRepository.save(information);
 
 		List<Textbook> textbookList = cart.getTextbookList();
@@ -77,7 +71,7 @@ public class OrderController {
 		//		informationRepository.saveAll();
 
 		//クーポンの所持数をレポジトリから呼び出す
-		List<Account> account = accountRepository.findByName(name);
+		List<Account> account = accountRepository.findById("coupon");
 
 		//10%OFFクーポンの所持数が1枚以上である場合、合計金額から10％割引する
 		//初期化
