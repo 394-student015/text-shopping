@@ -2,9 +2,41 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>教授一覧</title>
 </head>
 <body>
-
+	<main>
+		<table border="1">
+			<tr>
+				<th>教授名</th>
+				<th>専攻</th>
+				<th>追加</th>
+				<th>更新</th>
+				<th>削除</th>
+			</tr>
+			
+			<tr th:each="professors:${professor}">
+				<td th:text="${professor.name}"></td>
+				<td th:text="${professor.major"></td>
+				<td>
+					<form th:action="/professor/add" method="get">
+						<button>追加</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="/professor/edit" method="get">
+						<button>更新</button>
+					</form>
+				</td>
+				<td>
+					<form th:action="/professor/delete" method="get">
+						<button>削除</button>
+					</form>
+				</td>
+			</tr>
+			
+		</table>
+	
+</main>
 </body>
 </html>

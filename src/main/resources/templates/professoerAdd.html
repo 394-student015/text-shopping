@@ -2,9 +2,29 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>教授追加</title>
 </head>
 <body>
+	<h3>教授追加</h3>
+	
+	<form action="/professor/add" method="post">
+		<table border="1">
+			<tr>
+				<th>教授名</th>
+					<td>
+						<input type="text" name="professorName">
+					</td>
+				</tr>
+			<tr>
+				<th>専攻</th>
+					<td>
+						<input type="text" name="professorMajor">
+					</td>
+				</tr>
+			
+		</table>
+		<button>追加</button>
+	</form>
 
 </body>
 </html>
