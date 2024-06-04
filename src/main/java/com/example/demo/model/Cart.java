@@ -34,30 +34,34 @@ public class Cart {
 	public void add(Textbook newItem) {
 		textbookList.add(newItem);
 	}
-		/*
-		Textbook existsItem=null;
-		for(Textbook item:itemList) {
-			if(item.getId()==newItem.getId())
-				existsItem=cart;
-				break;
-			}
+	/*
+	Textbook existsItem=null;
+	for(Textbook item:itemList) {
+		if(item.getId()==newItem.getId())
+			existsItem=cart;
+			break;
 		}
-		
-		if(existsItem==null)
-		
-		{
-		cartList.add(newItem);
-		}else
-		{
-		existsItem.setQuantity(
-				existsItem.getQuantity() + newItem.getQuantity());
-		}*/
+	}
 	
+	if(existsItem==null)
+	
+	{
+	cartList.add(newItem);
+	}else
+	{
+	existsItem.setQuantity(
+			existsItem.getQuantity() + newItem.getQuantity());
+	}*/
 
 	//カートから商品を削除
 
 	public void delete(Textbook newItem) {
 		textbookList.remove(newItem);
+	}
+
+	public void clear() {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 	/*
