@@ -24,7 +24,7 @@ public class InformationController {
 			@PathVariable("member_id") Integer memberId,
 			Model model) {
 
-		List<Information> informationList = informationRepository.findAll(memberId);
+		List<Information> informationList = informationRepository.findByMemberId(memberId);
 		model.addAttribute("information", informationList);
 
 		return "menu";

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface InformationRepository extends JpaRepository<Information, Integer> {
 
-	List<Information> findAll(Integer id);
+	//List<Information> findAll(Integer id);
+	List<Information> findByMemberId(Integer memberId);
 
 }
