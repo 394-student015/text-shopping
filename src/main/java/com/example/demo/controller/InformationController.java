@@ -38,6 +38,6 @@ public class InformationController {
 		List<Information> informationList = informationRepository.findAll();
 		model.addAttribute("information", informationList);
 
-		return "redirect:/manager";
+		return "orderHistory";
 	}
 }

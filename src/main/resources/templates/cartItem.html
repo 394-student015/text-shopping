@@ -17,13 +17,11 @@
 		<tr th:each="textbooks:${textbook}">
 			<td th:text="${textbooks.id}"></td>
 			<td>
-				<ul>
-				書名：<th:text="${textbooks.title}"><br>
-				著者：<th:text="${textbooks.author}"><br>
-				在庫：<th:text="${textbooks.stock}"><br>
-				教授：<th:text="${textbooks.professorId}"><br>
-				授業：<th:text="${textbooks.classId}">
-				</ul>
+				書名：<span th:text="${textbooks.title}"></span><br>
+				著者：<span th:text="${textbooks.author}"></span><br>
+				在庫：<span th:text="${textbooks.stock}"></span><br>
+				教授：<span th:text="${textbooks.professorId}"></span><br>
+				授業：<span th:text="${textbooks.classId}"></span>
 			</td>
 				<td th:text="${textbooks.price}"></td>
 			<td>
@@ -33,7 +31,7 @@
 				</form>
 			</td>	
 		</tr>
-		
+			<td align="right" colspan="4" th:text="'総計：'+${@cart.totalPrice}"></td>
 		</table>
 		
 	</main>

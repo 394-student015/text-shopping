@@ -33,9 +33,18 @@ public class Information {
 	public Information() {
 	}
 
+	public Information(Integer id, Integer memberId, Integer textId, Integer totalprice,
+			Integer payment, Integer receive) {
+		this.id = id;
+		this.memberId = memberId;
+		this.textId = textId;
+		this.totalprice = totalprice;
+		this.payment = payment;
+		this.receive = receive;
+	}
+
 	public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
-			Integer payment,
-			Integer receive) {
+			Integer payment, Integer receive) {
 		this.id = id;
 		this.memberId = memberId;
 		this.textId = textId;
@@ -101,4 +110,5 @@ public class Information {
 	public void setReceive(Integer receive) {
 		this.receive = receive;
 	}
+
 }
