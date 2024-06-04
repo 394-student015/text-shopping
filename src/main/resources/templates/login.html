@@ -10,15 +10,16 @@
 		<h3>ログイン</h3>
 		<form action="/login" method="post">
 			メールアドレス
-			<input type="text" name="email"><br>
-			
+				<input type="text" name="email"><br>
+		
 			パスワード
 			<input type="text" name="password"><br>
-			
+			<br><span th:text="${message}"></span>
 			<button>ログイン</button><br>
-			
-			<a href="/login">会員登録はこちら</a>
-		</form>
+			</form>
+			<form action="/account" method="get">
+			<a href="/account">会員登録はこちら</a>
+			</form>
 	</main>
 </body>
 </html>

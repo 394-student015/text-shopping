@@ -10,6 +10,7 @@
 		
 		<table border="1">
 		<form action="/account" method="post">
+			<p th:each="messages:${messages}" th:text ="${messages}">
 			<tr>
 				<th>名前</th>
 					<td>
@@ -45,10 +46,11 @@
 					</td>
 			</tr>
 			
-		</form>
+		
 		
 		</table>
 		<button>登録</button><br>
+		</form>
 	</main>
 
 </body>
