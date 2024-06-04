@@ -6,42 +6,35 @@
 </head>
 <body>
 	<h3>以下の内容で登録しました</h3>
-
-	<table border="1">
+<form action="/account" method="post" th:each="registration:${registration}">
+	<table border="1" >
 			
 			<tr>
 				<th>名前</th>
-					<td th:text="${name}"></td>
+					<td th:text="${registration.name}"></td>
 			</tr>
 			
 			<tr>
 				<th>メールアドレス</th>
-					<td th:text="${email}"></td>
-					</td>
+					<td th:text="${registration.email}"></td>
 			</tr>
 			
 			<tr>
 				<th>電話番号</th>
-					<td th:text="${tel}"></td>
-					</td>
+					<td th:text="${registration.tel}"></td>
 			</tr>
 			
 			<tr>
 				<th>住所</th>
-					<td th:text="${address}"></td>
-					</td>
+					<td th:text="${registration.address}"></td>
 			</tr>
 			
 			<tr>
 				<th>パスワード</th>
-					<td th:text="${password}"></td>
-					</td>
+					<td th:text="${registration.password}"></td>
 			</tr>
-			
-		</form>
-		
 		</table>	
-	
+		</form>
 	<a href="/">ログイン画面へ</a>
 
 </body>

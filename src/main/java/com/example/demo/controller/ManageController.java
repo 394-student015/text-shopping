@@ -26,7 +26,7 @@ public class ManageController {
 	//管理者のログイン画面表示
 	@GetMapping("/signin")
 	public String signin() {
-		return "login";
+		return "signin";
 	}
 
 	//管理者のログイン処理

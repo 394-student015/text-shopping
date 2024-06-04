@@ -65,12 +65,15 @@ public class AccountController {
 			return "create";
 		}
 		Account registration = new Account(name, email, tel, address, password, coupon);
+		model.addAttribute("registration", registration);
 		accountRepository.save(registration);
+
 		return "createConfirm";
 
 	}
 
-	@GetMapping("/accont/confirm")
+	//これいらない！！
+	@GetMapping("/account/confirm")
 	public String createConfirm(
 			@RequestParam(name = "name") String name,
 			@RequestParam(name = "email") String email,
@@ -80,11 +83,8 @@ public class AccountController {
 			Model model) {
 		//List<Account> accountConfirm = accountRepository.findByNameAndEmailAndTelAndAddressAndPassword(name,
 		//email, tel, address, password);
-		model.addAttribute("name", name);
-		model.addAttribute("email", email);
-		model.addAttribute("tel", tel);
-		model.addAttribute("address", address);
-		model.addAttribute("password", password);
+		Account accountList = new Account(name, email, tel, address, password);
+		model.addAttribute("accountList", accountList);
 		return "createConfirm";
 	}
 
@@ -107,6 +107,6 @@ public class AccountController {
 			return "login";
 		}
 		//Account account = accountList.get(0);
-		return "redirect:/menu";
+		return "redirect:/shopMenu";
 	}
 }
