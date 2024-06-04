@@ -22,7 +22,7 @@ public class Cart {
 	}
 
 	//合計金額ゲッター
-	public int add() {
+	public int getTotalPrice() {
 		int total = 0;
 		for (Textbook text : textbookList) {
 			total += text.getPrice() * text.getPrice();
@@ -34,37 +34,34 @@ public class Cart {
 	public void add(Textbook newItem) {
 		textbookList.add(newItem);
 	}
-		/*
-		Textbook existsItem=null;
-		for(Textbook item:itemList) {
-			if(item.getId()==newItem.getId())
-				existsItem=cart;
-				break;
-			}
+	/*
+	Textbook existsItem=null;
+	for(Textbook item:itemList) {
+		if(item.getId()==newItem.getId())
+			existsItem=cart;
+			break;
 		}
-		
-		if(existsItem==null)
-		
-		{
-		cartList.add(newItem);
-		}else
-		{
-		existsItem.setQuantity(
-				existsItem.getQuantity() + newItem.getQuantity());
-		}*/
+	}
 	
+	if(existsItem==null)
+	
+	{
+	cartList.add(newItem);
+	}else
+	{
+	existsItem.setQuantity(
+			existsItem.getQuantity() + newItem.getQuantity());
+	}*/
 
 	//カートから商品を削除
 
-	public void delete(Textbook newItem) {
-		textbookList.remove(newItem);
-	}
+	public void delete(Integer textbookId) {
 
-	/*
-	for (Item item : itemList) {
-		if (item.getId() == itemId) {
-		
-		break;
+		for (Textbook item : textbookList) {
+			if (item.getId() == textbookId) {
+				textbookList.remove(item);
+				break;
+			}
+		}
 	}
-	}*/
 }

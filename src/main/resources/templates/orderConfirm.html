@@ -12,24 +12,31 @@
 		<form action="/order">
 		
 		<!--totalPriceは（）メソッドから呼んでくる-->
-		総計：<th:text="'総計：'+${@cart.totalPrice}"><br>
+		総計：<br>
 	
 		<!--受け取り方法-->
-		受け取り方法：<th:text="'受け取り方法：'+${@cart.receive}"><br>
+		受け取り方法：
+		<select name="receive">
+			<option value="1">対面</option>
+			<option value="2">配送</option>
+		</select><br>
 		
 		<!--クーポン情報取得-->
-		保有クーポン：<br>
+		使用クーポン：
+		
+		<th:text="'使用クーポン：'+${}"><br>
 		
 		<!--決済方法選択-->
 		決済方法：
-		<select name="receive">
+		<select name="pay">
 			<option value="1">現金</option>
 			<option value="2">クレジットカード</option>
 		</select><br>
 		
-		<button>注文を確定する</button>
+		<form action="/orderComplete">
+			<button>注文を確定する</button>
+		</form>
 		
-		
-	</main>
+		</main>
 </body>
 </html>

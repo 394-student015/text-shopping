@@ -10,4 +10,5 @@ public interface TextRepository extends JpaRepository<Textbook, Integer> {
 
 	List<Textbook> findAll();
 	//内部設計書CL07参照
+
 }
