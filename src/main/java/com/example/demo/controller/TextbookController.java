@@ -27,8 +27,18 @@ public class TextbookController {
 		return "textbook";
 	}
 
+	//教科書登録画面
+	@GetMapping("/textbook/add")
+	public String editTextbook(
+			@PathVariable("id") Integer id,
+			Model model) {
+		Textbook textbook = textRepository.findById(id).get();
+		model.addAttribute("textbook", textbook);
+		return "textbookAdd";
+	}
+
 	//教科書新規登録
-	@PostMapping("/textbook")
+	@PostMapping("/textbook/{id}/add")
 	public String addTextbook(
 			@RequestParam(value = "title", defaultValue = "") String title,
 			@RequestParam(value = "author", defaultValue = "") String author,
@@ -39,12 +49,12 @@ public class TextbookController {
 			Model model) {
 		Textbook textbook = new Textbook();
 		textRepository.save(textbook);
-		return "professorAdd";
+		return "redirect:/textbook";
 
 	}
 
 	//教科書在庫表示
-	@PostMapping("/textbook/{id}/stock")
+	@GetMapping("/textbook/{id}/stock")
 	public String stock(
 			@PathVariable("id") Integer id,
 			Model model) {
@@ -78,6 +88,6 @@ public class TextbookController {
 			@PathVariable("id") Integer id,
 			Model model) {
 		textRepository.deleteById(id);
-		return "redirect:/professor";
+		return "redirect:/textbook";
 	}
 }
