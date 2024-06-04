@@ -42,13 +42,22 @@ public class CartController {
 	//カートに追加処理
 	@PostMapping("/cart/add")
 	public String addCart(
-			@RequestParam(name = "id", defaultValue = "") Integer id,
+			@RequestParam("textbookId") Integer textbookId) {
 
-			Model model) {
-
-		Textbook textbook = textRepository.findById(id).get();
-		//cart.add(textbook);
+		Textbook textbook = textRepository.findById(textbookId).get();
+		cart.add(textbook);
 
 		return "redirect:/cart";
 	}
+
+	//指定した商品からカートから削除
+	/*
+	@PostMapping("/cart/delete")
+	public String deleteCart(
+			@RequestParam("textbookId") Integer textbookId) {
+	
+		cart.delete(textbookId);
+		return "redirect:/cart";
+	}
+	*/
 }

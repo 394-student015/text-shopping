@@ -30,12 +30,38 @@ public class Cart {
 		return total;
 	}
 
-	/*//カート追加
-	public void add(Cart newCart) {
-		Cart existsCart=null;
-		for(Cart cart:textbookList) {
-			if(cart.getId()==newCart.getId())
-				
+	//カート追加
+	public void add(Textbook newItem) {
+		textbookList.add(newItem);
+
+		/*
+		Textbook existsItem=null;
+		for(Textbook item:itemList) {
+			if(item.getId()==newItem.getId())
+				existsItem=cart;
+				break;
+			}
+		}
+		
+		if(existsItem==null)
+		
+		{
+		cartList.add(newItem);
+		}else
+		{
+		existsItem.setQuantity(
+				existsItem.getQuantity() + newItem.getQuantity());
+		}*/
+	}
+
+	//カートから商品を削除
+	//public void delete(int itemId) {
+
+	/*
+	for (Item item : itemList) {
+		if (item.getId() == itemId) {
+			itemList.remove(item);
+			break;
 		}
 	}*/
 }

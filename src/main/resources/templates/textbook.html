@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html　xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>教科書一覧表示</title>
 </head>
 <body>
 <table border="1">
@@ -16,9 +16,14 @@
 		<td>更新</td>
 		<td>削除</td>
 	</tr>
-	<tr>
-		<th></th><th></th><th></th><th></th><th></th>
-		<td><button>追加</button></td>
+	<tr th:each="textbooks:${textbook}">
+		<td>
+			<form action="/textbook/add">
+				<input type="hidden" name="textbookId" value="1">
+			<button>追加</button>
+			</form>
+		</td>
+			
 		<td><button>更新</button></td>
 		<td><button>削除</button></td>
 	</tr>
