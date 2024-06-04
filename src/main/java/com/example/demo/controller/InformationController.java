@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.example.demo.repository.Information;
+import com.example.demo.entity.Information;
 import com.example.demo.repository.InformationRepository;
 
 @Controller
