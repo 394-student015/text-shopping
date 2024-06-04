@@ -51,13 +51,12 @@ public class CartController {
 	}
 
 	//指定した商品からカートから削除
-	/*
 	@PostMapping("/cart/delete")
 	public String deleteCart(
 			@RequestParam("textbookId") Integer textbookId) {
-	
+
 		cart.delete(textbookId);
+
 		return "redirect:/cart";
 	}
-	*/
 }

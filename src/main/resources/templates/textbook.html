@@ -12,21 +12,36 @@
 		<th>著者名</th>
 		<th>価格</th>
 		<th>在庫</th>
-		<td>追加</td>
-		<td>更新</td>
-		<td>削除</td>
+		<th>追加</th>
+		<th>更新</th>
+		<th>削除</th>
 	</tr>
 	<tr th:each="textbooks:${textbook}">
+		<td th:text="${textbooks.id}"></td>
+		<td th:text="${textbooks.title}"></td>
+		<td th:text="${textbooks.author}"></td>
+		<td th:text="${textbooks.price}"></td>
+		<td th:text="${textbooks.stock}"></td>
 		<td>
-			<form action="/textbook/add">
-				<input type="hidden" name="textbookId" value="1">
+			<form th:action="@{/textbook/{textbookId}/add(textbook=&{textbook.id})}" method="get">
+			<button>登録</button>
+			</form>
+		</td>
+		<td>
+			<form th:action="@{/textbook/{textbookId}/edit(textbook=&{textbook.id})}" method="get">
 			<button>追加</button>
 			</form>
 		</td>
-			
-		<td><button>更新</button></td>
-		<td><button>削除</button></td>
+		<td>
+			<form th:action="@{/textbook/{textbookId}/delete(textbook=&{textbook.id})}" method="post">
+			<button>削除</button>
+			</form>
+		</td>
 	</tr>
 </table>
 </body>
 </html>
+
+<!--
+	<input type="hidden" name="textbookId" value="1">
+	-->

@@ -5,3 +5,5 @@ INSERT INTO class(name) VALUES('水中におけるダンスの効用');
 INSERT INTO textbook(title,author,price,stock,professor_id,class_id) VALUES('Javaの基本', '佐藤一郎',2500,3,1,1);
 INSERT INTO textbook(title,author,price,stock,professor_id,class_id) VALUES('ごんぎつね', '佐藤一郎',2500,3,1,1);
 INSERT INTO textbook(title,author,price,stock,professor_id,class_id) VALUES('幸せなたぬき', '佐藤一郎',2500,3,1,1);
+-- 管理者テーブルデータ
+INSERT INTO management(id,password)VALUE(1,'himitu');

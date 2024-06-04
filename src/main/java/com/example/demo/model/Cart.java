@@ -33,7 +33,7 @@ public class Cart {
 	//カート追加
 	public void add(Textbook newItem) {
 		textbookList.add(newItem);
-
+	}
 		/*
 		Textbook existsItem=null;
 		for(Textbook item:itemList) {
@@ -52,16 +52,19 @@ public class Cart {
 		existsItem.setQuantity(
 				existsItem.getQuantity() + newItem.getQuantity());
 		}*/
-	}
+	
 
 	//カートから商品を削除
-	//public void delete(int itemId) {
+
+	public void delete(Textbook newItem) {
+		textbookList.remove(newItem);
+	}
 
 	/*
 	for (Item item : itemList) {
 		if (item.getId() == itemId) {
-			itemList.remove(item);
-			break;
-		}
+		
+		break;
+	}
 	}*/
 }
