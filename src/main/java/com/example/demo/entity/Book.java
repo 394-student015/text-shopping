@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 //View作った。HTMLでもv_textbookを使う。
@@ -9,6 +10,7 @@ import jakarta.persistence.Table;
 @Table(name = "v_textbook")
 public class Book {
 
+	@Id
 	private int id;
 	private String title;
 	private String author;

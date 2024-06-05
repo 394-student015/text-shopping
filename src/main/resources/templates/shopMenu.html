@@ -30,7 +30,9 @@
 				<td th:text="${textbooks.price}"></td>
 				
 				<td>
-					<form action="/cartItem">
+					<form action="/cart/add" method="post">
+						<input type="hidden" name="textbookId" th:value="${textbooks.textbookId}">
+						
 						<button>カートに追加</button>
 					</form>
 				</td>	
