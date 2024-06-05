@@ -1,6 +1,6 @@
 -- カテゴリーテーブルデータ
 INSERT INTO professor(name,major) VALUES('アンパンマン','量子宇宙論');
-INSERT INTO class(name) VALUES('水中におけるダンスの効用');
+INSERT INTO lesson(name) VALUES('水中におけるダンスの効用');
 
 
 

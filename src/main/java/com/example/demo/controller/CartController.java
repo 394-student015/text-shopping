@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Book;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.TextRepository;
 
 @Controller
@@ -22,12 +24,15 @@ public class CartController {
 	@Autowired
 	TextRepository textRepository;
 
+	@Autowired
+	BookRepository bookRepository;
+
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
 	public String shopMenu(
 
 			Model model) {
-		List<Textbook> textbookList = textRepository.findAll();
+		List<Book> textbookList = bookRepository.findAll();
 		model.addAttribute("textbook", textbookList);
 
 		return "shopMenu";

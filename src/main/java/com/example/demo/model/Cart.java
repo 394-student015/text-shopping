@@ -25,7 +25,7 @@ public class Cart {
 	public int getTotalPrice() {
 		int total = 0;
 		for (Textbook text : textbookList) {
-			total += text.getPrice() * text.getPrice();
+			total += text.getPrice();
 		}
 		return total;
 	}
