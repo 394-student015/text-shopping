@@ -27,14 +27,20 @@ public class LessonController {
 		return "lesson";
 	}
 
+	//新規追加画面
+	@GetMapping("/lesson/add")
+	public String lessonAdd(Model model) {
+		return "LessonAdd";
+	}
+
 	//授業新規追加
 	@PostMapping("/lesson/add")
-	public String addClass(
+	public String addLesson(
 			@RequestParam(value = "name", defaultValue = "") String name,
 			Model model) {
 		Lesson lesson = new Lesson(name);
 		lessonRepository.save(lesson);
-		return "lessonAdd";
+		return "redirect:/lesson";
 	}
 
 	//授業更新画面表示

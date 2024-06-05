@@ -5,15 +5,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="1">
+	<h1>授業更新</h1>
+<form th:action="@{/lesson/{lessonId}/edit(lessonId=${lesson.id})}" method="post">
+	<table border="1">
 	<tr>
-		<th>教科書ID</th><td th:value"${}"><textarea></textarea></td>
+		<th>授業ID</th>
+		<td th:text="${lesson.id}"></td>
 	</tr>
 	<tr>
-		<th>書名</th><td th:value"${}"><textarea></textarea></td>
+		<th>授業名</th>
+		<td><input type="text" name="name" th:value="${lesson.name}"></td>
 	</tr>
-
 </table>
 <button>更新</button>
+</form>
+
+
 </body>
 </html>
