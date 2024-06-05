@@ -10,12 +10,21 @@ public class Member {
 	private Integer id;
 	private String name;
 
-	//メソッド
 	public Member() {
+
 	}
+
+	//メソッド
+	//public Member(List<Account> accountSession) {
+	//}
 
 	public Member(Integer id) {
 		this.id = id;
+	}
+
+	public Member(Integer id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	//ゲッターセッター

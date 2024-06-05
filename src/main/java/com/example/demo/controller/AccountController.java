@@ -11,17 +11,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Account;
+import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class AccountController {
-
-	@Autowired
-	AccountRepository accountRepository;
 	@Autowired
 	HttpSession session;
+	@Autowired
+	Member member;
+	@Autowired
+	AccountRepository accountRepository;
 
 	//会員登録画面表示
 	@GetMapping("/account")
@@ -31,6 +33,7 @@ public class AccountController {
 		return "create";
 	}
 
+	//会員登録処理
 	@PostMapping("/account")
 	public String store(
 			@RequestParam(name = "name") String name,
@@ -98,15 +101,29 @@ public class AccountController {
 	//購入者のログイン処理
 	@PostMapping("/login")
 	public String login(
-			@RequestParam("email") String email,
-			@RequestParam("password") String password,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "password", defaultValue = "") String password,
 			Model model) {
-		List<Account> accountList = accountRepository.findByEmailAndPassword(email, password);
-		if (accountList == null || accountList.size() == 0) {
+		List<Account> accountInfo = accountRepository.findByEmailAndPassword(email, password);
+		if (accountInfo == null || accountInfo.size() == 0) {
 			model.addAttribute("message", "正しく入力してください");
 			return "login";
 		}
-		//Account account = accountList.get(0);
+		Account account = accountInfo.get(0);
+		member.setId(account.getId());
+		member.setName(account.getName());
 		return "redirect:/shopMenu";
+	}
+
+	//会員一覧表示
+	@GetMapping("/memberInfo")
+	public String memberInfo(
+			Model model) {
+
+		Integer accountId = member.getId();
+		List<Account> accountList = accountRepository.findAllById(accountId);
+		model.addAttribute("accountList", accountList);
+		return "memberInfo";
+
 	}
 }
