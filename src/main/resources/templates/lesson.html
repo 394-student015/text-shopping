@@ -6,21 +6,31 @@
 </head>
 <body>
 	<h1>授業情報</h1>
-<table border="1">
+	<a href="/lesson/add">新規追加</a>
+	
+	<table border="1">
 	<tr>
 		<th>授業ID</th>
 		<th>授業名</th>
-		<td>追加</td>
 		<td>更新</td>
 		<td>削除</td>
 	</tr>
-	<tr>
-		<th></th>
-		<th></th>
-		<td><button>追加</button></td>
-		<td><button>更新</button></td>
-		<td><button>削除</button></td>
+	<tr th:each="l:${lesson}">
+		<td th:text="${l.id}"></td>
+		<td th:text="${l.name}"></td>
+		<td>
+			<form th:action="@{/lesson/{lessonId}/edit(lessonId=${l.id})}" method="get">
+			<button>更新</button>
+			</form>
+		</td>
+		<td>
+			<form th:action="@{/lesson/{lessonId}/delete(lessonId=${l.id})}" method="post">
+			<button>削除</button>
+			</form>
+		</td>
 	</tr>
+	
+	
 </table>
 </body>
 </html>

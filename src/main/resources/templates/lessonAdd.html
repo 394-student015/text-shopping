@@ -5,14 +5,12 @@
 <title>授業追加</title>
 </head>
 <body>
+	<h1>授業追加</h1>
 <table border="1">
-	<tr>
-		<th>授業名</th><td><textarea></textarea></td>
-	</tr>
-	<tr>
-		<th>専攻</th><td><textarea></textarea></td>
-	</tr>
-</table>
-<button>追加</button>
+<form action="/lesson/add" method="post">
+			授業名<input type="text" name="name">
+		<button>追加</button>
+	</form>
+
 </body>
 </html>
