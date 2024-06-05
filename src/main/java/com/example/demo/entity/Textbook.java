@@ -41,6 +41,16 @@ public class Textbook {
 		this.classId = classId;
 	}
 
+	public Textbook(String title, String author, Integer price, Integer stock, Integer professorId,
+			Integer classId) {
+		this.title = title;
+		this.author = author;
+		this.price = price;
+		this.stock = stock;
+		this.professorId = professorId;
+		this.classId = classId;
+	}
+
 	public Textbook(Integer id, Integer stock) {
 		this.id = id;
 		this.stock = stock;

@@ -7,6 +7,7 @@
 </head>
 
 <body>
+	<header th:replace="header"></header>
 	<h1>会員情報</h1>
 	
 	<table border="1" th:each="account:${accountList}">
@@ -14,7 +15,9 @@
 		<tr>
 			<th>名前</th>
 			<td th:text="${account.name}"></td>
+			<form action="/memberUpdate" method="get">
 			<td colspan="6"><button>更新する</button></td>
+			</form>
 		</tr>
 
 		<tr>
@@ -44,14 +47,11 @@
 		
 	</table>
 
-	</form>
+
 	<br>
 	<br>
 	※更新しない情報は空欄のままで差し支えありません。
 	
-	<br>
-	<br>
-	<a href="memberDelete.html">退会する</a>
 </body>
 
 </html>

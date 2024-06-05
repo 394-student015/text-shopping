@@ -27,15 +27,21 @@ public class ProfessorController {
 		return "professor";
 	}
 
+	//教科書登録画面
+	@GetMapping("/professor/add")
+	public String addProfessor(Model model) {
+		return "professorAdd";
+	}
+
 	//教授新規追加
 	@PostMapping("/professor/add")
-	public String addProfessor(
+	public String professorAdd(
 			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "major", defaultValue = "") String major,
 			Model model) {
 		Professor professor = new Professor(name, major);
 		professorRepository.save(professor);
-		return "professorAdd";
+		return "redirect:/professor";
 	}
 
 	//教授更新画面表示
