@@ -55,6 +55,14 @@ public class CartController {
 		return "redirect:/cart";
 	}
 
+	//注文するボタン押下
+	@GetMapping("/orderConfirm")
+	public String orderConfirm(
+			Model model) {
+
+		return "orderConfirm";
+	}
+
 	//指定した商品からカートから削除
 	@PostMapping("/cart/delete")
 	public String deleteCart(
@@ -64,4 +72,5 @@ public class CartController {
 
 		return "redirect:/cart";
 	}
+
 }

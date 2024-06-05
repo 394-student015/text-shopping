@@ -6,10 +6,13 @@
 </head>
 <body>
 	<main>
+		
+			
 		<h3>ご注文商品</h3>
 		<!--注文画面を持ってくる-->
 		<span th:replace="cartItem"></span>
 		
+		<form action="/order/confirm" method="post">
 	
 		<!--受け取り方法-->
 		受け取り方法：
@@ -21,7 +24,7 @@
 		<!--クーポン情報取得-->
 		使用クーポン：
 		
-		<th:text="'使用クーポン：'+${}"><br>
+		<th:text="'使用クーポン：'+${account.coupon}"><br>
 		
 		<!--決済方法選択-->
 		決済方法：
@@ -30,7 +33,7 @@
 			<option value="2">クレジットカード</option>
 		</select><br>
 		
-		<form action="/orderConplate">
+		
 			<button>注文を確定する</button>
 		</form>
 		
