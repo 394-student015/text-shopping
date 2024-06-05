@@ -5,6 +5,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+</body>
+<h1>注文管理</h1>
 <table border="1">
 	<tr>
 		<th>日付</th>
@@ -16,15 +18,15 @@
 		<th>決済方法</th>
 		<th>受け取り方法</th>
 	</tr>
-	<tr>
+	<tr th:each="i:${information}">
+		<td th:text="${i.date}"></td>
+		<td th:text="${i.}"></td>
+		<td th:text="${i.}"></td>
 		<td th:text="${}"></td>
 		<td th:text="${}"></td>
-		<td th:text="${}"></td>
-		<td th:text="${}"></td>
-		<td th:text="${}"></td>
-		<td th:text="${}"></td>
-		<td th:text="${}"></td>
-		<td th:text="${}"></td>
+		<td th:text="${i.totalprice}"></td>
+		<td th:text="${i.payment}"></td>
+		<td th:text="${i.receive}"></td>
 	</tr>
 
 </table>

@@ -1,11 +1,14 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Id;
+
 //View作った。HTMLでもv_textbookを使う。
 
 //@Entity
 //@Table(name = "v_textbook")
 public class Book {
 
+	@Id
 	private int id;
 	private String title;
 	private String author;

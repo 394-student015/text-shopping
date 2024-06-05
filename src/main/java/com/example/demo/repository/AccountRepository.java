@@ -19,4 +19,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 	//List<Account> findByIdAndName(Integer id, String name);
 
 	List<Account> findAllById(Integer id);
+
+	//List<Account> findById(String coupon);
+
 }

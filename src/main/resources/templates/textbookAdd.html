@@ -5,23 +5,29 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<h1>教科書新規追加</h1>
+	<form action="/textbook/add/confirm" method="post">
 <table border="1">
 	<tr>
-		<th>教科書ID</th><td><textarea></textarea></td>
+		<th>書名</th><td><input type ="text" name="title"></td>
 	</tr>
 	<tr>
-		<th>書名</th><td><textarea></textarea></td>
+		<th>著者名</th><td><input type ="text" name="auhor"></td>
 	</tr>
 	<tr>
-		<th>著者名</th><td><textarea></textarea></td>
+		<th>価格</th><td><input type ="text" name="price"></td>
 	</tr>
 	<tr>
-		<th>価格</th><td><textarea></textarea></td>
+		<th>在庫</th><td><input type ="text" name="stock"></td>
 	</tr>
 	<tr>
-		<th>在庫</th><td><textarea></textarea></td>
+		<th>教授ID</th><td><input type ="text" name="professorId"></td>
+	</tr>
+	<tr>
+		<th>授業ID</th><td><input type ="text" name="classId"></td>
 	</tr>
 </table>
-<button>追加</button>
+	<button>追加</button>
+	</form>
 </body>
 </html>

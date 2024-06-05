@@ -74,7 +74,7 @@ public class OrderController {
 		//		informationRepository.saveAll();
 
 		//クーポンの所持数をレポジトリから呼び出す
-		Account account = accountRepository.findById(id).get();
+		//List<Account> account = accountRepository.findById(id);
 
 		//10%OFFクーポンの所持数が1枚以上である場合、合計金額から10％割引する
 		//初期化
@@ -89,27 +89,27 @@ public class OrderController {
 
 			if (num == 0) {
 				//クーポン所持数を1枚増やす
-				newCoupon = ((Account) account).getCoupon() + 1;
+				//newCoupon = ((Account) account).getCoupon() + 1;
 				//割引された合計金額をエンティティにセットする
-				((Account) account).setCoupon(newCoupon);
+				//((Account) account).setCoupon(newCoupon);
 			}
 		}
 
-		if (((Account) account).getCoupon() > 0) { // クーポン所持数1枚以上
-			//合計金額から10％割引する
-			newTotalprice = (int) (information.getTotalprice() * 0.9);
-			information.setTotalprice(newTotalprice);
-			//クーポン所持数を1枚減らす
-			newCoupon = ((Account) account).getCoupon() - 1;
-			//割引された合計金額をエンティティにセットする
-			((Account) account).setCoupon(newCoupon);
-		}
+		//if (((Account) account).getCoupon() > 0) { // クーポン所持数1枚以上
+		//合計金額から10％割引する
+		newTotalprice = (int) (information.getTotalprice() * 0.9);
+		information.setTotalprice(newTotalprice);
+		//クーポン所持数を1枚減らす
+		//	newCoupon = ((Account) account).getCoupon() - 1;
+		//割引された合計金額をエンティティにセットする
+		//((Account) account).setCoupon(newCoupon);
+		//}
 
 		//セッションスコープのカート情報を削除する
 		//cart.clear();
 
 		//注文完了画面に戻すための購入IDを設定する
-		model.addAttribute("orderNumber", information.getId());
+		//model.addAttribute("orderNumber", information.getId());
 
 		return "orderComplete";
 	}

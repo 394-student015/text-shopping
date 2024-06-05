@@ -7,11 +7,11 @@
 <body>
 	<main>
 		<h1>教授情報</h1>
+		<a href="/professor/add">新規追加</a>
 		<table border="1">
 			<tr>
 				<th>教授名</th>
 				<th>専攻</th>
-				<th>追加</th>
 				<th>更新</th>
 				<th>削除</th>
 			</tr>
@@ -19,11 +19,6 @@
 			<tr th:each="p:${professor}">
 				<td th:text="${p.name}"></td>
 				<td th:text="${p.major}"></td>
-				<td>
-					<form th:action="@{/professor/{professorId}/add(professorId=${p.id})}" method="get">
-						<button>追加</button>
-					</form>
-				</td>
 				<td>
 					<form th:action="@{/professor/{professorId}/stock(professorId=${p.id})}" method="get">
 					<button>更新</button>

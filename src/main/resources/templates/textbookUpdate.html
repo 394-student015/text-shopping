@@ -5,23 +5,31 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table border="1">
+	<h1>教科書情報更新</h1>
+	<form th:action="@{/textbook/{textId}/edit(textId=${textbook.id})}" method="post">
+	<table border="1">
 	<tr>
-		<th>教科書ID</th><td th:value"${}"><textarea></textarea></td>
+		<th>教科書ID</th>
+		<td th:text="${textbook.id}"></td>
 	</tr>
 	<tr>
-		<th>書名</th><td th:value"${}"><textarea></textarea></td>
+		<th>書名</th>
+		<td><input type="text" name="title" th:value="${textbook.title}"></td>
 	</tr>
 	<tr>
-		<th>著者名</th><td th:value"${}"><textarea></textarea></td>
+		<th>著者名</th>
+		<td><input type="text" name="author" th:value="${textbook.author}"></td>
 	</tr>
 	<tr>
-		<th>価格</th><td th:value"${}"><textarea></textarea></td>
+		<th>価格</th>
+		<td><input type="text" name="price" th:value="${textbook.price}"></td>
 	</tr>
 	<tr>
-		<th>在庫</th><td th:value"${}"><textarea></textarea></td>
+		<th>在庫</th>
+		<td><input type="text" name="stock" th:value="${textbook.stock}"></td>
 	</tr>
 </table>
 <button>更新</button>
+</form>
 </body>
 </html>
