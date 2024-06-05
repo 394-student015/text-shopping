@@ -16,12 +16,15 @@ import com.example.demo.entity.Account;
 import com.example.demo.entity.Information;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
+import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.InformationRepository;
 
 @Controller
 public class OrderController {
 	//内部設計書CL014参照
+	@Autowired
+	Member member;
 
 	@Autowired
 	Cart cart;
@@ -71,7 +74,7 @@ public class OrderController {
 		//		informationRepository.saveAll();
 
 		//クーポンの所持数をレポジトリから呼び出す
-		List<Account> account = accountRepository.findById("coupon");
+		Account account = accountRepository.findById(id).get();
 
 		//10%OFFクーポンの所持数が1枚以上である場合、合計金額から10％割引する
 		//初期化
