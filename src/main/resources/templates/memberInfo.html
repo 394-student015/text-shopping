@@ -8,8 +8,8 @@
 
 <body>
 	<h1>会員情報</h1>
-	<p th:each="account:${accountInfo}">
-	<table border="1">
+	
+	<table border="1" th:each="account:${accountList}">
 		
 		<tr>
 			<th>名前</th>
@@ -43,7 +43,7 @@
 		</tr>
 		
 	</table>
-</p>
+
 	</form>
 	<br>
 	<br>
