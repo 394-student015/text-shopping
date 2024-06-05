@@ -39,7 +39,12 @@ public class Account {
 		this.coupon = coupon;
 	}
 
+	public Account(String name, String email, String tel, String address, String password, String oldName,
+			String oldEmail, String oldTel, String oldAddress, String oldPassword) {
+	}
+
 	public Account() {
+		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
 	//ゲッター

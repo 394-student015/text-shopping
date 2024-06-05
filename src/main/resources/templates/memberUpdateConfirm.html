@@ -8,7 +8,7 @@
 
 <body>
 	<h1>会員情報更新確認</h1>
-	<table border="1">
+	<table border="1" th:each="account:${accountConfirm}">
 
 		<tr>
 			<td>項目</td>
@@ -19,42 +19,41 @@
 		<form action="/memberUpdate/confirm" method="post">
 			<tr>
 				<th>名前</th>
-				<!--現在-->
-				<td th:text="${}"></td>
+				<td th:text="${account.OldName}"></td>
 				<!--新しい-->
-				<td th:text="${}"></td>
+				<td th:text="${account.name}"></td>
 			</tr>
 
 			<tr>
 				<th>住所</th>
 				<!--現在-->
-				<td th:text="${}"></td>
+				<td th:text="${account.OldAddress}"></td>
 				<!--新しい-->
-				<td th:text="${}"></td>
+				<td th:text="${account.address}"></td>
 			</tr>
 
 			<tr>
 				<th>電話番号</th>
 				<!--現在-->
-				<td th:text="${}"></td>
+				<td th:text="${account.Oldtel}"></td>
 				<!--新しい-->
-				<td th:text="${}"></td>
+				<td th:text="${account.tel}"></td>
 			</tr>
 
 			<tr>
 				<th>メールアドレス</th>
 				<!--現在-->
-				<td th:text="${}"></td>
+				<td th:text="${account.OldEmail}"></td>
 				<!--新しい-->
-				<td th:text="${}"></td>
+				<td th:text="${account.email}"></td>
 			</tr>
 
 			<tr>
 				<th>パスワード</th>
 				<!--現在-->
-				<td th:text="${}"></td>
+				<td th:text="${account.OldPassword}"></td>
 				<!--新しい-->
-				<td th:text="${}"></td>
+				<td th:text="${account.password}"></td>
 			</tr>
 
 	</table>

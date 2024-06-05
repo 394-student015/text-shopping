@@ -116,6 +116,40 @@ public class AccountController {
 		}
 	}
 
+	//会員更新画面
+	@PostMapping("/memberUpdate/confirm")
+	public String memberUpdateConfirm(
+			@RequestParam(name = "member_name", defaultValue = "") String name,
+			@RequestParam(name = "member_address", defaultValue = "") String address,
+			@RequestParam(name = "member_tel", defaultValue = "") String tel,
+			@RequestParam(name = "member_email", defaultValue = "") String email,
+			@RequestParam(name = "member_password", defaultValue = "") String password,
+			@RequestParam(name = "old_member_name", defaultValue = "") String OldName,
+			@RequestParam(name = "old_member_address", defaultValue = "") String OldAddress,
+			@RequestParam(name = "old_member_tel", defaultValue = "") String OldTel,
+			@RequestParam(name = "old_member_email", defaultValue = "") String OldEmail,
+			@RequestParam(name = "old_member_password", defaultValue = "") String OldPassword,
+			Model model) {
+		Account accountUpdate = new Account(name, email, tel, address, password);
+		accountRepository.save(accountUpdate);
+		Account accountUpdateConfirm = new Account(name, email, tel, address, password,
+				OldName, OldEmail, OldTel, OldAddress, OldPassword);
+		model.addAttribute("accountUpdateConfirm", accountUpdateConfirm);
+		return "memberUpdateConfirm";
+
+	}
+
+	//会員更新画面
+	@GetMapping("/memberUpdate")
+	public String memberUpdate(
+			Model model) {
+		Integer accountUpdate = member.getId();
+		List<Account> accountList = accountRepository.findAllById(accountUpdate);
+		model.addAttribute("accountList", accountList);
+		return "memberUpdate";
+
+	}
+
 	//会員一覧表示
 	@GetMapping("/memberInfo")
 	public String memberInfo(

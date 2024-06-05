@@ -8,7 +8,7 @@
 
 <body>
 	<h1>会員情報更新</h1>
-	<table border="1">
+	<table border="1" th:each="account:${accountList}">
 
 		<tr>
 			<td>項目</td>
@@ -16,51 +16,59 @@
 			<td>新しい情報</td>
 		</tr>
 
-		<form action="/memberUpdate/confirm" method="post">
+		<form action="/memberUpdate" method="get">
 			<tr>
 				<th>名前</th>
-				<td th:text="${member_name}"></td>
+				<td th:text="${account.name}"></td>
 				<td>
-					<input type="text" name="member_name" th:value="member_name">
+					<input type="text" name="member_name">
+					<input type="hidden" name="old_member_name" th:value="${account.name}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>住所</th>
-				<td th:text="${address}"></td>
+				<td th:text="${account.address}"></td>
 				<td>
-					<input type="text" name="address" th:value="address">
+					<input type="text" name="address">
+					<input type="hidden" name="old_member_address" th:value="${account.address}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>電話番号</th>
-				<td th:text="${tel}"></td>
+				<td th:text="${account.tel}"></td>
 				<td>
-					<input type="text" name="tel" th:value="tel">
+					<input type="text" name="tel">
+					<input type="hidden" name="old_member_tel" th:value="${account.tel}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>メールアドレス</th>
-				<td th:text="${email}"></td>
+				<td th:text="${account.email}"></td>
 				<td>
-					<input type="text" name="email" th:value="email">
+					<input type="text" name="email">
+					<input type="hidden" name="old_member_email" th:value="${account.email}">
 				</td>
 			</tr>
 
 			<tr>
 				<th>パスワード</th>
-				<td th:text="${member_pass}"></td>
+				<td th:text="${account.password}"></td>
 				<td>
-					<input type="text" name="member_pass" th:value="member_pass">
+					<input type="text" name="member_pass">
+					<input type="hidden" name="old_member_password" th:value="${account.password}">
 				</td>
 			</tr>
 
 	</table>
-	<button>更新する</button>
-	<button>戻る</button>
 	</form>
+	<!--<form action="/memberUpdate/confirm" method="get">-->
+	<button formaction="/memberUpdate/confirm" formmethod="post">更新する</button>
+	</form>
+	<button>戻る</button>
+	
 	<br>
 	<br>
 	※更新しない情報は空欄のままで差し支えありません。
