@@ -23,6 +23,10 @@ public class Lesson {
 		this.name = name;
 	}
 
+	public Lesson(Integer id) {
+		this.id = id;
+	}
+
 	public Lesson(Integer id, String name) {
 		this.id = id;
 		this.name = name;
