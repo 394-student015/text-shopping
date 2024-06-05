@@ -6,17 +6,13 @@
 </head>
 <body>
 	<h3>在庫追加</h3>
-	
-	<!--教科書情報を表示する-->
-	<span th;replace="stock"></span>
-	
-	<form action="/stock/confirm" method="post">
+		<!--教科書情報を表示する
+		<span th:replace="stock"></span>-->
+	<form th:action="@{/textbook/{textId}/stock(textId=${textbook.id})}" method="post">
 	
 		在庫
-		<input type="text" name="stock">
-			
+		<input type="text" name="stock" th:value="${textbook.stock}">
 				<button>追加</button>
-	
 	</form>
 </body>
 </html>

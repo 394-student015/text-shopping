@@ -29,28 +29,50 @@ public class TextbookController {
 
 	//教科書登録画面
 	@GetMapping("/textbook/add")
-	public String editTextbook(
-			@PathVariable("id") Integer id,
-			Model model) {
-		Textbook textbook = textRepository.findById(id).get();
-		model.addAttribute("textbook", textbook);
+	public String textbookAdd(Model model) {
 		return "textbookAdd";
 	}
 
 	//教科書新規登録
-	@PostMapping("/textbook/{id}/add")
+	@PostMapping("/textbook/add/confirm")
 	public String addTextbook(
 			@RequestParam(value = "title", defaultValue = "") String title,
 			@RequestParam(value = "author", defaultValue = "") String author,
 			@RequestParam(value = "price", defaultValue = "") Integer price,
 			@RequestParam(value = "stock", defaultValue = "") Integer stock,
-			@RequestParam(value = "professorId", defaultValue = "") String professorId,
-			@RequestParam(value = "classId", defaultValue = "") String classId,
+			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
+			@RequestParam(value = "classId", defaultValue = "") Integer classId,
 			Model model) {
-		Textbook textbook = new Textbook();
+		Textbook textbook = new Textbook(title, author, price, stock, professorId, classId);
 		textRepository.save(textbook);
 		return "redirect:/textbook";
 
+	}
+
+	//教科書更新画面表示
+	@GetMapping("/textbook/{id}/edit")
+	public String textbookEdit(
+			@PathVariable("id") Integer id,
+			Model model) {
+		Textbook textbook = textRepository.findById(id).get();
+		model.addAttribute("textbook", textbook);
+		return "textbookUpdate";
+	}
+
+	//教科書更新
+	@PostMapping("/textbook/{id}/edit")
+	public String textbookUpdate(
+			@PathVariable("id") Integer id,
+			@RequestParam(value = "title", defaultValue = "") String title,
+			@RequestParam(value = "author", defaultValue = "") String author,
+			@RequestParam(value = "price", defaultValue = "") Integer price,
+			@RequestParam(value = "stock", defaultValue = "") Integer stock,
+			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
+			@RequestParam(value = "classId", defaultValue = "") Integer classId,
+			Model model) {
+		Textbook textbook = new Textbook(title, author, price, stock, professorId, classId);
+		textRepository.save(textbook);
+		return "redirect:/textbook";
 	}
 
 	//教科書表示一覧
@@ -68,13 +90,13 @@ public class TextbookController {
 			Model model) {
 		Textbook textbook = textRepository.findById(id).get();
 		model.addAttribute("textbook", textbook);
-		return "textbookUpdate";
+		return "stockAdd";
 
 	}
 
-	//教科書在庫追加
-	@PostMapping("/textbook/{id}/edit")
-	public String addStockConfirm(
+	//教科書在庫追加確認画面
+	@PostMapping("/textbook/{id}/stock")
+	public String stockConfirm(
 			@PathVariable("id") Integer id,
 			@RequestParam(name = "stock", defaultValue = "") Integer stock,
 			Model model) {
@@ -82,13 +104,6 @@ public class TextbookController {
 		textRepository.save(textbook);
 		return "redirect:/textbook";
 	}
-
-	/*教科書在庫追加確認画面
-	@PostMapping()
-	public String stockConfirm() {
-	
-	}
-	*/
 
 	//教科書削除
 	@PostMapping("/textbook/{id}/delete")

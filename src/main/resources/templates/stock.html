@@ -22,7 +22,7 @@
 		<td th:text="${text.price}"></td>
 		<td th:text="${text.stock}"></td>
 		<td>
-			<form action="/stockAdd/{text.id}" method="post">
+			<form th:action="@{/textbook/{textId}/stock(textId=${text.id})}" method="get">
 				<button>追加</button>
 			</form>
 		</td>
