@@ -16,12 +16,15 @@ import com.example.demo.entity.Account;
 import com.example.demo.entity.Information;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
+import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.InformationRepository;
 
 @Controller
 public class OrderController {
 	//内部設計書CL014参照
+	@Autowired
+	Member member;
 
 	@Autowired
 	Cart cart;

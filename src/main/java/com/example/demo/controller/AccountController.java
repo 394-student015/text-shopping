@@ -94,7 +94,7 @@ public class AccountController {
 	//購入者のログイン画面表示
 	@GetMapping("/")
 	public String index() {
-		session.invalidate();
+		//session.invalidate();
 		return "login";
 	}
 
@@ -108,11 +108,12 @@ public class AccountController {
 		if (accountInfo == null || accountInfo.size() == 0) {
 			model.addAttribute("message", "正しく入力してください");
 			return "login";
+		} else {
+			Account account = accountInfo.get(0);
+			member.setId(account.getId());
+			//member.setName(account.getName());
+			return "redirect:/shopMenu";
 		}
-		Account account = accountInfo.get(0);
-		member.setId(account.getId());
-		member.setName(account.getName());
-		return "redirect:/shopMenu";
 	}
 
 	//会員一覧表示
