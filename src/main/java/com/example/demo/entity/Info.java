@@ -1,12 +1,14 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "v_information")
 public class Info {
 	//	フィールド
+	@Id
 	private Integer id;
 	private Integer memberId;
 	private Integer textId;
