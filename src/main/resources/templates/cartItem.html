@@ -15,14 +15,14 @@
 			<th>価格</th>
 			<th></th>
 		</tr>
-		<tr th:each="textbook:${@cart.textbookList}">
+		<tr th:each="textbook:${textbookList}">
 			<td th:text="${textbook.id}"></td>
 			<td>
 				書名：<span th:text="${textbook.title}"></span><br>
 				著者：<span th:text="${textbook.author}"></span><br>
 				在庫：<span th:text="${textbook.stock}"></span><br>
-				教授：<span th:text="${textbook.professorId}"></span><br>
-				授業：<span th:text="${textbook.classId}"></span>
+				教授：<span th:text="${textbook.professor}"></span><br>
+				授業：<span th:text="${textbook.lecture}"></span>
 			</td>
 				<td th:text="${textbook.price}"></td>
 			<td>
