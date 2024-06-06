@@ -102,10 +102,12 @@ public class AccountController {
 	}
 
 	//会員削除画面
-	@GetMapping("/memberUpdate/confirm")
-	public String memberUpdateConfirm() {
+	@GetMapping("/memberDelete")
+	public String memberDelete(Model model) {
+		//Integer accountUpdate = member.getId();
+		//	Account account = accountRepository.findById(accountUpdate).get();
+		//model.addAttribute("account", account);
 		return "memberDelate";
-
 	}
 
 	//会員更新確認画面
