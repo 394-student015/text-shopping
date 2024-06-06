@@ -9,23 +9,25 @@
 	<h1>注文履歴</h1>
 	<table border="1">
 		<tr>
-			<th>購入ID</th>
 			<th>購入日</th>
-			<th>教科書</th>
-			<th>小計</th>
+			<th>名前</th>
+			<th>電話番号</th>
+			<th>メールアドレス</th>
+			<th>教科書名</th>
 			<th>合計金額</th>
 			<th>決済方法</th>
 			<th>受取方法</th>
 		</tr>
 		
-		<tr th:each="textbook:${textbooks}">
-			<td th:text="${textbook.info_id}"></td>
-			<td th:text="${textbook.date}"></td>
-			<td th:text="${textbook.title}"></td>
-			<td th:text="${textbook.price}"></td>
-			<td th:text="${textbook.total_price}"></td>
-			<td th:text="${textbook.payment}"></td>
-			<td th:text="${textbook.receive}"></td>
+		<tr th:each="information:${informationList}">
+			<!--<td th:text="${information.date}"></td>-->
+			<td th:text="${information.name}"></td>
+			<td th:text="${information.tel}"></td>
+			<td th:text="${information.email}"></td>
+			<td th:text="${information.title}"></td>
+			<td th:text="${information.total_price}"></td>
+			<td th:text="${information.payment}"></td>
+			<td th:text="${information.receive}"></td>
 		</tr>
 	</table>
 	

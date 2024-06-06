@@ -10,4 +10,6 @@ public interface InformationRepository extends JpaRepository<Information, Intege
 
 	//List<Information> findAll(Integer id);
 	List<Information> findByMemberId(Integer memberId);
+
+	//List<InformationHistory> findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(Integer id);
 }
