@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -43,12 +42,13 @@ public class OrderController {
 
 	@PostMapping("/order/confirm")
 	public String orderConfirm(
-			@PathVariable("id") Integer id,
+			//@PathVariable("id") Integer id,
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
-			@RequestParam(name = "textId", defaultValue = "") String textId,
-			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
-			@RequestParam(name = "major", defaultValue = "") Integer payment,
+			//@RequestParam(name = "textId", defaultValue = "") String textId,
+			//@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
+			//@RequestParam(name = "major", defaultValue = "") Integer payment,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
+			@RequestParam(name = "payment", defaultValue = "") Integer payment,
 			Model model) {
 
 		//顧客情報をまとめる？
@@ -65,16 +65,20 @@ public class OrderController {
 		List<Textbook> textbookList = cart.getTextbookList();
 		List<Information> information2 = new ArrayList<>();
 
-		//		information2.add(textId);
-		//		information2.add();
-		//		for (Textbook informationElement : textbookList) {
-		//			
-		//		}
-
-		//		informationRepository.saveAll();
+		/*information2.add(textId);
+		information2.add();
+		for (Textbook informationElement : textbookList) {
+		
+		}
+		
+		
+		informationRepository.saveAll();
+		*/
 
 		//クーポンの所持数をレポジトリから呼び出す
-		//List<Account> account = accountRepository.findById(id);
+		Account account = accountRepository.findById(memberId).get();
+
+		//int currentCoupon = account.getCoupon();
 
 		//10%OFFクーポンの所持数が1枚以上である場合、合計金額から10％割引する
 		//初期化
@@ -89,27 +93,27 @@ public class OrderController {
 
 			if (num == 0) {
 				//クーポン所持数を1枚増やす
-				//newCoupon = ((Account) account).getCoupon() + 1;
+				newCoupon = account.getCoupon() + 1;
 				//割引された合計金額をエンティティにセットする
-				//((Account) account).setCoupon(newCoupon);
+				account.setCoupon(newCoupon);
 			}
 		}
 
-		//if (((Account) account).getCoupon() > 0) { // クーポン所持数1枚以上
-		//合計金額から10％割引する
-		newTotalprice = (int) (information.getTotalprice() * 0.9);
-		information.setTotalprice(newTotalprice);
-		//クーポン所持数を1枚減らす
-		//	newCoupon = ((Account) account).getCoupon() - 1;
-		//割引された合計金額をエンティティにセットする
-		//((Account) account).setCoupon(newCoupon);
-		//}
+		if (account.getCoupon() > 0) { // クーポン所持数1枚以上
+			//合計金額から10％割引する
+			newTotalprice = (int) (information.getTotalprice() * 0.9);
+			information.setTotalprice(newTotalprice);
+			//クーポン所持数を1枚減らす
+			newCoupon = account.getCoupon() - 1;
+			//割引された合計金額をエンティティにセットする
+			account.setCoupon(newCoupon);
+		}
 
 		//セッションスコープのカート情報を削除する
-		//cart.clear();
+		cart.clear();
 
 		//注文完了画面に戻すための購入IDを設定する
-		//model.addAttribute("orderNumber", information.getId());
+		model.addAttribute("orderNumber", information.getId());
 
 		return "orderComplete";
 	}

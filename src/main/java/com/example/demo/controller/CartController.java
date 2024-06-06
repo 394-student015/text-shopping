@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Account;
+import com.example.demo.entity.Book;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
+import com.example.demo.model.Member;
+import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.TextRepository;
 
 @Controller
@@ -20,14 +25,23 @@ public class CartController {
 	Cart cart;
 
 	@Autowired
+	Member member;
+
+	@Autowired
 	TextRepository textRepository;
+
+	@Autowired
+	BookRepository bookRepository;
+
+	@Autowired
+	AccountRepository accountRepository;
 
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
 	public String shopMenu(
 
 			Model model) {
-		List<Textbook> textbookList = textRepository.findAll();
+		List<Book> textbookList = bookRepository.findAll();
 		model.addAttribute("textbook", textbookList);
 
 		return "shopMenu";
@@ -50,6 +64,20 @@ public class CartController {
 		return "redirect:/cart";
 	}
 
+	//注文するボタン押下
+	@GetMapping("/orderConfirm")
+	public String orderConfirm(
+			Model model) {
+
+		//クーポン情報を持ってくる
+		Account account = accountRepository.findById(member.getId()).get();
+		//account.getCoupon();
+
+		model.addAttribute("account", account);
+
+		return "orderConfirm";
+	}
+
 	//指定した商品からカートから削除
 	@PostMapping("/cart/delete")
 	public String deleteCart(
@@ -59,4 +87,5 @@ public class CartController {
 
 		return "redirect:/cart";
 	}
+
 }
