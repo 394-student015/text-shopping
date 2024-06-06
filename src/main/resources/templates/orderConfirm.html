@@ -15,26 +15,6 @@
 		<!--注文画面を持ってくる-->
 		<span th:replace="cartItem"></span>
 
-		<!--受け取り方法-->
-		受け取り方法：
-		<select name="receive">
-			<option value="1">店頭受取</option>
-			<option value="2">配送</option>
-		</select>
-		<br>
-
-		<!--クーポン情報取得-->
-		使用クーポン：
-
-		<th:text="'使用クーポン：'+${account.coupon}"><br>
-		
-		<!--決済方法選択-->
-		決済方法：
-		<select name="pay">
-			<option value="1">現金</option>
-			<option value="2">クレジットカード</option>
-		</select><br>
-
 		<form action="/order/confirm" method="post">
 		<button>注文を確定する</button>
 
