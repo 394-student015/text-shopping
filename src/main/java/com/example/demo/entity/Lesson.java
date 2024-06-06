@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "class")
+@Table(name = "lesson")
 //内部設計書CL04参照
 public class Lesson {
 	@Id

@@ -23,32 +23,32 @@ public class Textbook {
 	@Column(name = "professor_id")
 	private Integer professorId;
 
-	@Column(name = "class_id")
-	private Integer classId;
+	@Column(name = "lesson_id")
+	private Integer lessonId;
 
 	//コンストラクタ
 	public Textbook() {
 	}
 
 	public Textbook(Integer id, String title, String author, Integer price, Integer stock, Integer professorId,
-			Integer classId) {
+			Integer lessonId) {
 		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.price = price;
 		this.stock = stock;
 		this.professorId = professorId;
-		this.classId = classId;
+		this.lessonId = lessonId;
 	}
 
 	public Textbook(String title, String author, Integer price, Integer stock, Integer professorId,
-			Integer classId) {
+			Integer lessonId) {
 		this.title = title;
 		this.author = author;
 		this.price = price;
 		this.stock = stock;
 		this.professorId = professorId;
-		this.classId = classId;
+		this.lessonId = lessonId;
 	}
 
 	public Textbook(Integer id, Integer stock) {
@@ -81,8 +81,8 @@ public class Textbook {
 		return professorId;
 	}
 
-	public Integer getClassId() {
-		return classId;
+	public Integer getlessonId() {
+		return lessonId;
 	}
 
 }
