@@ -2,60 +2,56 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-<<<<<<< HEAD
-<meta charset="UTF-8">
-<title>購入者初期表示</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-=======
 	<meta charset="UTF-8">
 	<title>購入者初期表示</title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
->>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
 </head>
 
 <body>
 	<main>
+		<h1>会員メニュー</h1>
+		
 		<!--書名による部分一致検索-->
 		<form action="/shopMenu" method="get">
-			<input type="text" name="keyword">
+			<input type="text" name="keyword" placeholder="書名">
 			<button>検索</button>
 		</form>
 
-			<table border="1">
-				<tr>
-					<th>NO</th>
-					<th>商品名</th>
-					<th>価格</th>
-					<th></th>
-				</tr>
-				<tr th:each="textbooks:${textbook}">
-					<td th:text="${textbooks.id}"></td>
-					<td>
+		<table border="1">
+			<tr>
+				<th>NO</th>
+				<th>商品名</th>
+				<th>価格</th>
+				<th></th>
+			</tr>
+			<tr th:each="textbooks:${textbook}">
+				<td th:text="${textbooks.id}"></td>
+				<td>
 
-						書名：<span th:text="${textbooks.title}"></span><br>
-						著者：<span th:text="${textbooks.author}"></span><br>
-						在庫：<span th:text="${textbooks.stock}"></span><br>
-						教授：<span th:text="${textbooks.professor}"></span><br>
-						授業：<span th:text="${textbooks.lecture}"></span><br>
+					書名：<span th:text="${textbooks.title}"></span><br>
+					著者：<span th:text="${textbooks.author}"></span><br>
+					在庫：<span th:text="${textbooks.stock}"></span><br>
+					教授：<span th:text="${textbooks.professor}"></span><br>
+					授業：<span th:text="${textbooks.lecture}"></span><br>
 
-					</td>
-					<td th:text="${textbooks.price}"></td>
+				</td>
+				<td th:text="${textbooks.price}"></td>
 
-					<td>
-						<form action="/cart/add" method="post">
-							<input type="hidden" name="textbookId" th:value="${textbooks.id}">
+				<td>
+					<form action="/cart/add" method="post">
+						<input type="hidden" name="textbookId" th:value="${textbooks.id}">
 
-							<button>カートに追加</button>
-						</form>
-					</td>
+						<button>カートに追加</button>
+					</form>
+				</td>
 
-				</tr>
+			</tr>
 
-			</table>
-			設定<br>
+		</table>
+		設定<br>
 
-			<a href="/memberInfo">会員情報表示</a><br>
-			<a href="/information">注文履歴表示</a>
+		<a href="/memberInfo">会員情報表示</a><br>
+		<a href="/information">注文履歴表示</a>
 
 	</main>
 </body>
