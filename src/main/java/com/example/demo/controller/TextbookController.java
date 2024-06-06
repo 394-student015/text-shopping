@@ -98,9 +98,14 @@ public class TextbookController {
 	@PostMapping("/textbook/{id}/stock")
 	public String stockConfirm(
 			@PathVariable("id") Integer id,
-			@RequestParam(name = "stock", defaultValue = "") Integer stock,
+			@RequestParam(value = "title", defaultValue = "") String title,
+			@RequestParam(value = "author", defaultValue = "") String author,
+			@RequestParam(value = "price", defaultValue = "") Integer price,
+			@RequestParam(value = "stock", defaultValue = "") Integer stock,
+			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
+			@RequestParam(value = "classId", defaultValue = "") Integer classId,
 			Model model) {
-		Textbook textbook = new Textbook(id, stock);
+		Textbook textbook = new Textbook(title, author, price, stock, professorId, classId);
 		textRepository.save(textbook);
 		return "redirect:/textbook";
 	}
