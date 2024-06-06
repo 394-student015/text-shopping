@@ -8,61 +8,79 @@
 
 <body>
 	<h1>会員情報更新確認</h1>
-	<table border="1" th:each="account:${accountConfirm}">
-
+	<form action="/memberUpdate/confirm" method="get">
+	<table border="1" th:each="account:${accountUpdateConfirm}">
 		<tr>
 			<td>項目</td>
 			<td>現在の情報</td>
 			<td>新しい情報</td>
 		</tr>
+		<tr>
+			<th>名前</th>
+			<td th:text="${account.oldName}"></td>
+			<!--新しい-->
+			<td th:text="${account.name}"></td>
+			<input type="hidden" name="name" th:value="${account.name}">
+			<input type="hidden" name="old_member_name" th:value="${account.oldName}">
+		</tr>
 
-		<form action="/memberUpdate/confirm" method="post">
-			<tr>
-				<th>名前</th>
-				<td th:text="${account.OldName}"></td>
-				<!--新しい-->
-				<td th:text="${account.name}"></td>
-			</tr>
+		<tr>
+			<th>住所</th>
+			<!--現在-->
+			<td th:text="${account.oldAddress}"></td>
+			<!--新しい-->
+			<td th:text="${account.address}" th:value="${account.address}"></td>
+			<input type="hidden" name="address" th:value="${account.address}">
+			<input type="hidden" name="old_member_address" th:value="${account.oldAddress}">
+		</tr>
 
-			<tr>
-				<th>住所</th>
-				<!--現在-->
-				<td th:text="${account.OldAddress}"></td>
-				<!--新しい-->
-				<td th:text="${account.address}"></td>
-			</tr>
+		<tr>
+			<th>電話番号</th>
+			<!--現在-->
+			<td th:text="${account.oldTel}"></td>
+			<!--新しい-->
+			<td th:text="${account.tel}"></td>
+			<input type="hidden" name="tel" th:value="${account.tel}">
+			<input type="hidden" name="old_member_tel" th:value="${account.oldTel}">
+		</tr>
 
-			<tr>
-				<th>電話番号</th>
-				<!--現在-->
-				<td th:text="${account.Oldtel}"></td>
-				<!--新しい-->
-				<td th:text="${account.tel}"></td>
-			</tr>
+		<tr>
+			<th>メールアドレス</th>
+			<!--現在-->
+			<td th:text="${account.oldEmail}"></td>
+			<!--新しい-->
+			<td th:text="${account.email}"></td>
+			<input type="hidden" name="email" th:value="${account.email}">
+			<input type="hidden" name="old_member_email" th:value="${account.oldEmail}">
+		</tr>
 
-			<tr>
-				<th>メールアドレス</th>
-				<!--現在-->
-				<td th:text="${account.OldEmail}"></td>
-				<!--新しい-->
-				<td th:text="${account.email}"></td>
-			</tr>
-
-			<tr>
-				<th>パスワード</th>
-				<!--現在-->
-				<td th:text="${account.OldPassword}"></td>
-				<!--新しい-->
-				<td th:text="${account.password}"></td>
-			</tr>
-
+		<tr>
+			<th>パスワード</th>
+			<!--現在-->
+			<td th:text="${account.oldPassword}"></td>
+			<!--新しい-->
+			<td th:text="${account.password}" th:value="変更なし"></td>
+			<input type="hidden" name="password" th:value="${account.password}">
+			<input type="hidden" name="old_member_password" th:value="${account.oldPassword}">
+		</tr>
+		<tr>
+			<th>クーポン</th>
+			<!--現在-->
+			<td th:text="${account.coupon}"></td>
+			<!--新しい-->
+			<td th:text="${account.coupon}"></td>
+			<input type="hidden" name="coupon" th:value="${account.coupon}">
+		</tr>
 	</table>
+	
 	<br>
-	上記のとおり会員情報を更新します。よろしいですか？
+	上記のとおり会員情報を更新します。よろしいですか？<br>
+	※はいを押すと会員情報を更新して教科書メニュー画面に戻ります
 	<br>
-	<button>はい</button>
-	<button>修正する</button>
+	<button formaction="/memberUpdate/confirm" formmethod="post">はい</button>
 	</form>
+	<a href="/memberUpdate"><button>戻る</button></a>
 </body>
+
 
 </html>

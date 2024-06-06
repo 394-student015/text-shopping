@@ -8,7 +8,7 @@
 
 <body>
 	<h1>会員情報更新</h1>
-	<table border="1" th:each="account:${accountList}">
+	<table border="1">
 
 		<tr>
 			<td>項目</td>
@@ -30,7 +30,7 @@
 				<th>住所</th>
 				<td th:text="${account.address}"></td>
 				<td>
-					<input type="text" name="address">
+					<input type="text" name="member_address">
 					<input type="hidden" name="old_member_address" th:value="${account.address}">
 				</td>
 			</tr>
@@ -39,7 +39,7 @@
 				<th>電話番号</th>
 				<td th:text="${account.tel}"></td>
 				<td>
-					<input type="text" name="tel">
+					<input type="text" name="member_tel">
 					<input type="hidden" name="old_member_tel" th:value="${account.tel}">
 				</td>
 			</tr>
@@ -48,7 +48,7 @@
 				<th>メールアドレス</th>
 				<td th:text="${account.email}"></td>
 				<td>
-					<input type="text" name="email">
+					<input type="text" name="member_email">
 					<input type="hidden" name="old_member_email" th:value="${account.email}">
 				</td>
 			</tr>
@@ -57,17 +57,19 @@
 				<th>パスワード</th>
 				<td th:text="${account.password}"></td>
 				<td>
-					<input type="text" name="member_pass">
+					<input type="text" name="member_password">
 					<input type="hidden" name="old_member_password" th:value="${account.password}">
 				</td>
 			</tr>
 
 	</table>
-	</form>
+	<input type="hidden" name="coupon" th:value="${account.coupon}">
+	<!--</form>-->
 	<!--<form action="/memberUpdate/confirm" method="get">-->
-	<button formaction="/memberUpdate/confirm" formmethod="post">更新する</button>
+		
+	<button formaction="/memberUpdate/confirm" formmethod="get">更新確認画面へ</button>
 	</form>
-	<button>戻る</button>
+	<a href="/memberInfo"><button>戻る</button></a>
 	
 	<br>
 	<br>

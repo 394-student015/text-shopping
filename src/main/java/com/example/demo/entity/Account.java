@@ -41,9 +41,24 @@ public class Account {
 
 	public Account(String name, String email, String tel, String address, String password, String oldName,
 			String oldEmail, String oldTel, String oldAddress, String oldPassword) {
+		this.name = name;
+		this.email = email;
+		this.tel = tel;
+		this.address = address;
+		this.password = password;
+	}
+
+	public Account(Integer id, String name, String email, String tel, String address, String password, Integer coupon) {
+		this(name, email, tel, address, password, coupon);
+		this.id = id;
 	}
 
 	public Account() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+	public Account(String name, String email, String tel, String address, String password, Integer coupon,
+			String oldName, String oldAddress, String oldTel, String oldEmail, String oldPassword) {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
@@ -87,6 +102,22 @@ public class Account {
 
 	public void setCoupon(Integer coupon) {
 		this.coupon = coupon;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
