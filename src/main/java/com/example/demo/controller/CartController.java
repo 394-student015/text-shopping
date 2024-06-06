@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entity.Account;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
@@ -86,20 +85,6 @@ public class CartController {
 		model.addAttribute("textbookList", textbookList);
 
 		return "cart";
-	}
-
-	//注文するボタン押下
-	@GetMapping("/orderConfirm")
-	public String orderConfirm(
-			Model model) {
-
-		//クーポン情報を持ってくる
-		Account account = accountRepository.findById(member.getId()).get();
-		//account.getCoupon();
-
-		model.addAttribute("account", account);
-
-		return "orderConfirm";
 	}
 
 	//指定した商品をカートから削除

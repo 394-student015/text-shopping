@@ -34,16 +34,16 @@ public class TextbookController {
 	}
 
 	//教科書新規登録
-	@PostMapping("/textbook/add/confirm")
+	@PostMapping("/textbook/add")
 	public String addTextbook(
 			@RequestParam(value = "title", defaultValue = "") String title,
 			@RequestParam(value = "author", defaultValue = "") String author,
 			@RequestParam(value = "price", defaultValue = "") Integer price,
 			@RequestParam(value = "stock", defaultValue = "") Integer stock,
 			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
-			@RequestParam(value = "classId", defaultValue = "") Integer classId,
+			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
-		Textbook textbook = new Textbook(title, author, price, stock, professorId, classId);
+		Textbook textbook = new Textbook(title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
 		return "redirect:/textbook";
 
@@ -68,9 +68,9 @@ public class TextbookController {
 			@RequestParam(value = "price", defaultValue = "") Integer price,
 			@RequestParam(value = "stock", defaultValue = "") Integer stock,
 			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
-			@RequestParam(value = "classId", defaultValue = "") Integer classId,
+			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
-		Textbook textbook = new Textbook(title, author, price, stock, professorId, classId);
+		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
 		return "redirect:/textbook";
 	}
@@ -78,8 +78,8 @@ public class TextbookController {
 	//教科書表示一覧
 	@GetMapping("/stock")
 	public String stock(Model model) {
-		List<Textbook> textbookList = textRepository.findAll();
-		model.addAttribute("textbook", textbookList);
+		List<Textbook> textbook = textRepository.findAll();
+		model.addAttribute("textbook", textbook);
 		return "stock";
 	}
 
@@ -103,11 +103,11 @@ public class TextbookController {
 			@RequestParam(value = "price", defaultValue = "") Integer price,
 			@RequestParam(value = "stock", defaultValue = "") Integer stock,
 			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
-			@RequestParam(value = "classId", defaultValue = "") Integer classId,
+			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
-		Textbook textbook = new Textbook(title, author, price, stock, professorId, classId);
+		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
-		return "redirect:/textbook";
+		return "redirect:/stock";
 	}
 
 	//教科書削除
