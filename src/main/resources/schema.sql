@@ -49,7 +49,7 @@ CREATE TABLE textbook(
 		price INTEGER NOT NULL,
 		stock INTEGER NOT NULL,
 		professor_id INTEGER NOT NULL,
-		class_id INTEGER NOT NULL
+		lesson_id INTEGER NOT NULL
 );
 
 /**********************************/
@@ -88,7 +88,7 @@ textbook.price,
 textbook.stock 
 from textbook 
 join professor on professor.id=textbook.professor_id 
-join lesson on lesson.id=textbook.class_id;
+join lesson on lesson.id=textbook.lesson_id;
 
 /*********************/
 /*view：information*/
@@ -111,12 +111,12 @@ join textbook on textbook.id=information.id;
 
 ALTER TABLE member ADD CONSTRAINT IDX_member_PK PRIMARY KEY (id);
 
-ALTER TABLE lesson ADD CONSTRAINT IDX_class_PK PRIMARY KEY (id);
+ALTER TABLE lesson ADD CONSTRAINT IDX_lesson_PK PRIMARY KEY (id);
 
 ALTER TABLE professor ADD CONSTRAINT IDX_professor_PK PRIMARY KEY (id);
 
 ALTER TABLE textbook ADD CONSTRAINT IDX_textbook_PK PRIMARY KEY (id);
-ALTER TABLE textbook ADD CONSTRAINT IDX_textbook_FK0 FOREIGN KEY (class_id) REFERENCES lesson (id);
+ALTER TABLE textbook ADD CONSTRAINT IDX_textbook_FK0 FOREIGN KEY (lesson_id) REFERENCES lesson (id);
 ALTER TABLE textbook ADD CONSTRAINT IDX_textbook_FK1 FOREIGN KEY (professor_id) REFERENCES professor (id);
 
 ALTER TABLE information ADD CONSTRAINT IDX_information_PK PRIMARY KEY (id);
