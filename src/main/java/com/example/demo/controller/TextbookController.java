@@ -107,7 +107,7 @@ public class TextbookController {
 			Model model) {
 		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
-		return "/stock";
+		return "redirect:/stock";
 	}
 
 	//教科書削除
