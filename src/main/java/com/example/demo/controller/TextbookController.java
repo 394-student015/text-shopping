@@ -34,7 +34,7 @@ public class TextbookController {
 	}
 
 	//教科書新規登録
-	@PostMapping("/textbook/add/confirm")
+	@PostMapping("/textbook/add")
 	public String addTextbook(
 			@RequestParam(value = "title", defaultValue = "") String title,
 			@RequestParam(value = "author", defaultValue = "") String author,
