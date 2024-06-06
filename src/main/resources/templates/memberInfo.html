@@ -4,6 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>会員情報表示</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 <body>
@@ -15,12 +16,6 @@
 		<tr>
 			<th>名前</th>
 			<td th:text="${account.name}"></td>
-			<form action="/memberUpdate" method="get">
-			<td colspan="6"><button>更新する</button></td>
-			</form>
-			<form action="/memberDelete" method="get">
-			<td colspan="6"><br><button>削除する</button></td>
-			</form>
 		</tr>
 
 		<tr>
@@ -31,6 +26,12 @@
 		<tr>
 			<th>電話番号</th>
 			<td th:text="${account.tel}"></td>
+			<form action="/memberUpdate" method="get">
+			<td colspan="3"><button>更新する</button></td>
+			</form>
+			<form action="/memberDelete" method="get">
+			<td colspan="3"><button>削除する</button></td>
+			</form>
 		</tr>
 
 		<tr>
@@ -44,7 +45,7 @@
 		</tr>
 
 		<tr>
-			<th>クーポンの所持数（枚）</th>
+			<th>クーポン所持数（枚）</th>
 			<td th:text="${account.coupon}"></td>
 		</tr>
 		
