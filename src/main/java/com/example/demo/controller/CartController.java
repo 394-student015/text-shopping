@@ -39,8 +39,9 @@ public class CartController {
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
 	public String shopMenu(
-
 			Model model) {
+
+		//教科書一覧情報の取得
 		List<Book> textbookList = bookRepository.findAll();
 		model.addAttribute("textbook", textbookList);
 
