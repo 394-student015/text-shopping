@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Account;
+import com.example.demo.model.AccountConfirm;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 
@@ -75,22 +76,6 @@ public class AccountController {
 
 	}
 
-	//これいらない！！
-	@GetMapping("/account/confirm")
-	public String createConfirm(
-			@RequestParam(name = "name") String name,
-			@RequestParam(name = "email") String email,
-			@RequestParam(name = "tel") String tel,
-			@RequestParam(name = "address") String address,
-			@RequestParam(name = "password") String password,
-			Model model) {
-		//List<Account> accountConfirm = accountRepository.findByNameAndEmailAndTelAndAddressAndPassword(name,
-		//email, tel, address, password);
-		Account accountList = new Account(name, email, tel, address, password);
-		model.addAttribute("accountList", accountList);
-		return "createConfirm";
-	}
-
 	//購入者のログイン画面表示
 	@GetMapping("/")
 	public String index() {
@@ -116,36 +101,81 @@ public class AccountController {
 		}
 	}
 
-	//会員更新画面
-	@PostMapping("/memberUpdate/confirm")
+	//会員削除画面
+	@GetMapping("/memberUpdate/confirm")
+	public String memberUpdateConfirm() {
+		return "memberDelate";
+
+	}
+
+	//会員更新確認画面
+	@GetMapping("/memberUpdate/confirm")
 	public String memberUpdateConfirm(
 			@RequestParam(name = "member_name", defaultValue = "") String name,
 			@RequestParam(name = "member_address", defaultValue = "") String address,
 			@RequestParam(name = "member_tel", defaultValue = "") String tel,
 			@RequestParam(name = "member_email", defaultValue = "") String email,
 			@RequestParam(name = "member_password", defaultValue = "") String password,
-			@RequestParam(name = "old_member_name", defaultValue = "") String OldName,
-			@RequestParam(name = "old_member_address", defaultValue = "") String OldAddress,
-			@RequestParam(name = "old_member_tel", defaultValue = "") String OldTel,
-			@RequestParam(name = "old_member_email", defaultValue = "") String OldEmail,
-			@RequestParam(name = "old_member_password", defaultValue = "") String OldPassword,
+			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
+			@RequestParam(name = "old_member_name", defaultValue = "") String oldName,
+			@RequestParam(name = "old_member_address", defaultValue = "") String oldAddress,
+			@RequestParam(name = "old_member_tel", defaultValue = "") String oldTel,
+			@RequestParam(name = "old_member_email", defaultValue = "") String oldEmail,
+			@RequestParam(name = "old_member_password", defaultValue = "") String oldPassword,
 			Model model) {
-		Account accountUpdate = new Account(name, email, tel, address, password);
-		accountRepository.save(accountUpdate);
-		Account accountUpdateConfirm = new Account(name, email, tel, address, password,
-				OldName, OldEmail, OldTel, OldAddress, OldPassword);
+
+		AccountConfirm accountUpdateConfirm = new AccountConfirm(name, email, tel, address, password,
+				coupon, oldName, oldAddress, oldTel, oldEmail, oldPassword);
+		if (name.length() == 0) {
+			accountUpdateConfirm.setName(oldName);
+		}
+		if (email.length() == 0) {
+			accountUpdateConfirm.setEmail(oldEmail);
+		}
+		if (tel.length() == 0) {
+			accountUpdateConfirm.setTel(oldTel);
+		}
+		if (address.length() == 0) {
+			accountUpdateConfirm.setAddress(oldAddress);
+		}
+		if (password.length() == 0) {
+			accountUpdateConfirm.setPassword(oldPassword);
+		}
 		model.addAttribute("accountUpdateConfirm", accountUpdateConfirm);
 		return "memberUpdateConfirm";
 
 	}
 
+	@PostMapping("/memberUpdate/confirm")
+	public String memberUpdateConfirmFinish(
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "address", defaultValue = "") String address,
+			@RequestParam(name = "password", defaultValue = "") String password,
+			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
+			@RequestParam(name = "old_member_name", defaultValue = "") String oldName,
+			@RequestParam(name = "old_member_address", defaultValue = "") String oldAddress,
+			@RequestParam(name = "old_member_tel", defaultValue = "") String oldTel,
+			@RequestParam(name = "old_member_email", defaultValue = "") String oldEmail,
+			@RequestParam(name = "old_member_password", defaultValue = "") String oldPassword,
+			Model model) {
+
+		Account accountUpdate = new Account(name, email, tel, address, password, coupon);
+		accountUpdate.setId(member.getId());
+		accountRepository.save(accountUpdate);
+		return "redirect:/shopMenu";
+
+	}
+
 	//会員更新画面
 	@GetMapping("/memberUpdate")
+
 	public String memberUpdate(
 			Model model) {
 		Integer accountUpdate = member.getId();
-		List<Account> accountList = accountRepository.findAllById(accountUpdate);
-		model.addAttribute("accountList", accountList);
+		Account account = accountRepository.findById(accountUpdate).get();
+		model.addAttribute("account", account);
 		return "memberUpdate";
 
 	}
