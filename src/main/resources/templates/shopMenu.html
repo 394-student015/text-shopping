@@ -16,8 +16,7 @@
 			<input type="text" name="keyword" placeholder="書名">
 			<button>検索</button>
 		</form>
-
-<<<<<<< HEAD
+		
 			<table border="1">
 				<tr>
 					<th>NO</th>
@@ -27,26 +26,12 @@
 				</tr>
 				<tr th:each="textbooks:${textbookList}">
 					<td th:text="${textbooks.id}"></td>
-					<td>
-=======
-		<table border="1">
-			<tr>
-				<th>NO</th>
-				<th>商品名</th>
-				<th>価格</th>
-				<th></th>
-			</tr>
-			<tr th:each="textbooks:${textbook}">
-				<td th:text="${textbooks.id}"></td>
 				<td>
->>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
-
 					書名：<span th:text="${textbooks.title}"></span><br>
 					著者：<span th:text="${textbooks.author}"></span><br>
 					在庫：<span th:text="${textbooks.stock}"></span><br>
 					教授：<span th:text="${textbooks.professor}"></span><br>
 					授業：<span th:text="${textbooks.lecture}"></span><br>
-
 				</td>
 				<td th:text="${textbooks.price}"></td>
 
