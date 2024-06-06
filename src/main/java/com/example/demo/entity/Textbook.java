@@ -81,7 +81,7 @@ public class Textbook {
 		return professorId;
 	}
 
-	public Integer getlessonId() {
+	public Integer getLessonId() {
 		return lessonId;
 	}
 

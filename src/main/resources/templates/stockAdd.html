@@ -9,11 +9,19 @@
 	<h1>在庫追加</h1>
 		<!--教科書情報を表示する
 		<span th:replace="stock"></span>-->
-	<form th:action="@{/textbook/{textId}/stock(textId=${textbook.id})}" method="post">
-	
-		在庫
-		<input type="text" name="stock" th:value="${textbook.stock}">
+		<form th:action="@{/textbook/{textId}/stock(textId=${textbook.id})}" method="post">
+			<div th:each = "text:${textbook}">
+			<input type="hidden" name=id th:value="${text.id}">
+			<input type="hidden" name=title th:value="${text.title}">
+			<input type="hidden" name=author th:value="${text.author}">
+			<input type="hidden" name=price th:value="${text.price}">
+			<input type="hidden" name=professorId th:value="${text.professorId}">
+			<input type="hidden" name=lessonId th:value="${text.lessonId}">
+			
+		在庫<input type="text" name="stock" th:value="${text.stock}">
+			</div>
+				<!--<button formaction="/textbook/{textId}/stock(textId=${textbook.id})" formmethod="post">追加</button>-->
 				<button>追加</button>
-	</form>
+		</form>
 </body>
 </html>

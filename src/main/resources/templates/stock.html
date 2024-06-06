@@ -25,6 +25,13 @@
 		<td>
 			<form th:action="@{/textbook/{textId}/stock(textId=${text.id})}" method="get">
 				<button>追加</button>
+				
+			<input type="hidden" name=id th:value="${text.id}">
+			<input type="hidden" name=title th:value="${text.title}">
+			<input type="hidden" name=author th:value="${text.author}">
+			<input type="hidden" name=price th:value="${text.price}">
+			<input type="hidden" name=professorId th:value="${text.professorId}">
+			<input type="hidden" name=lessonId th:value="${text.lessonId}">
 			</form>
 		</td>
 	</tr>
