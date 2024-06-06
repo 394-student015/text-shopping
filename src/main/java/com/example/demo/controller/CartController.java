@@ -99,6 +99,16 @@ public class CartController {
 
 		model.addAttribute("account", account);
 
+		//表示のための処理
+		List<Book> textbookList = new ArrayList();
+		for (Textbook text : cart.getTextbookList()) {
+
+			textbookList.add(bookRepository.findById(text.getId()).get());
+
+		}
+		model.addAttribute("textbookList", textbookList);
+		//ここまで、表示のための処理
+
 		return "orderConfirm";
 	}
 
