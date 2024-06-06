@@ -3,15 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <title>削除画面確認</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 	一度退会すると、お客様の会員情報は一切使用できなくなります。
 	<br>
 	本当によろしいですか？
-	<form action="/memberDelete" method="post">
-		<a href="login.html">はい。退会します</a>
+	<form action="/memberDelete/confirm" method="post">
+		<button>はい。退会します</button>
 	</form>
 	<br>
-	<a href="memberInfo.html">会員情報画面に戻る</a>
+	<a href="/memberInfo"><button>会員情報画面に戻る</button></a>
 </body>
 </html>

@@ -79,7 +79,7 @@ public class AccountController {
 	//購入者のログイン画面表示
 	@GetMapping("/")
 	public String index() {
-		//session.invalidate();
+		session.invalidate();
 		return "login";
 	}
 
@@ -104,10 +104,21 @@ public class AccountController {
 	//会員削除画面
 	@GetMapping("/memberDelete")
 	public String memberDelete(Model model) {
-		//Integer accountUpdate = member.getId();
-		//	Account account = accountRepository.findById(accountUpdate).get();
-		//model.addAttribute("account", account);
-		return "memberDelate";
+		return "memberDelete";
+	}
+
+	//会員削除確認画面表示
+	@GetMapping("/memberDeleteConfirm")
+	public String memberDeleteConfirm(Model model) {
+		return "memberDeleteConfirm";
+	}
+
+	//会員削除処理
+	@PostMapping("/memberDelete/confirm")
+	public String memberDeleteConfirmFinish(Model model) {
+		Integer accountDelete = member.getId();
+		accountRepository.deleteById(accountDelete);
+		return "redirect:/";
 	}
 
 	//会員更新確認画面
@@ -148,6 +159,7 @@ public class AccountController {
 
 	}
 
+	//会員更新処理
 	@PostMapping("/memberUpdate/confirm")
 	public String memberUpdateConfirmFinish(
 			@RequestParam(name = "name", defaultValue = "") String name,
