@@ -30,10 +30,21 @@ public class CartController {
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
 	public String shopMenu(
+			@RequestParam(name = "keyword", defaultValue = "") String keyword,
 			Model model) {
 
 		//教科書一覧情報の取得
 		List<Book> textbookList = bookRepository.findAll();
+
+		if (keyword.length() > 0) {
+			// 商品名による部分一致検索
+			textbookList = bookRepository.findByTitleContaining(keyword);
+		} else {
+			// 全商品検索
+			textbookList = bookRepository.findAll();
+		}
+
+		model.addAttribute("keyword", keyword);
 		model.addAttribute("textbook", textbookList);
 
 		return "shopMenu";
