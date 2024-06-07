@@ -1,14 +1,15 @@
 @charset "UTF-8";
 body{
 	background-color:rgb(128, 255, 128);/*背景色*/
+	text-align:center;/*中央寄せ*/
 }
 h1{text-align:center;/*中央寄せ*/
 	background-color:darkgreen;
 	color:cornsilk;
 }
-li{
-	margin:12px;
+li{margin:12px;
 	cursor:pointer;
+	text-align:left;
 }
 
 table{
@@ -24,9 +25,10 @@ button{
 	background-color: darkgreen;
 	color:cornsilk;
 	border:none;
-	width:100px;
+	width:140px;
 	cursor:pointer;
 }
 button:hover{
 	background-color: palegreen;
+	color:rgb(0, 0, 0);
 }
