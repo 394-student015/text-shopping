@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Account;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.TextRepository;
 
 @Controller
@@ -36,24 +38,34 @@ public class CartController {
 	@Autowired
 	AccountRepository accountRepository;
 
+	@Autowired
+	OrderDetailRepository orderDetailrepository;
+
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
 	public String shopMenu(
-			@RequestParam(name = "keyword", defaultValue = "") String keyword,
+			@RequestParam(name = "title", defaultValue = "") String title,
+			@RequestParam(name = "professor", defaultValue = "") String professor,
+			@RequestParam(name = "lecture", defaultValue = "") String lecture,
 			Model model) {
 
 		//教科書一覧情報の取得
 		List<Book> textbookList = bookRepository.findAll();
 
-		if (keyword.length() > 0) {
-			// 商品名による部分一致検索
-			textbookList = bookRepository.findByTitleContaining(keyword);
-		} else {
-			// 全商品検索
+		// 部分一致検索
+		if (title.length() > 0) { // 書名
+			textbookList = bookRepository.findByTitleContaining(title);
+		} else if (professor.length() > 0) { // 教授名
+			textbookList = bookRepository.findByProfessorContaining(professor);
+		} else if (lecture.length() > 0) { // 授業名
+			textbookList = bookRepository.findByLectureContaining(lecture);
+		} else { // 全商品
 			textbookList = bookRepository.findAll();
 		}
 
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("title", title);
+		model.addAttribute("professor", professor);
+		model.addAttribute("lecture", lecture);
 		model.addAttribute("textbookList", textbookList);
 
 		return "shopMenu";
@@ -70,19 +82,26 @@ public class CartController {
 	@PostMapping("/cart/add")
 	public String addCart(
 			@RequestParam(name = "textbookId") Integer textbookId,
+			@RequestParam(name = "quantity", defaultValue = "1") Integer quantity,
 			Model model) {
 
 		Textbook textbook = textRepository.findById(textbookId).get();
+
+		textbook.setQuantity(quantity);
 		cart.add(textbook);
 
 		//表示のための処理
 		List<Book> textbookList = new ArrayList();
 		for (Textbook text : cart.getTextbookList()) {
-
-			textbookList.add(bookRepository.findById(text.getId()).get());
-
+			//textbookList.add(bookRepository.findById(text.getId()).get());
+			Book book = bookRepository.findById(text.getId()).get();
+			book.setQuantity(text.getQuantity());
+			textbookList.add(book);
 		}
 		model.addAttribute("textbookList", textbookList);
+		Integer accountId = member.getId();
+		List<Account> accountList = accountRepository.findAllById(accountId);
+		model.addAttribute("accountList", accountList);
 
 		return "cart";
 	}

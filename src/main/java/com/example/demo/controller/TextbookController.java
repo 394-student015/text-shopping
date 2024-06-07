@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +44,54 @@ public class TextbookController {
 			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
 			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
+		List<String> messages = new ArrayList<String>();
+		if (title == null || title.length() == 0) {
+			messages.add("書名は必須です");
+		}
+		if (author == null || author.length() == 0) {
+			messages.add("著者名は必須です");
+		}
+
+		if (price == null) {
+			messages.add("価格は必須です");
+		} else if (price < 0) {
+			messages.add("価格は0以上の数字で入力してください");
+		}
+
+		if (stock == null) {
+			messages.add("在庫は必須です");
+		} else if (stock < 0) {
+			messages.add("在庫は0以上の数字で入力してください");
+		}
+
+		List<Textbook> textbookList = textRepository.findByProfessorId(professorId);
+		if (professorId == null) {
+			messages.add("教授IDは必須です");
+		} else if (professorId < 0) {
+			messages.add("教授IDは0以上の数字で入力してください");
+		} else if (textbookList == null || textbookList.size() == 0) {
+			messages.add("登録されていない教授IDです");
+		}
+
+		List<Textbook> textbookLists = textRepository.findByLessonId(lessonId);
+		if (lessonId == null) {
+			messages.add("授業IDは必須です");
+		} else if (lessonId < 0) {
+			messages.add("授業IDは0以上の数字で入力してください");
+		} else if (textbookLists == null || textbookLists.size() == 0) {
+			messages.add("登録されていない授業IDです");
+		}
+
+		Textbook messageList = new Textbook(title, author, price, stock, professorId, lessonId);
+		model.addAttribute("message", messages);
+		if (messages.size() >= 1) {
+			model.addAttribute("message", messages);
+			return "textbookAdd";
+		}
+		//ここまで
+
 		Textbook textbook = new Textbook(title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
 		return "redirect:/textbook";
@@ -88,6 +137,7 @@ public class TextbookController {
 	public String addStock(
 			@PathVariable("id") Integer id,
 			Model model) {
+
 		Textbook textbook = textRepository.findById(id).get();
 		model.addAttribute("textbook", textbook);
 		return "stockAdd";
@@ -105,8 +155,28 @@ public class TextbookController {
 			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
 			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
+		//Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
+		List<String> messages = new ArrayList<String>();
+		if (stock == null) {
+			messages.add("在庫は必須です");
+		} else if (stock < 0) {
+			messages.add("0以上の数字で入力してください");
+		}
+
 		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
+		model.addAttribute("message", messages);
+		model.addAttribute("textbook", textbook);
+		if (messages.size() >= 1) {
+			model.addAttribute("message", messages);
+			return "stockAdd";
+		}
+		//ここまで
+
+		//Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
+
 		return "redirect:/stock";
 	}
 

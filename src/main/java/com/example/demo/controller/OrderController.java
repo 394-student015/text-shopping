@@ -7,16 +7,17 @@ import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Account;
+import com.example.demo.entity.Book;
 import com.example.demo.entity.Information;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.InformationRepository;
 
 @Controller
@@ -34,25 +35,75 @@ public class OrderController {
 	@Autowired
 	InformationRepository informationRepository;
 
+	@Autowired
+	BookRepository bookRepository;
+
 	//6.注文確認画面を表示
-	@GetMapping("/order")
-	public String order() {
+	@PostMapping("/order/confirm")
+	public String orderConfirm(
+			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
+			@RequestParam(name = "receive", defaultValue = "") Integer receive,
+			@RequestParam(name = "payment", defaultValue = "") Integer payment,
+			Model model) {
+		//表示のための処理
+		List<Book> textbookList = new ArrayList();
+		for (Textbook text : cart.getTextbookList()) {
+
+			textbookList.add(bookRepository.findById(text.getId()).get());
+
+		}
+		int totalprice = cart.getTotalPrice();
+		if (coupon == 1) {
+			totalprice = (int) (totalprice * 0.9);
+		}
+
+		String message1 = null;
+		if (receive == 1) {
+			message1 = "店舗受け取り";
+		} else if (receive == 2) {
+			totalprice += 880;
+			message1 = "配送";
+		}
+
+		String message2 = null;
+		if (coupon == 1) {
+			message2 = "有";
+		} else if (coupon == 2) {
+			message2 = "無";
+		}
+
+		String message3 = null;
+		if (payment == 1) {
+			message3 = "現金";
+		} else if (payment == 2) {
+			message3 = "クレジットカード";
+		}
+
+		model.addAttribute("textbookList", textbookList);
+		model.addAttribute("receive", receive);
+		model.addAttribute("message1", message1);
+		model.addAttribute("coupon", coupon);
+		model.addAttribute("message2", message2);
+		model.addAttribute("payment", payment);
+		model.addAttribute("message3", message3);
+		model.addAttribute("totalprice", totalprice);
+
 		return "orderConfirm";
 	}
 
-	@PostMapping("/order/confirm")
-	public String orderConfirm(
+	@PostMapping("/order/complete")
+	public String orderComplete(
 			//@PathVariable("id") Integer id,
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
 			//@RequestParam(name = "textId", defaultValue = "") String textId,
-			//@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
-			//@RequestParam(name = "major", defaultValue = "") Integer payment,
+			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
+			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
 			@RequestParam(name = "payment", defaultValue = "") Integer payment,
 			Model model) {
 
 		//顧客情報をまとめる？
-		List<Account> informationList = accountRepository.findAll();
+		//List<Account> informationList = accountRepository.findAll();
 
 		//セッションスコープのcartを取得する
 		//カートに追加された商品を登録する

@@ -25,14 +25,27 @@ public class Cart {
 	public int getTotalPrice() {
 		int total = 0;
 		for (Textbook text : textbookList) {
-			total += text.getPrice();
+			total += text.getPrice() * text.getQuantity();
 		}
 		return total;
 	}
 
 	//カート追加
 	public void add(Textbook newItem) {
-		textbookList.add(newItem);
+		Textbook existsTextbook = null;
+		for (Textbook textbook : textbookList) {
+			if (textbook.getId() == newItem.getId()) {
+				existsTextbook = textbook;
+				break;
+			}
+		}
+		if (existsTextbook == null) {
+			textbookList.add(newItem);
+
+		} else {
+			existsTextbook.setQuantity(existsTextbook.getQuantity() + newItem.getQuantity());
+			existsTextbook.setStock(existsTextbook.getStock() - 1);
+		}
 	}
 	/*
 	Textbook existsItem=null;

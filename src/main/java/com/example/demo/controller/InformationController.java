@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.example.demo.entity.Information;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.InformationRepository;
 
 @Controller
@@ -20,25 +21,32 @@ public class InformationController {
 	@Autowired
 	InformationRepository informationRepository;
 	@Autowired
+	BookRepository bookRepository;
+	@Autowired
 	Member member;
-	//@Autowired
-	//InformationHistory informationHistory;
 
 	//内部設計書CL016参照
 	//購入者側履歴表示
 	@GetMapping("/information")
 	public String information(
 			Model model) {
-		//List<InformationHistory> informationList = informationRepository
-		//.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
-		//InformationHistory information = informationList.get(0);
+		List<Information> informationOrder = informationRepository
+				.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
+		//List<Information> information = informationOrder.get(0);
 		//informationHistory.add(information);
+		//List<Book> textbookList = new ArrayList();
+		//for (Textbook text : cart.getTextbookList()) {
+
+		//textbookList.add(bookRepository.findById(text.getId()).get());
+
+		//}
 		//for (InformationHistory info : informationHistory.getInformationList()) {
 
-		//informationList.add(accountRepository.findNameAndEmailAndTelById(member.getId()));
+		//info.add(accountRepository.findNameAndEmailAndTelById(member.getId()));
 
 		//model.addAttribute("informationList", informationList);
 
+		//}
 		return "menu";
 	}
 
@@ -47,7 +55,7 @@ public class InformationController {
 	public String orderHistory(
 			Model model) {
 
-		List<Information> informationList = informationRepository.findAll();
+		//List<Information> informationList = informationRepository.findAll();
 		//InformationHistory.setTitle(informationList.get(informationList));
 		//一番前dateを追加
 		//InformationHistory InformationHistory = new InformationHistory(name, email, tel,
@@ -56,7 +64,7 @@ public class InformationController {
 		//List<Information> informationList = informationRepository.findMemberIdAndTitleAndTotalpriceAndPaymentAndReceive();
 		//List<Account> accountList = accountRepository.findNameAndEmailAndTelById(memberId);
 
-		model.addAttribute("informationList", informationList);
+		//model.addAttribute("informationList", informationList);
 
 		return "orderHistory";
 	}

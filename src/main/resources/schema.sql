@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS order_details;
 DROP VIEW IF EXISTS v_textbook;
 DROP VIEW IF EXISTS v_information;
 DROP TABLE IF EXISTS management;
@@ -59,10 +59,11 @@ CREATE TABLE information(
 		id SERIAL NOT NULL,
 		member_id INTEGER NOT NULL,
 		text_id INTEGER NOT NULL,
-		date DATE NOT NULL,
+		date Date NOT NULL,
 		totalprice INTEGER NOT NULL,
 		payment INTEGER NOT NULL,
-		receive INTEGER NOT NULL
+		receive INTEGER NOT NULL,
+		quantity INTEGER
 );
 
 /**********************************/
@@ -71,6 +72,17 @@ CREATE TABLE information(
 CREATE TABLE management(
 		id SERIAL NOT NULL,
 		password VARCHAR(10) NOT NULL
+		
+);
+
+/**********************************/
+/* テーブル名: 注文詳細テーブル */
+/**********************************/
+CREATE TABLE order_details(
+		id SERIAL NOT NULL,
+		text_id INTEGER NOT NULL,
+		information_id INTEGER NOT NULL,
+		quantity INTEGER NOT NULL
 		
 );
 
@@ -85,7 +97,7 @@ textbook.id,
 textbook.title,
 textbook.author,
 textbook.price,
-textbook.stock 
+textbook.stock
 from textbook 
 join professor on professor.id=textbook.professor_id 
 join lesson on lesson.id=textbook.lesson_id;
