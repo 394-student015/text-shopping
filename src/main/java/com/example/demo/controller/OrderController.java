@@ -44,6 +44,7 @@ public class OrderController {
 			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
 			@RequestParam(name = "payment", defaultValue = "") Integer payment,
+			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
 			Model model) {
 		//表示のための処理
 		List<Book> textbookList = new ArrayList();
