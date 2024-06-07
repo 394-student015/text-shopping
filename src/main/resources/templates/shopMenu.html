@@ -8,8 +8,10 @@
 </head>
 
 <body>
+	<header th:replace="header"></header>
+	<hr>	
 	<main>
-		<h1>会員メニュー</h1>
+	
 		
 		<!--教科書の部分一致検索-->
 		<form action="/shopMenu" method="get">
@@ -51,12 +53,13 @@
 			</tr>
 
 		</table>
-		設定<br>
 
 		<a href="/memberInfo">会員情報表示</a><br>
 		<a href="/information">注文履歴表示</a>
 
 	</main>
+	<hr>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>

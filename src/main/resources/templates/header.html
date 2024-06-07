@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>ヘッダー</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
+
 <header>
-	<h1><a href="/">教科書販売</a></h1>
-	<span th:text="${@account.name}+'さんがログイン中です'"></span>
-	<a href="/logout">ログアウト</a><br>
+	<h1><href="/">教科書販売</h1>
+	<!--<span th:text="${@account.name}+'さんがログイン中です'"></span>-->
+	
+	<a href="/logout">ログアウト</a>
 	<a href="/shopMenu">メニュー画面へ</a>
 </header>
-</body>
-</html>
