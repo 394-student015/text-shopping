@@ -11,9 +11,14 @@
 	<main>
 		<h1>会員メニュー</h1>
 		
-		<!--書名による部分一致検索-->
+		<!--教科書の部分一致検索-->
 		<form action="/shopMenu" method="get">
-			<input type="text" name="keyword" placeholder="書名">
+			<input type="text" name="title" placeholder="書名">
+			<br>
+			<input type="text" name="professor" placeholder="教授名">
+			<br>
+			<input type="text" name="lecture" placeholder="授業名">
+			<br>
 			<button>検索</button>
 		</form>
 		
