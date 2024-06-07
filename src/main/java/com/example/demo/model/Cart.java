@@ -32,7 +32,18 @@ public class Cart {
 
 	//カート追加
 	public void add(Textbook newItem) {
-		textbookList.add(newItem);
+		Textbook existsTextbook = null;
+		for (Textbook textbook : textbookList) {
+			if (textbook.getId() == newItem.getId()) {
+				existsTextbook = textbook;
+				break;
+			}
+		}
+		if (existsTextbook == null) {
+			textbookList.add(newItem);
+		} else {
+
+		}
 	}
 	/*
 	Textbook existsItem=null;

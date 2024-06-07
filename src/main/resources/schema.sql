@@ -59,7 +59,7 @@ CREATE TABLE information(
 		id SERIAL NOT NULL,
 		member_id INTEGER NOT NULL,
 		text_id INTEGER NOT NULL,
-		date DATE NOT NULL,
+		date Date NOT NULL,
 		totalprice INTEGER NOT NULL,
 		payment INTEGER NOT NULL,
 		receive INTEGER NOT NULL

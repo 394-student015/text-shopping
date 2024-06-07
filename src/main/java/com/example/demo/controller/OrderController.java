@@ -80,8 +80,11 @@ public class OrderController {
 		}
 
 		model.addAttribute("textbookList", textbookList);
+		model.addAttribute("receive", receive);
 		model.addAttribute("message1", message1);
+		model.addAttribute("coupon", coupon);
 		model.addAttribute("message2", message2);
+		model.addAttribute("payment", payment);
 		model.addAttribute("message3", message3);
 		model.addAttribute("totalprice", totalprice);
 
@@ -93,9 +96,9 @@ public class OrderController {
 			//@PathVariable("id") Integer id,
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
 			//@RequestParam(name = "textId", defaultValue = "") String textId,
-			//@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
-			//@RequestParam(name = "major", defaultValue = "") Integer payment,
+			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
+			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
 			@RequestParam(name = "payment", defaultValue = "") Integer payment,
 			Model model) {
 
