@@ -3,9 +3,12 @@ INSERT INTO professor(name,major) VALUES('アンパンマン','量子宇宙論')
 INSERT INTO professor(name,major) VALUES('ねこねこ','文学部');
 INSERT INTO professor(name,major) VALUES('イーロンマスク','社会学部');
 INSERT INTO lesson(name) VALUES('水中におけるダンスの効用');
+<<<<<<< HEAD
 INSERT INTO lesson(name) VALUES('文学概論');
 INSERT INTO lesson(name) VALUES('社会学概論');
 
+=======
+>>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
 
 -- 商品テーブルデータ
 INSERT INTO textbook(title,author,price,stock,professor_id,lesson_id) VALUES('Javaの基本', '佐藤一郎',2500,3,1,1);

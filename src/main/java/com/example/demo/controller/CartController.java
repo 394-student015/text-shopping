@@ -40,21 +40,28 @@ public class CartController {
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
 	public String shopMenu(
-			@RequestParam(name = "keyword", defaultValue = "") String keyword,
+			@RequestParam(name = "title", defaultValue = "") String title,
+			@RequestParam(name = "professor", defaultValue = "") String professor,
+			@RequestParam(name = "lecture", defaultValue = "") String lecture,
 			Model model) {
 
 		//教科書一覧情報の取得
 		List<Book> textbookList = bookRepository.findAll();
 
-		if (keyword.length() > 0) {
-			// 商品名による部分一致検索
-			textbookList = bookRepository.findByTitleContaining(keyword);
-		} else {
-			// 全商品検索
+		// 部分一致検索
+		if (title.length() > 0) { // 書名
+			textbookList = bookRepository.findByTitleContaining(title);
+		} else if (professor.length() > 0) { // 教授名
+			textbookList = bookRepository.findByProfessorContaining(professor);
+		} else if (lecture.length() > 0) { // 授業名
+			textbookList = bookRepository.findByLectureContaining(lecture);
+		} else { // 全商品
 			textbookList = bookRepository.findAll();
 		}
 
-		model.addAttribute("keyword", keyword);
+		model.addAttribute("title", title);
+		model.addAttribute("professor", professor);
+		model.addAttribute("lecture", lecture);
 		model.addAttribute("textbookList", textbookList);
 
 		return "shopMenu";
