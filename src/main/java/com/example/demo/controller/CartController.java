@@ -17,6 +17,7 @@ import com.example.demo.model.Cart;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.TextRepository;
 
 @Controller
@@ -36,6 +37,9 @@ public class CartController {
 
 	@Autowired
 	AccountRepository accountRepository;
+
+	@Autowired
+	OrderDetailRepository orderDetailrepository;
 
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
@@ -78,15 +82,21 @@ public class CartController {
 	@PostMapping("/cart/add")
 	public String addCart(
 			@RequestParam(name = "textbookId") Integer textbookId,
+			@RequestParam(name = "quantity", defaultValue = "1") Integer quantity,
 			Model model) {
 
 		Textbook textbook = textRepository.findById(textbookId).get();
+
+		textbook.setQuantity(quantity);
 		cart.add(textbook);
 
 		//表示のための処理
 		List<Book> textbookList = new ArrayList();
 		for (Textbook text : cart.getTextbookList()) {
-			textbookList.add(bookRepository.findById(text.getId()).get());
+			//textbookList.add(bookRepository.findById(text.getId()).get());
+			Book book = bookRepository.findById(text.getId()).get();
+			book.setQuantity(text.getQuantity());
+			textbookList.add(book);
 		}
 		model.addAttribute("textbookList", textbookList);
 		Integer accountId = member.getId();

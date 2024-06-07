@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 //View作った。HTMLでもv_textbookを使う。
 
@@ -17,6 +18,8 @@ public class Book {
 	private String author;
 	private int price;
 	private int stock;
+	@Transient
+	private int quantity;
 	private String professor;
 	@Column(name = "lesson")
 	private String lecture;
@@ -78,5 +81,13 @@ public class Book {
 
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }
