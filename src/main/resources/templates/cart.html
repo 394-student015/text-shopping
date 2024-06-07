@@ -24,18 +24,15 @@
 
 		<th:text="'使用クーポン：'+${account.coupon}"><br>
 		
-<<<<<<< HEAD
 		<!--決済方法選択-->
 		決済方法：
 		<select name="payment">
 			<option value="1">現金</option>
 			<option value="2">クレジットカード</option>
 		</select><br>
-		
-=======
->>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
-		<form action="/orderConfirm">
-			<button>注文する</button>
+
+		<form action="/order/confirm">
+			<button>注文に進む</button>
 		</form>
 		<br>
 		<a href="/shopMenu">買い物を続ける</a>

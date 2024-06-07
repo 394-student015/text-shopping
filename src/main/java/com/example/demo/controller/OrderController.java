@@ -35,12 +35,12 @@ public class OrderController {
 	InformationRepository informationRepository;
 
 	//6.注文確認画面を表示
-	@GetMapping("/order")
+	@GetMapping("/order/confirm")
 	public String order() {
 		return "orderConfirm";
 	}
 
-	@PostMapping("/order/confirm")
+	@PostMapping("/order/complete")
 	public String orderConfirm(
 			//@PathVariable("id") Integer id,
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
