@@ -17,5 +17,3 @@ INSERT INTO textbook(title,author,price,stock,professor_id,lesson_id) VALUES('�
 INSERT INTO management(id,password) VALUES(1,'himitu');
 --会員テーブルデータ
 INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(1,'watanabe','aaa','aaa','qqq','himitu',2);
-
---購入情報テーブル
