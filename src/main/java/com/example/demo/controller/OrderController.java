@@ -40,7 +40,11 @@ public class OrderController {
 
 	//6.注文確認画面を表示
 	@PostMapping("/order/confirm")
-	public String order(Model model) {
+	public String orderConfirm(
+			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
+			@RequestParam(name = "receive", defaultValue = "") Integer receive,
+			@RequestParam(name = "payment", defaultValue = "") Integer payment,
+			Model model) {
 		//表示のための処理
 		List<Book> textbookList = new ArrayList();
 		for (Textbook text : cart.getTextbookList()) {
@@ -48,13 +52,44 @@ public class OrderController {
 			textbookList.add(bookRepository.findById(text.getId()).get());
 
 		}
+		int totalprice = cart.getTotalPrice();
+		if (coupon == 1) {
+			totalprice = (int) (totalprice * 0.9);
+		}
+
+		String message1 = null;
+		if (receive == 1) {
+			message1 = "店舗受け取り";
+		} else if (receive == 2) {
+			totalprice += 880;
+			message1 = "配送";
+		}
+
+		String message2 = null;
+		if (coupon == 1) {
+			message2 = "有";
+		} else if (coupon == 2) {
+			message2 = "無";
+		}
+
+		String message3 = null;
+		if (payment == 1) {
+			message3 = "現金";
+		} else if (payment == 2) {
+			message3 = "クレジットカード";
+		}
+
 		model.addAttribute("textbookList", textbookList);
+		model.addAttribute("message1", message1);
+		model.addAttribute("message2", message2);
+		model.addAttribute("message3", message3);
+		model.addAttribute("totalprice", totalprice);
 
 		return "orderConfirm";
 	}
 
 	@PostMapping("/order/complete")
-	public String orderConfirm(
+	public String orderComplete(
 			//@PathVariable("id") Integer id,
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
 			//@RequestParam(name = "textId", defaultValue = "") String textId,
@@ -65,7 +100,7 @@ public class OrderController {
 			Model model) {
 
 		//顧客情報をまとめる？
-		List<Account> informationList = accountRepository.findAll();
+		//List<Account> informationList = accountRepository.findAll();
 
 		//セッションスコープのcartを取得する
 		//カートに追加された商品を登録する

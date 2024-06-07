@@ -13,9 +13,13 @@
 
 		<h3>ご注文商品</h3>
 		<!--注文画面を持ってくる-->
-		<span th:replace="cartItem"></span>
-
 		<form action="/order/complete" method="post">
+		<span th:replace="cartItem"></span>
+		
+		受け取り方法：<span th:text="${message1}" ></span><br>
+		クーポン使用：<span th:text="${message2}" ></span><br>
+		支払い方法：<span th:text="${message3}" ></span><br>
+		合計金額：<span th:text="${totalprice}" ></span><br>
 		<button>注文を確定する</button>
 
 	</form>
