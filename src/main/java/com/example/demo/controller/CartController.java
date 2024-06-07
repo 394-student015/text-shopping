@@ -64,13 +64,13 @@ public class CartController {
 
 		// 部分一致検索
 		if (title.length() > 0) { // 書名
-			textbookList = bookRepository.findByTitleContaining(title);
+			bookListbrowse = bookRepository.findByTitleContaining(title);
 		} else if (professor.length() > 0) { // 教授名
-			textbookList = bookRepository.findByProfessorContaining(professor);
+			bookListbrowse = bookRepository.findByProfessorContaining(professor);
 		} else if (lecture.length() > 0) { // 授業名
-			textbookList = bookRepository.findByLectureContaining(lecture);
+			bookListbrowse = bookRepository.findByLectureContaining(lecture);
 		} else { // 全商品
-			textbookList = bookRepository.findAll();
+			bookListbrowse = bookRepository.findAll();
 		}
 
 		model.addAttribute("title", title);
