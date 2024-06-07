@@ -51,6 +51,16 @@ public class CartController {
 
 		//教科書一覧情報の取得
 		List<Book> textbookList = bookRepository.findAll();
+		List<Book> bookListbrowse = new ArrayList<>();
+		for (Book book : textbookList) {
+			for (Textbook textbook : cart.getTextbookList()) {
+				if (book.getId() == textbook.getId()) {
+					book.setStock(textbook.getStock());
+					break;
+				}
+			}
+			bookListbrowse.add(book);
+		}
 
 		// 部分一致検索
 		if (title.length() > 0) { // 書名
@@ -66,8 +76,7 @@ public class CartController {
 		model.addAttribute("title", title);
 		model.addAttribute("professor", professor);
 		model.addAttribute("lecture", lecture);
-		model.addAttribute("textbookList", textbookList);
-
+		model.addAttribute("textbookList", bookListbrowse);
 		return "shopMenu";
 	}
 

@@ -4,25 +4,24 @@
 			<th>商品名</th>
 			<th>価格</th>
 			<th>数量</th>
-			<th>カートから削除</th>
+			<th th:class="${disable}">カートから削除</th>
 		</tr>
 		<tr th:each="textbook:${textbookList}">
 			<td th:text="${textbook.id}"></td>
 			<td>
 				書名：<span th:text="${textbook.title}"></span><br>
 				著者：<span th:text="${textbook.author}"></span><br>
-				在庫：<span th:text="${textbook.stock}"></span><br>
 				教授：<span th:text="${textbook.professor}"></span><br>
 				授業：<span th:text="${textbook.lecture}"></span>
 			</td>
 				<td th:text="${textbook.price}"></td>
 				<td th:text="${textbook.quantity}"></td>
-			<td>
+			<td th:class="${disable}">
 				<form action="/cart/delete" method="post">
 					<input type="hidden" name="textbookId" th:value="${textbook.id}">
 					<button>削除</button>	
 				</form>
 			</td>	
 		</tr>
-			<td align="right" colspan="5" th:text="'小計：'+${@cart.totalPrice}"></td>
+			<td align="right" colspan="4" th:text="'小計：'+${@cart.totalPrice}"></td>
 		</table>

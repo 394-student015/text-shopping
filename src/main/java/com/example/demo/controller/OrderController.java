@@ -47,12 +47,20 @@ public class OrderController {
 			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
 			Model model) {
 		//表示のための処理
+		/*List<Book> textbookList = new ArrayList();
+		for (Textbook text : cart.getTextbookList()) {
+		
+			textbookList.add(bookRepository.findById(text.getId()).get());
+		}*/
+		//表示のための処理
 		List<Book> textbookList = new ArrayList();
 		for (Textbook text : cart.getTextbookList()) {
-
-			textbookList.add(bookRepository.findById(text.getId()).get());
-
+			//textbookList.add(bookRepository.findById(text.getId()).get());
+			Book book = bookRepository.findById(text.getId()).get();
+			book.setQuantity(text.getQuantity());
+			textbookList.add(book);
 		}
+
 		int totalprice = cart.getTotalPrice();
 		if (coupon == 1) {
 			totalprice = (int) (totalprice * 0.9);
@@ -88,6 +96,8 @@ public class OrderController {
 		model.addAttribute("payment", payment);
 		model.addAttribute("message3", message3);
 		model.addAttribute("totalprice", totalprice);
+
+		model.addAttribute("disable", "disable");
 
 		return "orderConfirm";
 	}

@@ -58,3 +58,6 @@ button:hover{
 	background-color: palegreen;
 	color:rgb(0, 0, 0);
 }
+.disable{
+	display: none;
+}

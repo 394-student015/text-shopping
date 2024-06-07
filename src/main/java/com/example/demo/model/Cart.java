@@ -41,7 +41,10 @@ public class Cart {
 		}
 		if (existsTextbook == null) {
 			textbookList.add(newItem);
-
+			if (textbookList.size() == 1) {
+				int currentStock = newItem.getStock() - 1;
+				newItem.setStock(currentStock);
+			}
 		} else {
 			existsTextbook.setQuantity(existsTextbook.getQuantity() + newItem.getQuantity());
 			existsTextbook.setStock(existsTextbook.getStock() - 1);
