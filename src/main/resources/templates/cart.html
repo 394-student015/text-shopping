@@ -11,9 +11,31 @@
 		
 		<!--注文画面を持ってくる-->
 		<span th:replace="cartItem"></span>
-		
-		<form action="/orderConfirm">
-			<button>注文する</button>
+		<!--受け取り方法-->
+		<form action="/order/confirm" method="post">
+		受け取り方法：
+		<select name="receive">
+			<option value="1">店頭受取</option>
+			<option value="2">配送</option>
+		</select>
+		<br>
+
+		<!--クーポン情報取得-->
+		<div th:each="account:${accountList}">
+		クーポン所持数：<span th:text="${account.coupon}"></span>
+		</div>
+		<select name="coupon">
+			<option value="1">クーポンを使用する</option>
+			<option value="2">クーポンを使用しない</option>
+		</select><br>
+		<!--決済方法選択-->
+		決済方法：
+		<select name="payment">
+			<option value="1">現金</option>
+			<option value="2">クレジットカード</option>
+		</select><br>
+
+			<button>注文に進む</button>
 		</form>
 		<br>
 		<a href="/shopMenu">買い物を続ける</a>

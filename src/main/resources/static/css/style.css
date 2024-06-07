@@ -20,6 +20,7 @@ header h1{
 
 body{
 	background-color:rgb(128, 255, 128);/*背景色*/
+	text-align:center;/*中央寄せ*/
 }
 
 h1{
@@ -27,9 +28,9 @@ h1{
 	background-color:darkgreen;
 	color:cornsilk;
 }
-li{
-	margin:12px;
+li{margin:12px;
 	cursor:pointer;
+	text-align:left;
 }
 
 /*テーブル*/
@@ -49,10 +50,11 @@ button{
 	background-color: darkgreen;
 	color:cornsilk;
 	border:none;
-	width:100px;
+	width:140px;
 	cursor:pointer;
 }
 /*送信ボタン（マウスオーバー時）*/
 button:hover{
 	background-color: palegreen;
+	color:rgb(0, 0, 0);
 }

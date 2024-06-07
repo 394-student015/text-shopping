@@ -13,31 +13,18 @@
 
 		<h3>ご注文商品</h3>
 		<!--注文画面を持ってくる-->
+		<form action="/order/complete" method="post">
 		<span th:replace="cartItem"></span>
-
-		<!--受け取り方法-->
-		受け取り方法：
-		<select name="receive">
-			<option value="1">店頭受取</option>
-			<option value="2">配送</option>
-		</select>
-		<br>
-
-		<!--クーポン情報取得-->
-		使用クーポン：
-
-		<th:text="'使用クーポン：'+${account.coupon}"><br>
 		
-		<!--決済方法選択-->
-		決済方法：
-		<select name="pay">
-			<option value="1">現金</option>
-			<option value="2">クレジットカード</option>
-		</select><br>
-
-		<form action="/order/confirm" method="post">
+		受け取り方法：<span th:text="${message1}" ></span><br>
+			<input type="hidden" name="receive" th:value="${receive}">
+		クーポン使用：<span th:text="${message2}" ></span><br>
+			<input type="hidden" name="coupon" th:value="${coupon}">
+		支払い方法：<span th:text="${message3}" ></span><br>
+			<input type="hidden" name="payment" th:value="${payment}">
+		合計金額：<span th:text="${totalprice}" ></span><br>
+		<input type="hidden" name="totalprice" th:value="${totalprice}">
 		<button>注文を確定する</button>
-
 	</form>
 
 	</main>

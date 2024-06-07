@@ -17,6 +17,7 @@ import com.example.demo.model.Cart;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
+import com.example.demo.repository.OrderDetailRepository;
 import com.example.demo.repository.TextRepository;
 
 @Controller
@@ -36,6 +37,9 @@ public class CartController {
 
 	@Autowired
 	AccountRepository accountRepository;
+
+	@Autowired
+	OrderDetailRepository orderDetailrepository;
 
 	//教科書一覧表示
 	@GetMapping("/shopMenu")
@@ -78,45 +82,28 @@ public class CartController {
 	@PostMapping("/cart/add")
 	public String addCart(
 			@RequestParam(name = "textbookId") Integer textbookId,
+			@RequestParam(name = "quantity", defaultValue = "1") Integer quantity,
 			Model model) {
 
 		Textbook textbook = textRepository.findById(textbookId).get();
+
+		textbook.setQuantity(quantity);
 		cart.add(textbook);
 
 		//表示のための処理
 		List<Book> textbookList = new ArrayList();
 		for (Textbook text : cart.getTextbookList()) {
-
-			textbookList.add(bookRepository.findById(text.getId()).get());
-
+			//textbookList.add(bookRepository.findById(text.getId()).get());
+			Book book = bookRepository.findById(text.getId()).get();
+			book.setQuantity(text.getQuantity());
+			textbookList.add(book);
 		}
 		model.addAttribute("textbookList", textbookList);
+		Integer accountId = member.getId();
+		List<Account> accountList = accountRepository.findAllById(accountId);
+		model.addAttribute("accountList", accountList);
 
 		return "cart";
-	}
-
-	//注文するボタン押下
-	@GetMapping("/orderConfirm")
-	public String orderConfirm(
-			Model model) {
-
-		//クーポン情報を持ってくる
-		Account account = accountRepository.findById(member.getId()).get();
-		//account.getCoupon();
-
-		model.addAttribute("account", account);
-
-		//表示のための処理
-		List<Book> textbookList = new ArrayList();
-		for (Textbook text : cart.getTextbookList()) {
-
-			textbookList.add(bookRepository.findById(text.getId()).get());
-
-		}
-		model.addAttribute("textbookList", textbookList);
-		//ここまで、表示のための処理
-
-		return "orderConfirm";
 	}
 
 	//指定した商品をカートから削除
