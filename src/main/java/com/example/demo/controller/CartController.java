@@ -92,6 +92,7 @@ public class CartController {
 		Integer accountId = member.getId();
 		List<Account> accountList = accountRepository.findAllById(accountId);
 		model.addAttribute("accountList", accountList);
+
 		return "cart";
 	}
 
