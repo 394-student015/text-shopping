@@ -8,6 +8,9 @@ import com.example.demo.entity.Book;
 
 public interface BookRepository extends JpaRepository<Book, Integer> {
 
-	List<Book> findByTitleContaining(String keyword);
+	List<Book> findByTitleContaining(String title);
 
+	List<Book> findByProfessorContaining(String professor);
+
+	List<Book> findByLectureContaining(String lecture);
 }
