@@ -110,9 +110,16 @@ public class CartController {
 		model.addAttribute("textbookList", textbookList);
 		Integer accountId = member.getId();
 		List<Account> accountList = accountRepository.findAllById(accountId);
-		model.addAttribute("accountList", accountList);
 
-		return "cart";
+		Account account = accountRepository.findCouponById(member.getId());
+		String couponerror;
+		if (account.getCoupon() <= 0) {
+			//クーポンの選択肢をCSSのnoneで消す
+			return "redirect:/cart/add";
+		} else {
+			model.addAttribute("accountList", accountList);
+			return "cart";
+		}
 	}
 
 	//指定した商品をカートから削除
