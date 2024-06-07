@@ -20,7 +20,7 @@
 			
 		在庫<input type="number" name="stock" th:value="${textbook.stock}"><br>
 			<!--</div>-->
-			<span th:text="${message}" style="color:red"></span><br>
+		<p th:each="messages:${message}" th:text ="${messages}" style="color:red"></p>
 				<!--<button formaction="/textbook/{textId}/stock(textId=${textbook.id})" formmethod="post">追加</button>-->
 				<button>追加</button>
 		</form>

@@ -41,12 +41,11 @@ public class LessonController {
 
 		//エラーメッセージ表示、ここから
 		//List<Lesson> lessonList = lessonRepository.findByName(name);
-		/*
 		if (name == null || name.length() == 0) {
-			model.addAttribute("message", "入力してください");
+			model.addAttribute("message", "授業名は必須です");
 			return "lessonAdd";
 		}
-		//ここまで*/
+		//ここまで
 
 		Lesson lesson = new Lesson(name);
 		lessonRepository.save(lesson);

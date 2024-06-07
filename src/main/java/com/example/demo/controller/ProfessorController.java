@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class ProfessorController {
 		return "professor";
 	}
 
-	//教科書登録画面
+	//教授登録画面
 	@GetMapping("/professor/add")
 	public String addProfessor(Model model) {
 		return "professorAdd";
@@ -39,6 +40,24 @@ public class ProfessorController {
 			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "major", defaultValue = "") String major,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
+		List<String> messages = new ArrayList<String>();
+		if (name == null || name.length() == 0) {
+			messages.add("教授名は必須です");
+		}
+		if (major == null || major.length() == 0) {
+			messages.add("専攻は必須です");
+		}
+
+		Professor messageList = new Professor(name, major);
+		model.addAttribute("message", messageList);
+		if (messages.size() >= 1) {
+			model.addAttribute("message", messages);
+			return "professorAdd";
+		}
+		//ここまで
+
 		Professor professor = new Professor(name, major);
 		professorRepository.save(professor);
 		return "redirect:/professor";

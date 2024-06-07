@@ -1,8 +1,29 @@
 @charset "UTF-8";
+
+/*ヘッダー、フッター*/
+header,footer{
+	background-color:rgb(0, 64, 0);/*背景色*/
+	color:white;/*文字色*/
+	padding-top: 5px;/*内側余白（上）*/
+	padding-bottom: 5px;/*内側余白（下）*/
+}
+/*ヘッダー内リンク*/
+header a{
+	color:white;
+}
+
+/*ヘッダー内見出し*/
+header h1{
+	font-size: 20px;
+	margin:10px;
+}
+
 body{
 	background-color:rgb(128, 255, 128);/*背景色*/
 }
-h1{text-align:center;/*中央寄せ*/
+
+h1{
+	text-align:center;/*中央寄せ*/
 	background-color:darkgreen;
 	color:cornsilk;
 }
@@ -11,14 +32,18 @@ li{
 	cursor:pointer;
 }
 
+/*テーブル*/
 table{
 	margin:5px auto;
 	background-color: rgb(128, 255, 128);
 }
+
+/*表見出しセル*/
 table th{
 	background-color: rgb(0, 255, 128);
 }
 
+/*送信ボタン*/
 button{
 	padding:5px 21px;
 	background-color: darkgreen;
@@ -27,6 +52,7 @@ button{
 	width:100px;
 	cursor:pointer;
 }
+/*送信ボタン（マウスオーバー時）*/
 button:hover{
 	background-color: palegreen;
 }

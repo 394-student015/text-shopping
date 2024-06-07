@@ -22,6 +22,9 @@
 					</td>
 				</tr>
 		</table>
+		
+		<p th:each="messages:${message}" th:text ="${messages}" style="color:red"></p>
+		
 		<button>追加</button>
 	</form>
 
