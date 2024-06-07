@@ -38,6 +38,16 @@ public class LessonController {
 	public String addLesson(
 			@RequestParam(value = "name", defaultValue = "") String name,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
+		//List<Lesson> lessonList = lessonRepository.findByName(name);
+		/*
+		if (name == null || name.length() == 0) {
+			model.addAttribute("message", "入力してください");
+			return "lessonAdd";
+		}
+		//ここまで*/
+
 		Lesson lesson = new Lesson(name);
 		lessonRepository.save(lesson);
 		return "redirect:/lesson";

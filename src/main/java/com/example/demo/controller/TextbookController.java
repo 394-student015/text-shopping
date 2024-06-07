@@ -105,7 +105,16 @@ public class TextbookController {
 			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
 			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
 		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
+		if (stock < 0) {
+			model.addAttribute("message", "0以上の数字で入力してください");
+			model.addAttribute("textbook", textbook);
+			return "stockAdd";
+		}
+		//ここまで
+
 		textRepository.save(textbook);
 		return "redirect:/stock";
 	}

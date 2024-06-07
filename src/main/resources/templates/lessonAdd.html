@@ -6,12 +6,15 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
+	<main>
+	<form action="/lesson/add" method="post">
+		
 	<h1>授業追加</h1>
-<table border="1">
-<form action="/lesson/add" method="post">
-			授業名<input type="text" name="name">
+	<table border="1">
+			授業名<input type="text" name="name"><br>
+	<span th:text="${message}" style="color:red"></span><br>
 		<button>追加</button>
 	</form>
-
+	</main>
 </body>
 </html>
