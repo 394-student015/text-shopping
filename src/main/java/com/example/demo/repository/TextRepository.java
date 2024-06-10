@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.entity.Textbook;
 
 public interface TextRepository extends JpaRepository<Textbook, Integer> {
-
+	//@Query(value = "select e from Entity e order by id asc")
 	List<Textbook> findAll();
 	//内部設計書CL07参照
 
