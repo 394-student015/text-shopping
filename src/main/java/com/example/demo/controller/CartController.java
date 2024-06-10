@@ -68,6 +68,7 @@ public class CartController {
 
 		}
 
+		//List<String> errorList = new ArrayList<>();
 		// 部分一致検索
 		if (title.length() > 0)
 
@@ -79,7 +80,21 @@ public class CartController {
 			bookListbrowse = bookRepository.findByLectureContaining(lecture);
 		} else { // 全商品
 			bookListbrowse = bookRepository.findAll();
+
 		}
+
+		/*
+		 * else {
+			errorList.add("該当するデータはありません");
+		}
+		 */
+		/*if (errorList.size() >= 1) {
+			model.addAttribute("errorList", errorList);
+			model.addAttribute("title", title);
+			model.addAttribute("professor", professor);
+			model.addAttribute("lecture", lecture);
+			return "shopMenu";
+		}*/
 
 		model.addAttribute("title", title);
 		model.addAttribute("professor", professor);

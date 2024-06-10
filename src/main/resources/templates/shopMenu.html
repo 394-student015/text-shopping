@@ -21,6 +21,10 @@
 			<br>
 			<input type="text" name="lecture" placeholder="授業名">
 			<br>
+			
+			<!--該当するものはありません、とかのメッセージ表示-->
+			<p th:text ="${errorList}" style="color:red"></p>
+			
 			<button>検索</button>
 		</form>
 		
