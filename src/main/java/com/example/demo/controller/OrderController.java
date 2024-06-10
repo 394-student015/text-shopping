@@ -22,6 +22,7 @@ import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.InformationRepository;
 import com.example.demo.repository.OrderDetailRepository;
+import com.example.demo.repository.TextRepository;
 
 @Controller
 public class OrderController {
@@ -43,6 +44,8 @@ public class OrderController {
 
 	@Autowired
 	BookRepository bookRepository;
+	@Autowired
+	TextRepository textRepository;
 
 	//6.注文確認画面を表示
 	@PostMapping("/order/confirm")
@@ -142,6 +145,17 @@ public class OrderController {
 							textbook.getQuantity()));
 		}
 		orderDetailRepository.saveAll(orderDetails);
+		List<OrderDetail> orderDetailList = orderDetailRepository.findAll();
+		List<Textbook> TextbookIdList = textRepository.findAll();
+		for (OrderDetail orderDetail : orderDetailList) {
+			for (Textbook textBook : TextbookIdList) {
+				if (orderDetail.getId() == textBook.getId()) {
+					textBook.setStock(textBook.getStock() - orderDetail.getQuantity());
+					textRepository.save(textBook);
+					break;
+				}
+			}
+		}
 
 		//クーポンの所持数をレポジトリから呼び出す
 		Account account = accountRepository.findCouponById(memberId);
