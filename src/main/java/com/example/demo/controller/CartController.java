@@ -115,7 +115,9 @@ public class CartController {
 		String couponerror;
 		if (account.getCoupon() <= 0) {
 			//クーポンの選択肢をCSSのnoneで消す
-			return "redirect:/cart/add";
+			model.addAttribute("accountList", accountList);
+			model.addAttribute("invisible", "invisible");
+			return "cart";
 		} else {
 			model.addAttribute("accountList", accountList);
 			return "cart";

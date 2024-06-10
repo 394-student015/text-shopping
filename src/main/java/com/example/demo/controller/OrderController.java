@@ -62,7 +62,7 @@ public class OrderController {
 		}
 
 		int totalprice = cart.getTotalPrice();
-		if (coupon == 1) {
+		if (coupon == 2) {
 			totalprice = (int) (totalprice * 0.9);
 		}
 
@@ -76,9 +76,9 @@ public class OrderController {
 
 		String message2 = null;
 		if (coupon == 1) {
-			message2 = "有";
-		} else if (coupon == 2) {
 			message2 = "無";
+		} else if (coupon == 2) {
+			message2 = "有";
 		}
 
 		String message3 = null;
@@ -106,15 +106,17 @@ public class OrderController {
 	public String orderComplete(
 			//@PathVariable("id") Integer id,
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
-			//@RequestParam(name = "textId", defaultValue = "") String textId,
+			//@RequestParam(name = "textId", defaultValue = "") Integer textId,
 			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
 			@RequestParam(name = "receive", defaultValue = "") Integer receive,
 			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
 			@RequestParam(name = "payment", defaultValue = "") Integer payment,
 			Model model) {
 
+		//セッションから顧客情報を持ってくる
+
 		//顧客情報をまとめる？
-		//List<Account> informationList = accountRepository.findAll();
+		//List<Information> informationList = accountRepository.findIdByMemberId(member);
 
 		//セッションスコープのcartを取得する
 		//カートに追加された商品を登録する
