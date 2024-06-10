@@ -45,8 +45,9 @@
 				<td>
 					<form action="/cart/add" method="post">
 						<input type="hidden" name="textbookId" th:value="${textbooks.id}">
-
+						<div th:class="${disable}">
 						<button>カートに追加</button>
+						</div>
 					</form>
 				</td>
 

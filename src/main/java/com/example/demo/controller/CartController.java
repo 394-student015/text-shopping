@@ -56,14 +56,22 @@ public class CartController {
 			for (Textbook textbook : cart.getTextbookList()) {
 				if (book.getId() == textbook.getId()) {
 					book.setStock(textbook.getStock());
+
+					if (book.getStock() <= 0) {
+						model.addAttribute("disable", "disable");
+					}
 					break;
 				}
 			}
+
 			bookListbrowse.add(book);
+
 		}
 
 		// 部分一致検索
-		if (title.length() > 0) { // 書名
+		if (title.length() > 0)
+
+		{ // 書名
 			bookListbrowse = bookRepository.findByTitleContaining(title);
 		} else if (professor.length() > 0) { // 教授名
 			bookListbrowse = bookRepository.findByProfessorContaining(professor);
