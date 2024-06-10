@@ -57,9 +57,6 @@ public class CartController {
 				if (book.getId() == textbook.getId()) {
 					book.setStock(textbook.getStock());
 
-					if (book.getStock() <= 0) {
-						model.addAttribute("disable", "disable");
-					}
 					break;
 				}
 			}
