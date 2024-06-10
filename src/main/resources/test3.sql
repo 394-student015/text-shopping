@@ -1,12 +1,15 @@
 select 
 
-imformation.id,
-member.name,
-member.address,
-member.tel,
-member.email,
-member.password,
-member.coupon 
+orderDetail.information_id,
+orderDetail.quantity,
+information.member_id,
+information.date,
+information.totalprice
+information.payment,
+information,receive,
+textbook.id,
+
+
 
 from information 
 join member on information.id=member.id 

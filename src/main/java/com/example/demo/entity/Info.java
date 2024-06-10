@@ -11,7 +11,7 @@ public class Info {
 	@Id
 	private Integer id;
 	private Integer memberId;
-	private Integer textId;
+	//private Integer textId;
 	private Integer date;
 	private Integer totalprice;
 	private Integer payment;
@@ -38,13 +38,13 @@ public class Info {
 		this.memberId = memberId;
 	}
 
-	public Integer getTextId() {
-		return textId;
-	}
-
-	public void setTextId(Integer textId) {
-		this.textId = textId;
-	}
+	/*	public Integer getTextId() {
+			return textId;
+		}
+	
+		public void setTextId(Integer textId) {
+			this.textId = textId;
+		}*/
 
 	public Integer getDate() {
 		return date;

@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -13,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.entity.Account;
 import com.example.demo.entity.Book;
 import com.example.demo.entity.Information;
+import com.example.demo.entity.OrderDetail;
 import com.example.demo.entity.Textbook;
 import com.example.demo.model.Cart;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.InformationRepository;
+import com.example.demo.repository.OrderDetailRepository;
 
 @Controller
 public class OrderController {
@@ -34,6 +37,9 @@ public class OrderController {
 
 	@Autowired
 	InformationRepository informationRepository;
+
+	@Autowired
+	OrderDetailRepository orderDetailRepository;
 
 	@Autowired
 	BookRepository bookRepository;
@@ -108,9 +114,9 @@ public class OrderController {
 			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
 			//@RequestParam(name = "textId", defaultValue = "") Integer textId,
 			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
-			@RequestParam(name = "receive", defaultValue = "") Integer receive,
 			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
 			@RequestParam(name = "payment", defaultValue = "") Integer payment,
+			@RequestParam(name = "receive", defaultValue = "") Integer receive,
 			Model model) {
 
 		//セッションから顧客情報を持ってくる
@@ -123,21 +129,25 @@ public class OrderController {
 		//カートに追加された商品を登録する
 
 		//注文情報をDBに格納する
-		Information information = new Information();
+		Information information = new Information(
+				memberId,
+				//textId,
+				LocalDate.now(),
+				totalprice,
+				payment,
+				receive);
 		informationRepository.save(information);
+		//注文詳細情報をDBに格納する
 		List<Textbook> textbookList = cart.getTextbookList();
-		//textInfoRepository.save(textbookList);
-		//List<Information> information = new ArrayList<>();
-
-		/*information2.add(textId);
-		information2.add();
-		for (Textbook informationElement : textbookList) {
-		
+		List<OrderDetail> orderDetails = new ArrayList<>();
+		for (Textbook textbook : textbookList) {
+			orderDetails.add(
+					new OrderDetail(
+							information.getId(),
+							textbook.getId(),
+							textbook.getQuantity()));
 		}
-		
-		
-		informationRepository.saveAll();
-		*/
+		orderDetailRepository.saveAll(orderDetails);
 
 		//クーポンの所持数をレポジトリから呼び出す
 		Account account = accountRepository.findById(memberId).get();

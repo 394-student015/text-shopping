@@ -43,10 +43,21 @@ public class Information {
 		this.receive = receive;
 	}
 
+	//textIdありバージョン
 	public Information(Integer memberId, Integer textId, LocalDate date, Integer totalprice,
 			Integer payment, Integer receive) {
 		this.memberId = memberId;
 		this.textId = textId;
+		this.date = date;
+		this.totalprice = totalprice;
+		this.payment = payment;
+		this.receive = receive;
+	}
+
+	//textIdなしバージョン
+	public Information(Integer memberId, LocalDate date, Integer totalprice,
+			Integer payment, Integer receive) {
+		this.memberId = memberId;
 		this.date = date;
 		this.totalprice = totalprice;
 		this.payment = payment;
