@@ -25,10 +25,12 @@
 		<div th:each="account:${accountList}">
 		クーポン所持数：<span th:text="${account.coupon}"></span>
 		</div>
+		<div th:class="${invisible}">
 		<select name="coupon">
-			<option value="1">クーポンを使用する</option>
-			<option value="2">クーポンを使用しない</option>
-		</select><br>
+			<option value="1">クーポンを使用しない</option>
+			<option value="2">クーポンを使用する</option>
+		</select></div>
+		<br>
 		<!--決済方法選択-->
 		決済方法：
 		<select name="payment">

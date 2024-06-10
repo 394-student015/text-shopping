@@ -51,23 +51,32 @@ public class CartController {
 
 		//教科書一覧情報の取得
 		List<Book> textbookList = bookRepository.findAll();
+		List<Book> bookListbrowse = new ArrayList<>();
+		for (Book book : textbookList) {
+			for (Textbook textbook : cart.getTextbookList()) {
+				if (book.getId() == textbook.getId()) {
+					book.setStock(textbook.getStock());
+					break;
+				}
+			}
+			bookListbrowse.add(book);
+		}
 
 		// 部分一致検索
 		if (title.length() > 0) { // 書名
-			textbookList = bookRepository.findByTitleContaining(title);
+			bookListbrowse = bookRepository.findByTitleContaining(title);
 		} else if (professor.length() > 0) { // 教授名
-			textbookList = bookRepository.findByProfessorContaining(professor);
+			bookListbrowse = bookRepository.findByProfessorContaining(professor);
 		} else if (lecture.length() > 0) { // 授業名
-			textbookList = bookRepository.findByLectureContaining(lecture);
+			bookListbrowse = bookRepository.findByLectureContaining(lecture);
 		} else { // 全商品
-			textbookList = bookRepository.findAll();
+			bookListbrowse = bookRepository.findAll();
 		}
 
 		model.addAttribute("title", title);
 		model.addAttribute("professor", professor);
 		model.addAttribute("lecture", lecture);
-		model.addAttribute("textbookList", textbookList);
-
+		model.addAttribute("textbookList", bookListbrowse);
 		return "shopMenu";
 	}
 
@@ -101,9 +110,18 @@ public class CartController {
 		model.addAttribute("textbookList", textbookList);
 		Integer accountId = member.getId();
 		List<Account> accountList = accountRepository.findAllById(accountId);
-		model.addAttribute("accountList", accountList);
 
-		return "cart";
+		Account account = accountRepository.findCouponById(member.getId());
+		String couponerror;
+		if (account.getCoupon() <= 0) {
+			//クーポンの選択肢をCSSのnoneで消す
+			model.addAttribute("accountList", accountList);
+			model.addAttribute("invisible", "invisible");
+			return "cart";
+		} else {
+			model.addAttribute("accountList", accountList);
+			return "cart";
+		}
 	}
 
 	//指定した商品をカートから削除

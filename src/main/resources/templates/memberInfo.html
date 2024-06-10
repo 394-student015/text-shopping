@@ -10,9 +10,9 @@
 <body>
 	<header th:replace="header"></header>
 	<h1>会員情報</h1>
-	
+
 	<table border="1" th:each="account:${accountList}">
-		
+
 		<tr>
 			<th>名前</th>
 			<td th:text="${account.name}"></td>
@@ -26,12 +26,6 @@
 		<tr>
 			<th>電話番号</th>
 			<td th:text="${account.tel}"></td>
-			<form action="/memberUpdate" method="get">
-			<td colspan="3"><button>更新する</button></td>
-			</form>
-			<form action="/memberDelete" method="get">
-			<td colspan="3"><button>削除する</button></td>
-			</form>
 		</tr>
 
 		<tr>
@@ -48,13 +42,29 @@
 			<th>クーポン所持数（枚）</th>
 			<td th:text="${account.coupon}"></td>
 		</tr>
-		
+
 	</table>
 
+	<table>
+		<tr>
+			<td>
+				<form action="/memberUpdate" method="get">
+					<button>更新する</button>
+				</form>
+			</td>
+
+			<td></td>
+
+			<td>
+				<form action="/memberDelete" method="get">
+					<button>退会する</button>
+				</form>
+			</td>
+		</tr>
+	</table>
 
 	<br>
-	<br>
-	※更新しない情報は空欄のままで差し支えありません。
+	※更新するボタンをクリックすると、会員情報更新画面に移動します。
 	<br>
 	<a href="/shopMenu"><button>戻る</button></a>
 </body>
