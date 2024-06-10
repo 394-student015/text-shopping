@@ -33,7 +33,9 @@
 					<th>NO</th>
 					<th>商品名</th>
 					<th>価格</th>
-					<th></th>
+					<form action="cart" method="get">
+					<th><button>カートを見る</button></th>
+					</form>
 				</tr>
 				<tr th:each="textbooks:${textbookList}">
 					<td th:text="${textbooks.id}"></td>
