@@ -148,6 +148,7 @@ public class OrderController {
 
 		if (coupon == 2) {
 			account.setCoupon(account.getCoupon() - 1);
+			accountRepository.save(account);
 		}
 
 		//合計金額５０００円以上の場合、AccountRepositoryに10%OFFクーポンを格納する
@@ -160,6 +161,7 @@ public class OrderController {
 				if (num == 0) {
 					//クーポン所持数を1枚増やす
 					account.setCoupon(account.getCoupon() + 1);
+					accountRepository.save(account);
 					//あたりを返す
 				} else {
 					//はずれを返す	
@@ -174,6 +176,7 @@ public class OrderController {
 				if (num == 0) {
 					//クーポン所持数を1枚増やす
 					account.setCoupon(account.getCoupon() + 1);
+					accountRepository.save(account);
 					//あたりを返す
 				} else {
 					//はずれを返す
