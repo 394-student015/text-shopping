@@ -20,8 +20,8 @@ public class Information {
 	@Column(name = "member_id")
 	private Integer memberId;
 
-	@Column(name = "text_id")
-	private Integer textId;
+	/*@Column(name = "text_id")
+	private Integer textId;*/
 
 	private LocalDate date;
 
@@ -32,27 +32,27 @@ public class Information {
 	//コンストラクタ
 	public Information() {
 	}
-
-	public Information(Integer id, Integer memberId, Integer textId, Integer totalprice,
-			Integer payment, Integer receive) {
-		this.id = id;
-		this.memberId = memberId;
-		this.textId = textId;
-		this.totalprice = totalprice;
-		this.payment = payment;
-		this.receive = receive;
-	}
-
-	//textIdありバージョン
-	public Information(Integer memberId, Integer textId, LocalDate date, Integer totalprice,
-			Integer payment, Integer receive) {
-		this.memberId = memberId;
-		this.textId = textId;
-		this.date = date;
-		this.totalprice = totalprice;
-		this.payment = payment;
-		this.receive = receive;
-	}
+	/*
+		public Information(Integer id, Integer memberId, Integer textId, Integer totalprice,
+				Integer payment, Integer receive) {
+			this.id = id;
+			this.memberId = memberId;
+			this.textId = textId;
+			this.totalprice = totalprice;
+			this.payment = payment;
+			this.receive = receive;
+		}
+	
+		//textIdありバージョン
+		public Information(Integer memberId, Integer textId, LocalDate date, Integer totalprice,
+				Integer payment, Integer receive) {
+			this.memberId = memberId;
+			this.textId = textId;
+			this.date = date;
+			this.totalprice = totalprice;
+			this.payment = payment;
+			this.receive = receive;
+		}*/
 
 	//textIdなしバージョン
 	public Information(Integer memberId, LocalDate date, Integer totalprice,
@@ -64,7 +64,7 @@ public class Information {
 		this.receive = receive;
 	}
 
-	public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
+	/*public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
 			Integer payment, Integer receive) {
 		this.id = id;
 		this.memberId = memberId;
@@ -73,7 +73,7 @@ public class Information {
 		this.totalprice = totalprice;
 		this.payment = payment;
 		this.receive = receive;
-	}
+	}*/
 
 	//ゲッターとセッター
 	public Integer getId() {
@@ -92,14 +92,15 @@ public class Information {
 		this.memberId = memberId;
 	}
 
-	public Integer getTextId() {
-		return textId;
-	}
-
-	public void setTextId(Integer textId) {
-		this.textId = textId;
-	}
-
+	/*
+		public Integer getTextId() {
+			return textId;
+		}
+	
+		public void setTextId(Integer textId) {
+			this.textId = textId;
+		}
+	*/
 	public LocalDate getDate() {
 		return date;
 	}

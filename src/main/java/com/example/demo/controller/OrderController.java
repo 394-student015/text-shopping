@@ -111,7 +111,7 @@ public class OrderController {
 	@PostMapping("/order/complete")
 	public String orderComplete(
 			//@PathVariable("id") Integer id,
-			@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
+			//@RequestParam(name = "memberId", defaultValue = "") Integer memberId,
 			//@RequestParam(name = "textId", defaultValue = "") Integer textId,
 			@RequestParam(name = "totalprice", defaultValue = "") Integer totalprice,
 			@RequestParam(name = "coupon", defaultValue = "") Integer coupon,
@@ -120,13 +120,7 @@ public class OrderController {
 			Model model) {
 
 		//セッションから顧客情報を持ってくる
-
-		//顧客情報をまとめる？
-		//memberId.setId(member.getId());
-		//List<Information> informationList = accountRepository.findIdByMemberId(member);
-
-		//セッションスコープのcartを取得する
-		//カートに追加された商品を登録する
+		Integer memberId = member.getId();
 
 		//注文情報をDBに格納する
 		Information information = new Information(
@@ -150,44 +144,49 @@ public class OrderController {
 		orderDetailRepository.saveAll(orderDetails);
 
 		//クーポンの所持数をレポジトリから呼び出す
-		Account account = accountRepository.findById(memberId).get();
+		Account account = accountRepository.findCouponById(memberId);
 
-		//int currentCoupon = account.getCoupon();
-
-		//10%OFFクーポンの所持数が1枚以上である場合、合計金額から10％割引する
-		//初期化
-		int newCoupon = 0;
-		int newTotalprice = 0;
-
-		//合計金額５０００円以上の場合、AccountRepositoryに10%OFFクーポンを格納する
-		if (information.getTotalprice() >= 5000) {
-			//乱数生成
-			Random rand = new Random();
-			int num = rand.nextInt(5);
-
-			if (num == 0) {
-				//クーポン所持数を1枚増やす
-				newCoupon = account.getCoupon() + 1;
-				//割引された合計金額をエンティティにセットする
-				account.setCoupon(newCoupon);
-			}
+		if (coupon == 2) {
+			account.setCoupon(account.getCoupon() - 1);
 		}
 
-		if (account.getCoupon() > 0) { // クーポン所持数1枚以上
-			//合計金額から10％割引する
-			newTotalprice = (int) (information.getTotalprice() * 0.9);
-			information.setTotalprice(newTotalprice);
-			//クーポン所持数を1枚減らす
-			newCoupon = account.getCoupon() - 1;
-			//割引された合計金額をエンティティにセットする
-			account.setCoupon(newCoupon);
+		//合計金額５０００円以上の場合、AccountRepositoryに10%OFFクーポンを格納する
+		if (receive == 2) {
+			if (totalprice - 880 >= 5000) {
+				//乱数生成
+				Random rand = new Random();
+				int num = rand.nextInt(5);
+
+				if (num == 0) {
+					//クーポン所持数を1枚増やす
+					account.setCoupon(account.getCoupon() + 1);
+					//あたりを返す
+				} else {
+					//はずれを返す	
+				}
+			}
+		} else {
+			if (totalprice >= 5000) {
+				//乱数生成
+				Random rand = new Random();
+				int num = rand.nextInt(5);
+
+				if (num == 0) {
+					//クーポン所持数を1枚増やす
+					account.setCoupon(account.getCoupon() + 1);
+					//あたりを返す
+				} else {
+					//はずれを返す
+				}
+			}
+
 		}
 
 		//セッションスコープのカート情報を削除する
 		cart.clear();
 
 		//注文完了画面に戻すための購入IDを設定する
-		model.addAttribute("orderNumber", information.getId());
+		model.addAttribute("information", information);
 
 		return "orderComplete";
 	}

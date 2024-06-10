@@ -58,7 +58,7 @@ CREATE TABLE textbook(
 CREATE TABLE information(
 		id SERIAL NOT NULL,
 		member_id INTEGER NOT NULL,
-		text_id INTEGER NOT NULL,
+		--text_id INTEGER NOT NULL,
 		date Date NOT NULL,
 		totalprice INTEGER NOT NULL,
 		payment INTEGER NOT NULL,
@@ -116,8 +116,8 @@ member.password,
 member.coupon
 
 from information 
-join member on member.id=information.id 
-join textbook on textbook.id=information.id;
+join member on member.id=information.id;
+--join textbook on textbook.id=information.id;
 
 
 
@@ -132,7 +132,7 @@ ALTER TABLE textbook ADD CONSTRAINT IDX_textbook_FK0 FOREIGN KEY (lesson_id) REF
 ALTER TABLE textbook ADD CONSTRAINT IDX_textbook_FK1 FOREIGN KEY (professor_id) REFERENCES professor (id);
 
 ALTER TABLE information ADD CONSTRAINT IDX_information_PK PRIMARY KEY (id);
-ALTER TABLE information ADD CONSTRAINT IDX_information_FK0 FOREIGN KEY (text_id) REFERENCES textbook (id);
+--ALTER TABLE information ADD CONSTRAINT IDX_information_FK0 FOREIGN KEY (text_id) REFERENCES textbook (id);
 ALTER TABLE information ADD CONSTRAINT IDX_information_FK1 FOREIGN KEY (member_id) REFERENCES member (id);
 
 ALTER TABLE management ADD CONSTRAINT IDX_management_PK PRIMARY KEY (password);
