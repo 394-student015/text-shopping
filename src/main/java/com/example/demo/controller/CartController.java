@@ -92,8 +92,15 @@ public class CartController {
 
 	//カート内容表示
 	@GetMapping("/cart")
-	public String index() {
-
+	public String index(Model model) {
+		List<Book> textbookList = new ArrayList();
+		for (Textbook text : cart.getTextbookList()) {
+			//textbookList.add(bookRepository.findById(text.getId()).get());
+			Book book = bookRepository.findById(text.getId()).get();
+			book.setQuantity(text.getQuantity());
+			textbookList.add(book);
+		}
+		model.addAttribute("textbookList", textbookList);
 		return "cart";
 	}
 
