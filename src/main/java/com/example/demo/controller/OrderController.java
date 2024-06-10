@@ -163,8 +163,10 @@ public class OrderController {
 					account.setCoupon(account.getCoupon() + 1);
 					accountRepository.save(account);
 					//あたりを返す
+					model.addAttribute("result", "あたり");
 				} else {
 					//はずれを返す	
+					model.addAttribute("result", "はずれ");
 				}
 			}
 		} else {
@@ -178,8 +180,10 @@ public class OrderController {
 					account.setCoupon(account.getCoupon() + 1);
 					accountRepository.save(account);
 					//あたりを返す
+					model.addAttribute("result", "あたり");
 				} else {
 					//はずれを返す
+					model.addAttribute("result", "はずれ");
 				}
 			}
 

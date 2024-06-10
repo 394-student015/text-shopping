@@ -8,16 +8,18 @@
 </head>
 
 <body>
+		<header th:replace="header"></header>
 	<main>
 		<h3>ご注文ありがとうございました。</h3>
 		お客様の今回の注文番号は
 		<font color="blue">
 			<b>
-				<span th:text="${id}"></span>
+				<span th:text="${information.id}"></span>
 			</b>
 		</font>
 		です。
 		<br>
+		<h2 th:text="${result}" ></h2>
 		<img src ="ガチャガチャ.png" alt="ガチャガチャの画像">
 		
 		<br>
@@ -26,6 +28,7 @@
 		<br>
 		<a href="/shopMenu">メニュー画面に戻る</a>
 	</main>
+	<footer th:replace="footer"></footer>
 </body>
 
 </html>
