@@ -1,13 +1,13 @@
 create view v_information as
 select 
 
-member.id,
-member.name,
-member.address,
-member.tel,
-member.email,
-member.password,
-member.coupon 
+information.id,
+information.title,
+information.quantity,
+information.date,
+information.totalprice,
+information.payment,
+information.receive 
 
 from information 
 join member on information.id=member.id 
