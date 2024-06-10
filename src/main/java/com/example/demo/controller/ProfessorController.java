@@ -41,7 +41,7 @@ public class ProfessorController {
 			@RequestParam(value = "major", defaultValue = "") String major,
 			Model model) {
 
-		//エラーメッセージ表示、ここから
+		//エラーチェック、ここから
 		List<String> messages = new ArrayList<String>();
 		if (name == null || name.length() == 0) {
 			messages.add("教授名は必須です");
@@ -49,16 +49,19 @@ public class ProfessorController {
 		if (major == null || major.length() == 0) {
 			messages.add("専攻は必須です");
 		}
+		//エラーチェック、ここまで
 
-		Professor messageList = new Professor(name, major);
-		model.addAttribute("message", messageList);
+		//エラー有無に関わらずインスタンス化する
+		Professor professor = new Professor(name, major);
 		if (messages.size() >= 1) {
+			//エラーがあった場合
 			model.addAttribute("message", messages);
+			//以下があることで、エラー返したときに入力したものが入力欄に残る
+			model.addAttribute("professor", professor);
 			return "professorAdd";
 		}
-		//ここまで
 
-		Professor professor = new Professor(name, major);
+		//エラーがなかった場合
 		professorRepository.save(professor);
 		return "redirect:/professor";
 	}
@@ -80,8 +83,32 @@ public class ProfessorController {
 			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "major", defaultValue = "") String major,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
+		List<String> messages = new ArrayList<String>();
+		if (name == null || name.length() == 0) {
+			messages.add("教授名は必須です");
+		}
+		if (major == null || major.length() == 0) {
+			messages.add("専攻は必須です");
+		}
+
+		/*Professor messageList = new Professor(name, major);
+		model.addAttribute("message", messageList);*/
 		Professor professor = new Professor(id, name, major);
+		if (messages.size() >= 1) {
+			model.addAttribute("message", messages);
+			model.addAttribute("professor", professor);
+			return "professorUpdate";
+		}
+		//ここまで
+
 		professorRepository.save(professor);
+
+		//List<Professor> professorList = professorRepository.findAll();
+		//model.addAttribute("professor", professorList);
+		//return "professor";
+
 		return "redirect:/professor";
 	}
 

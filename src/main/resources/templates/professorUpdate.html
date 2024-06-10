@@ -5,9 +5,10 @@
 <title>教授更新</title>
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-<body>
-	<h1>教授情報更新</h1>
-	<form th:action="@{/professor/{proId}/edit(proId=${professor.id})}" method="post">
+	<body>
+		<h1>教授情報更新</h1>
+		<form th:action="@{/professor/{proId}/edit(proId=${professor.id})}" method="post">
+	
 	<table border="1">
 	<tr>
 		<th>教授ID</th>
@@ -21,8 +22,12 @@
 		<th>専攻</th>
 		<td><input type="text" name="major" th:value="${professor.major}"></td>
 	</tr>
-</table>
-<button>更新</button>
-</form>
-</body>
+	</table>
+
+	<p th:each="messages:${message}" th:text ="${messages}" style="color:red"></p>
+
+
+	<button>更新</button>
+		</form>
+	</body>
 </html>

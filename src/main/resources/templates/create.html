@@ -6,13 +6,13 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<main>
+
 		<h3>会員登録</h3>
 		
 		
 		<form action="/account" method="post">
-			<p th:each="messages:${messages}" th:text ="${messages}">
-				<table border="1">
+			
+			<table border="1">
 			<tr>
 				<th>名前</th>
 					<td>
@@ -50,10 +50,12 @@
 			
 		
 		
-		</table>
-		<button>登録</button><br>
+			</table>
+			
+				
+		<button>登録</button>
+		
+		<p th:each="messages:${messages}" th:text ="${messages}" style="color:red">
 		</form>
-	</main>
-
 </body>
 </html>
