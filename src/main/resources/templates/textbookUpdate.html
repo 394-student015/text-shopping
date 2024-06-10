@@ -8,7 +8,7 @@
 <body>
 	<h1>教科書情報更新</h1>
 		<form th:action="@{/textbook/{textId}/edit(textId=${textbook.id})}" method="post">
-			<table border="1">
+			<table>
 				<tr>
 					<th>教科書ID</th>
 					<td th:text="${textbook.id}"></td>

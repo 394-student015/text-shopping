@@ -37,17 +37,22 @@ li{margin:12px;
 table{
 	margin:5px auto;
 	background-color: rgb(128, 255, 128);
+	border-collapse: collapse;
+	border:dashed 3px rgb(128, 128, 128);
+	
 }
 
 /*表見出しセル*/
-table th{
-	background-color: rgb(0, 255, 128);
+table th,table td{
+	
+	border:dashed 2px rgb(128, 128, 128);
 }
+
 
 /*送信ボタン*/
 button{
 	padding:5px 21px;
-	background-color: darkgreen;
+	background-color: rgb(0, 64, 0);
 	color:cornsilk;
 	border:none;
 	width:140px;

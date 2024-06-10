@@ -96,7 +96,7 @@ public class AccountController {
 		} else {
 			Account account = accountInfo.get(0);
 			member.setId(account.getId());
-			//member.setName(account.getName());
+			member.setName(account.getName());
 			return "redirect:/shopMenu";
 		}
 	}
