@@ -31,6 +31,12 @@ public class TextbookController {
 	//教科書登録画面
 	@GetMapping("/textbook/add")
 	public String textbookAdd(Model model) {
+
+		//空のインスタンス化する
+		Textbook textbook = new Textbook();
+		//以下は入力内容の保持のため
+		model.addAttribute("textbook", textbook);
+
 		return "textbookAdd";
 	}
 
@@ -45,7 +51,83 @@ public class TextbookController {
 			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
 			Model model) {
 
-		//エラーメッセージ表示、ここから
+		//エラーチェック、ここから
+		List<String> messages = new ArrayList<String>();
+		if (title == null || title.length() == 0) {
+			messages.add("書名は必須です");
+		}
+		if (author == null || author.length() == 0) {
+			messages.add("著者名は必須です");
+		}
+
+		if (price == null) {
+			messages.add("価格は必須です");
+		} else if (price < 0) {
+			messages.add("価格は0以上の数字で入力してください");
+		}
+
+		if (stock == null) {
+			messages.add("在庫は必須です");
+		} else if (stock < 0) {
+			messages.add("在庫は0以上の数字で入力してください");
+		}
+
+		List<Textbook> textbookList = textRepository.findByProfessorId(professorId);
+		if (professorId == null) {
+			messages.add("教授IDは必須です");
+		} else if (professorId < 0) {
+			messages.add("教授IDは0以上の数字で入力してください");
+		} else if (textbookList == null || textbookList.size() == 0) {
+			messages.add("登録されていない教授IDです");
+		}
+
+		List<Textbook> textbookLists = textRepository.findByLessonId(lessonId);
+		if (lessonId == null) {
+			messages.add("授業IDは必須です");
+		} else if (lessonId < 0) {
+			messages.add("授業IDは0以上の数字で入力してください");
+		} else if (textbookLists == null || textbookLists.size() == 0) {
+			messages.add("登録されていない授業IDです");
+		}
+		//エラーチェック、ここまで
+
+		//エラー有無に関わらずインスタンス化する
+		Textbook textbook = new Textbook(title, author, price, stock, professorId, lessonId);
+		if (messages.size() >= 1) {
+			//エラーがあった場合
+			model.addAttribute("message", messages);
+			//以下があることで、エラー返したときに入力したものが入力欄に残る
+			model.addAttribute("textbook", textbook);
+			return "textbookAdd";
+		}
+
+		textRepository.save(textbook);
+		return "redirect:/textbook";
+
+	}
+
+	//教科書更新画面表示
+	@GetMapping("/textbook/{id}/edit")
+	public String textbookEdit(
+			@PathVariable("id") Integer id,
+			Model model) {
+		Textbook textbook = textRepository.findById(id).get();
+		model.addAttribute("textbook", textbook);
+		return "textbookUpdate";
+	}
+
+	//教科書更新
+	@PostMapping("/textbook/{id}/edit")
+	public String textbookUpdate(
+			@PathVariable("id") Integer id,
+			@RequestParam(value = "title", defaultValue = "") String title,
+			@RequestParam(value = "author", defaultValue = "") String author,
+			@RequestParam(value = "price", defaultValue = "") Integer price,
+			@RequestParam(value = "stock", defaultValue = "") Integer stock,
+			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
+			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
+			Model model) {
+
 		List<String> messages = new ArrayList<String>();
 		if (title == null || title.length() == 0) {
 			messages.add("書名は必須です");
@@ -84,47 +166,23 @@ public class TextbookController {
 			messages.add("登録されていない授業IDです");
 		}
 
-		Textbook messageList = new Textbook(title, author, price, stock, professorId, lessonId);
-		model.addAttribute("message", messages);
+		//エラーチェック、ここまで
+
+		//エラー有無に関わらずインスタンス化する
+		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		if (messages.size() >= 1) {
+			//エラーがあった場合
 			model.addAttribute("message", messages);
+			//以下があることで、エラー返したときに入力したものが入力欄に残る
+			model.addAttribute("textbook", textbook);
 			return "textbookAdd";
 		}
-		//ここまで
 
-		Textbook textbook = new Textbook(title, author, price, stock, professorId, lessonId);
-		textRepository.save(textbook);
-		return "redirect:/textbook";
-
-	}
-
-	//教科書更新画面表示
-	@GetMapping("/textbook/{id}/edit")
-	public String textbookEdit(
-			@PathVariable("id") Integer id,
-			Model model) {
-		Textbook textbook = textRepository.findById(id).get();
-		model.addAttribute("textbook", textbook);
-		return "textbookUpdate";
-	}
-
-	//教科書更新
-	@PostMapping("/textbook/{id}/edit")
-	public String textbookUpdate(
-			@PathVariable("id") Integer id,
-			@RequestParam(value = "title", defaultValue = "") String title,
-			@RequestParam(value = "author", defaultValue = "") String author,
-			@RequestParam(value = "price", defaultValue = "") Integer price,
-			@RequestParam(value = "stock", defaultValue = "") Integer stock,
-			@RequestParam(value = "professorId", defaultValue = "") Integer professorId,
-			@RequestParam(value = "lessonId", defaultValue = "") Integer lessonId,
-			Model model) {
-		Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
 		return "redirect:/textbook";
 	}
 
-	//教科書表示一覧
+	//教科書在庫表示一覧
 	@GetMapping("/stock")
 	public String stock(Model model) {
 		List<Textbook> textbook = textRepository.findAll();
