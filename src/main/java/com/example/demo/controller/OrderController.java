@@ -116,6 +116,7 @@ public class OrderController {
 		//セッションから顧客情報を持ってくる
 
 		//顧客情報をまとめる？
+		//memberId.setId(member.getId());
 		//List<Information> informationList = accountRepository.findIdByMemberId(member);
 
 		//セッションスコープのcartを取得する
@@ -123,11 +124,10 @@ public class OrderController {
 
 		//注文情報をDBに格納する
 		Information information = new Information();
-
 		informationRepository.save(information);
-
 		List<Textbook> textbookList = cart.getTextbookList();
-		List<Information> information2 = new ArrayList<>();
+		//textInfoRepository.save(textbookList);
+		//List<Information> information = new ArrayList<>();
 
 		/*information2.add(textId);
 		information2.add();

@@ -62,8 +62,8 @@ CREATE TABLE information(
 		date Date NOT NULL,
 		totalprice INTEGER NOT NULL,
 		payment INTEGER NOT NULL,
-		receive INTEGER NOT NULL,
-		quantity INTEGER
+		receive INTEGER NOT NULL
+		-- quantity INTEGER
 );
 
 /**********************************/

@@ -20,6 +20,14 @@ public class OrderDetail {
 	@Column(name = "information_id")
 	private Integer informationId;
 
+	public Integer getInformationId() {
+		return informationId;
+	}
+
+	public void setInformationId(Integer informationId) {
+		this.informationId = informationId;
+	}
+
 	private Integer quantity;
 
 	public OrderDetail() {
@@ -37,10 +45,6 @@ public class OrderDetail {
 
 	public Integer getTextId() {
 		return textId;
-	}
-
-	public Integer getInformationId() {
-		return informationId;
 	}
 
 	public Integer getQuantity() {
