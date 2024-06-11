@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>メニュー</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+	<h1>会員情報一覧</h1>
+	
+	<table>
+		<tr>
+			<th>会員ID</th>
+			<th>名前</th>
+			<th>住所</th>
+			<th>電話番号</th>
+			<th>メールアドレス</th>
+			<th>クーポン所持数（枚）</th>
+		</tr>
+		<tr th:each="account:${accountList}">
+			<td th:text="${account.id}"></td>
+			<td th:text="${account.name}"></td>
+			<td th:text="${account.address}"></td>
+			<td th:text="${account.tel}"></td>
+			<td th:text="${account.email}"></td>
+			<td th:text="${account.coupon}"></td>
+		</tr>
+	</table>
+	<a href="/manager">メニューに戻る</a>
+	<!--残骸<ul> 
+		<h1>メニュー</h1>
+		<li><a href="memberInfo.html">会員情報</a></li>
+		<li><a href="informationHistory.html">注文履歴</a></li>
+	</ul>-->
+</body>
+</html>
