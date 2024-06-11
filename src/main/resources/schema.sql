@@ -48,10 +48,10 @@ CREATE TABLE textbook(
 		author VARCHAR(30) NOT NULL,
 		price INTEGER NOT NULL,
 		stock INTEGER NOT NULL,
-		professor_id INTEGER,
-		lesson_id INTEGER
+		professor_id INTEGER NOT NULL,
+		lesson_id INTEGER NOT NULL
 );
-
+ 
 /**********************************/
 /* テーブル名: 購入情報テーブル */
 /**********************************/
