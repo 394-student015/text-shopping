@@ -21,7 +21,8 @@
 		<td th:text="${text.title}"></td>
 		<td th:text="${text.author}"></td>
 		<td th:text="${text.price}"></td>
-		<td th:text="${text.stock}"></td>
+		<td th:text="${text.stock}" th:if="${text.stock} <= 10" style="color:red"></td>
+		<td th:text="${text.stock}" th:if="${text.stock} > 10"></td>
 		<td>
 			<form th:action="@{/textbook/{textId}/stock(textId=${text.id})}" method="get">
 				<button>追加</button>

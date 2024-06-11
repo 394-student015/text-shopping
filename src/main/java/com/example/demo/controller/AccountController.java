@@ -194,7 +194,7 @@ public class AccountController {
 
 	}
 
-	//会員一覧表示
+	//ユーザー側会員情報表示
 	@GetMapping("/memberInfo")
 	public String memberInfo(
 			Model model) {
@@ -203,6 +203,16 @@ public class AccountController {
 		List<Account> accountList = accountRepository.findAllById(accountId);
 		model.addAttribute("accountList", accountList);
 		return "memberInfo";
+
+	}
+
+	//管理者側側会員一覧表示
+	@GetMapping("/member")
+	public String member(
+			Model model) {
+		List<Account> accountList = accountRepository.findAll();
+		model.addAttribute("accountList", accountList);
+		return "member";
 
 	}
 }

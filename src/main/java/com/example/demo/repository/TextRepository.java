@@ -15,6 +15,6 @@ public interface TextRepository extends JpaRepository<Textbook, Integer> {
 
 	List<Textbook> findByLessonId(Integer lessonId);
 
-	//List<Textbook> findId();
+	List<Textbook> findStockById(Integer id);
 
 }

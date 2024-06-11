@@ -126,7 +126,7 @@ public class CartController {
 		List<Account> accountList = accountRepository.findAllById(accountId);
 
 		Account account = accountRepository.findCouponById(member.getId());
-		String couponerror;
+		//String couponerror;
 		if (account.getCoupon() <= 0) {
 			//クーポンの選択肢をCSSのnoneで消す
 			model.addAttribute("accountList", accountList);
