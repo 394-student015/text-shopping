@@ -73,3 +73,7 @@ button:hover{
 .invisible{
 	display:none;
 }
+
+.attention{
+	color:rgb(255, 0, 0);
+}

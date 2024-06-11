@@ -186,6 +186,13 @@ public class TextbookController {
 	@GetMapping("/stock")
 	public String stock(Model model) {
 		List<Textbook> textbook = textRepository.findAll();
+		/*
+		for (Textbook text : textbook) {
+			//Textbook text = textRepository.findStockById(id);
+			if (text.getStock() <= 10) {
+				model.addAttribute("attention", "attention");
+			}
+		}*/
 		model.addAttribute("textbook", textbook);
 		return "stock";
 	}
