@@ -68,6 +68,15 @@ public class LessonController {
 			@PathVariable("id") Integer id,
 			@RequestParam(value = "name", defaultValue = "") String name,
 			Model model) {
+
+		//エラーメッセージ表示、ここから
+		//List<Lesson> lessonList = lessonRepository.findByName(name);
+		if (name == null || name.length() == 0) {
+			model.addAttribute("message", "授業名は必須です");
+			return "lessonAdd";
+		}
+		//ここまで
+
 		Lesson lesson = new Lesson(id, name);
 		lessonRepository.save(lesson);
 		return "redirect:/lesson";

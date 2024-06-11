@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>教授更新</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>教授更新</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
-	<body>
-		<h1>教授情報更新</h1>
-		<form th:action="@{/professor/{proId}/edit(proId=${professor.id})}" method="post">
-	
-	<table border="1">
-	<tr>
-		<th>教授ID</th>
-		<td th:text="${professor.id}"></td>
-	</tr>
-	<tr>
-		<th>教授名</th>
-		<td><input type="text" name="name" th:value="${professor.name}"></td>
-	</tr>
-	<tr>
-		<th>専攻</th>
-		<td><input type="text" name="major" th:value="${professor.major}"></td>
-	</tr>
-	</table>
 
-	<p th:each="messages:${message}" th:text ="${messages}" style="color:red"></p>
+<body>
+	<h1>教授情報更新</h1>
+	<form th:action="@{/professor/{proId}/edit(proId=${professor.id})}" method="post">
+		<table border="1">
+			<tr>
+				<th>教授ID</th>
+				<td th:text="${professor.id}"></td>
+			</tr>
+			<tr>
+				<th>教授名</th>
+				<td><input type="text" name="name" th:value="${professor.name}"></td>
+			</tr>
+			<tr>
+				<th>専攻</th>
+				<td><input type="text" name="major" th:value="${professor.major}"></td>
+			</tr>
+		</table>
+		
+		<p th:each="messages:${message}" th:text ="${messages}" style="color:red"></p>
+		
+		<button>更新</button>
+	</form>
+</body>
 
 
-	<button>更新</button>
-		</form>
-	</body>
 </html>

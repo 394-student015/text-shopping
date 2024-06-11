@@ -51,7 +51,7 @@ CREATE TABLE textbook(
 		professor_id INTEGER NOT NULL,
 		lesson_id INTEGER NOT NULL
 );
-
+ 
 /**********************************/
 /* テーブル名: 購入情報テーブル */
 /**********************************/

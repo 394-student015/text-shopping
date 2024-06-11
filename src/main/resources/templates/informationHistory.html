@@ -6,30 +6,32 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<h1>注文履歴</h1>
-	<table border="1">
+	<h1>注文履歴管理</h1><!--管理者側-->
+	<table>
 		<tr>
-			<th>購入日</th>
-			<th>名前</th>
-			<th>電話番号</th>
-			<th>メールアドレス</th>
-			<th>教科書名</th>
+			<th>注文番号</th>
+			<th>注文日</th>
+			<th>購入者ID</th>
 			<th>合計金額</th>
 			<th>決済方法</th>
 			<th>受取方法</th>
+			<th>注文詳細</th>
 		</tr>
-		
 		<tr th:each="information:${informationList}">
-			<!--<td th:text="${information.date}"></td>-->
-			<td th:text="${information.name}"></td>
-			<td th:text="${information.tel}"></td>
-			<td th:text="${information.email}"></td>
-			<td th:text="${information.title}"></td>
-			<td th:text="${information.total_price}"></td>
+			<td th:text="${information.id}"></td>
+			<td th:text="${information.date}"></td>
+			<td th:text="${information.memberId}"></td>
+			<td th:text="${information.totalprice}"></td>
 			<td th:text="${information.payment}"></td>
 			<td th:text="${information.receive}"></td>
+			<td>
+				<form th:action="@{/orderHistory/{informationId}/detail(informationId=${information.id})}" method="get">
+					<button>詳細</button>
+					<input type="hidden" name="informationId" th:value="${informationId}">
+				</form>
+			</td>
 		</tr>
 	</table>
-	
+	<a href="/manager">メニューに戻る</a>
 </body>
 </html>

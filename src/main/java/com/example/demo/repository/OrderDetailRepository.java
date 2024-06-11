@@ -10,4 +10,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 
 	List<OrderDetail> findAllByInformationId(Integer id);
 
+	List<OrderDetail> findByInformationId(Integer informationId);
+
 }

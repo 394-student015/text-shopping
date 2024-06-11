@@ -38,6 +38,9 @@
 					<td><input type="text" name="lessonId" th:value="${textbook.lessonId}"></td>
 				</tr>
 			</table>
+			
+			<p th:each="messages:${message}" th:text ="${messages}" style="color:red"></p>
+
 			<button>更新</button>
 		</form>
 </body>
