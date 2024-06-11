@@ -48,8 +48,8 @@ CREATE TABLE textbook(
 		author VARCHAR(30) NOT NULL,
 		price INTEGER NOT NULL,
 		stock INTEGER NOT NULL,
-		professor_id INTEGER NOT NULL,
-		lesson_id INTEGER NOT NULL
+		professor_id INTEGER,
+		lesson_id INTEGER
 );
 
 /**********************************/
