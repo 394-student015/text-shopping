@@ -21,3 +21,6 @@ INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(2,'watanabe
 --注文詳細データ
 INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,2,1,3);
 INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,3,1,4);
+--注文データ
+INSERT INTO information(id,member_id,date,totalprice,payment,receive) VALUES(1,1,'2024-06-09',3000,1,1);
+INSERT INTO information(id,member_id,date,totalprice,payment,receive) VALUES(2,1,'2024-06-13',5000,2,2);
