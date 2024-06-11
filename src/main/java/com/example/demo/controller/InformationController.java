@@ -69,13 +69,16 @@ public class InformationController {
 	@GetMapping("/orderHistory/{id}/detail")
 	public String detail(
 			//@PathVariable(name = "id") Integer id,
+			//@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
+			//@RequestParam(name = "textId", defaultValue = "") Integer textId,
+			//@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
+
 			@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
 			@RequestParam(name = "textId", defaultValue = "") Integer textId,
 			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
 			Model model) {
 
 		List<OrderDetail> orderDetailList = orderDetailRepository.findByInformationId(informationId);
-
 		model.addAttribute("orderDetailList", orderDetailList);
 
 		return "orderDetail";
