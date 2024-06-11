@@ -178,10 +178,12 @@ public class OrderController {
 					account.setCoupon(account.getCoupon() + 1);
 					accountRepository.save(account);
 					//あたりを返す
-					model.addAttribute("result", "次回から使える10%OFFクーポンゲット！");
+					//model.addAttribute("result", "次回から使える10%OFFクーポンゲット！");
+					model.addAttribute("win", "win");
 				} else {
 					//はずれを返す	
-					model.addAttribute("result", "残念！");
+					//model.addAttribute("result", "残念！");
+					model.addAttribute("lose", "lose");
 				}
 			}
 		} else {
@@ -195,10 +197,12 @@ public class OrderController {
 					account.setCoupon(account.getCoupon() + 1);
 					accountRepository.save(account);
 					//あたりを返す
-					model.addAttribute("result", "次回から使える10%OFFクーポンゲット！");
+					//model.addAttribute("result", "次回から使える10%OFFクーポンゲット！");
+					model.addAttribute("win", "win");
 				} else {
 					//はずれを返す
-					model.addAttribute("result", "残念！");
+					//model.addAttribute("result", "残念！");
+					model.addAttribute("lose", "lose");
 				}
 			}
 
