@@ -19,8 +19,10 @@ INSERT INTO management(id,password) VALUES(1,'himitu');
 INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(1,'watanabe','aaa','aaa','qqq','himitu',0);
 INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(2,'watanabe','aaa','aaa','x.com','himitu',2);
 --注文詳細データ
-INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,2,1,3);
-INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,3,1,4);
+INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,4,1,3);
+INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(2,3,1,4);
+INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(3,2,1,4);
+INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(4,5,2,4);
 --注文データ
 INSERT INTO information(id,member_id,date,totalprice,payment,receive) VALUES(1,1,'2024-06-09',3000,1,1);
 INSERT INTO information(id,member_id,date,totalprice,payment,receive) VALUES(2,1,'2024-06-13',5000,2,2);

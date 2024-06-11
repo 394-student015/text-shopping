@@ -27,7 +27,7 @@
 			<td>
 				<form th:action="@{/orderHistory/{informationId}/detail(informationId=${information.id})}" method="get">
 					<button>詳細</button>
-					<input type="hidden" name="informationId" th:value="${informationId}">
+					<input type="hidden" name="informationId" th:value="${information.id}">
 				</form>
 			</td>
 		</tr>
