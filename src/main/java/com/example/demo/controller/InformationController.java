@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Information;
@@ -69,7 +68,7 @@ public class InformationController {
 	//管理者側履歴詳細表示
 	@GetMapping("/orderHistory/{id}/detail")
 	public String detail(
-			@PathVariable(name = "id") Integer id,
+			//@PathVariable(name = "id") Integer id,
 			@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
 			@RequestParam(name = "textId", defaultValue = "") Integer textId,
 			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
