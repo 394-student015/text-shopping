@@ -80,6 +80,23 @@ public class ProfessorController {
 			@RequestParam(value = "name", defaultValue = "") String name,
 			@RequestParam(value = "major", defaultValue = "") String major,
 			Model model) {
+
+		//エラーメッセージ表示
+		List<String> messages = new ArrayList<String>();
+		if (name == null || name.length() == 0) {
+			messages.add("教授名は必須です");
+		}
+		if (major == null || major.length() == 0) {
+			messages.add("専攻は必須です");
+		}
+
+		Professor messageList = new Professor(name, major);
+		model.addAttribute("message", messageList);
+		if (messages.size() >= 1) {
+			model.addAttribute("message", messages);
+			return "professorAdd";
+		}
+
 		Professor professor = new Professor(id, name, major);
 		professorRepository.save(professor);
 		return "redirect:/professor";
