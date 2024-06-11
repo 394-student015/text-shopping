@@ -37,6 +37,7 @@ public class InformationController {
 			Model model) {
 		List<Information> informationOrder = informationRepository
 				.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
+		model.addAttribute("informationOrder", informationOrder);
 		//List<Information> information = informationOrder.get(0);
 		//informationHistory.add(information);
 		//List<Book> textbookList = new ArrayList();
@@ -52,7 +53,7 @@ public class InformationController {
 		//model.addAttribute("informationList", informationList);
 
 		//}
-		return "menu";
+		return "information";
 	}
 
 	//管理者側履歴表示
