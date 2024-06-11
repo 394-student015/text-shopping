@@ -6,16 +6,19 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
-	<header><h1>教科書販売</h1></header>
+	<header><h1>新宿大学教科書販売 ログイン</h1></header>
 	<main>
-		<h3>ログイン</h3>
+		<br>
 		<form action="/login" method="post">
-			メールアドレス
-				<input type="text" name="email"><br>
-		
-			パスワード
-			<input type="text" name="password"><br>
-			<br><span th:text="${message}" style="color:red"></span><br>
+			<table border="none">
+				<tr><td>メールアドレス</td>
+					<td><input type="text" name="email"></td>
+				</tr>
+				<tr><td>パスワード</td>
+					<td><input type="text" name="password"></td>
+				</tr>
+			</table>
+			<span th:text="${message}" style="color:red"></span><br>
 			<button>ログイン</button><br>
 			</form>
 			<form action="/account" method="get">

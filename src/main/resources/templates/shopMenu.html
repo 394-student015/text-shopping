@@ -25,7 +25,10 @@
 			<!--該当するものはありません、とかのメッセージ表示-->
 			<p th:text ="${error}" style="color:red"></p>
 			
-			<button>検索</button>
+			<button>検索</button><br>
+			<br>
+			<a href="/memberInfo">会員情報表示</a>
+		<a href="/information">注文履歴表示</a>
 		</form>
 		
 			<table border="1">
@@ -60,10 +63,6 @@
 			</tr>
 
 		</table>
-
-		<a href="/memberInfo">会員情報表示</a><br>
-		<a href="/information">注文履歴表示</a>
-
 	</main>
 	<hr>
 	<footer th:replace="footer"></footer>
