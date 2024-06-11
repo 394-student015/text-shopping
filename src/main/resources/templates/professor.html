@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>教授一覧</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>教授一覧</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+
 <body>
 	<main>
 		<h1>教授情報</h1>
+		<p th:each="messages:${message}" th:text="${messages}" style="color:red"></p>
 		<a href="/professor/add">新規追加</a>
 		<table border="1">
 			<tr>
@@ -17,25 +20,28 @@
 				<th>更新</th>
 				<th>削除</th>
 			</tr>
-			
-			<tr th:each="p:${professor}">
-				<td th:text="${p.id}"></td>
-				<td th:text="${p.name}"></td>
-				<td th:text="${p.major}"></td>
+
+			<tr th:each="professor:${professors}">
+				<td th:text="${professor.id}"></td>
+				<td th:text="${professor.name}"></td>
+				<td th:text="${professor.major}"></td>
 				<td>
-					<form th:action="@{/professor/{professorId}/edit(professorId=${p.id})}" method="get">
-					<button>更新</button>
+					<form th:action="@{/professor/{professorId}/edit(professorId=${professor.id})}" method="get">
+						<button>更新</button>
 					</form>
 				</td>
 				<td>
-					<form th:action="@{/professor/{professorId}/delete(professorId=${p.id})}" method="post">
-					<button>削除</button>
+					<form th:action="@{/professor/{professorId}/delete(professorId=${professor.id})}" method="post">
+						<button>削除</button>
 					</form>
 				</td>
 			</tr>
-			
+
 		</table>
-	<a href="/manager">メニューに戻る</a>
-</main>
+
+
+		<a href="/manager">メニューに戻る</a>
+	</main>
 </body>
+
 </html>

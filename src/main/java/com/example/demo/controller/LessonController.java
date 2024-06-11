@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Lesson;
+import com.example.demo.entity.Textbook;
 import com.example.demo.repository.LessonRepository;
+import com.example.demo.repository.TextRepository;
 
 @Controller
 public class LessonController {
@@ -19,11 +22,14 @@ public class LessonController {
 	@Autowired
 	LessonRepository lessonRepository;
 
+	@Autowired
+	TextRepository textRepository;
+
 	//授業画面一覧表示
 	@GetMapping("/lesson")
 	public String lesson(Model model) {
 		List<Lesson> lessonList = lessonRepository.findAll();
-		model.addAttribute("lesson", lessonList);
+		model.addAttribute("lessons", lessonList);
 		return "lesson";
 	}
 
@@ -87,6 +93,25 @@ public class LessonController {
 	public String deleteLesson(
 			@PathVariable("id") Integer id,
 			Model model) {
+
+		//エラーメッセージ表示
+		List<String> messages = new ArrayList<String>();
+
+		List<Textbook> textbookList = textRepository.findByProfessorId(id);
+
+		if (textbookList != null && textbookList.size() > 0) {
+			messages.add("削除を試みた授業情報が、追加済みの教科書情報により参照されています。");
+			messages.add("まずは教科書情報の削除をお試しください。");
+		}
+
+		if (messages.size() > 0) {
+			List<Lesson> lessonList = lessonRepository.findAll();
+			model.addAttribute("lessons", lessonList);
+
+			model.addAttribute("message", messages);
+			return "lesson";
+		}
+
 		lessonRepository.deleteById(id);
 		return "redirect:/lesson";
 	}

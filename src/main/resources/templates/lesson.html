@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta charset="UTF-8">
-<title>授業一覧</title>
-<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<meta charset="UTF-8">
+	<title>授業一覧</title>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
+
 <body>
 	<h1>授業情報</h1>
+	<p th:each="messages:${message}" th:text="${messages}" style="color:red"></p>
 	<a href="/lesson/add">新規追加</a>
-	
+
 	<table border="1">
-	<tr>
-		<th>授業ID</th>
-		<th>授業名</th>
-		<th>更新</th>
-		<th>削除</th>
-	</tr>
-	<tr th:each="l:${lesson}">
-		<td th:text="${l.id}"></td>
-		<td th:text="${l.name}"></td>
-		<td>
-			<form th:action="@{/lesson/{lessonId}/edit(lessonId=${l.id})}" method="get">
-			<button>更新</button>
-			</form>
-		</td>
-		<td>
-			<form th:action="@{/lesson/{lessonId}/delete(lessonId=${l.id})}" method="post">
-			<button>削除</button>
-			</form>
-		</td>
-	</tr>
-	
-	
-</table>
-<a href="/manager">メニューに戻る</a>
+		<tr>
+			<th>授業ID</th>
+			<th>授業名</th>
+			<th>更新</th>
+			<th>削除</th>
+		</tr>
+		<tr th:each="lesson:${lessons}">
+			<td th:text="${lesson.id}"></td>
+			<td th:text="${lesson.name}"></td>
+			<td>
+				<form th:action="@{/lesson/{lessonId}/edit(lessonId=${lesson.id})}" method="get">
+					<button>更新</button>
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/lesson/{lessonId}/delete(lessonId=${lesson.id})}" method="post">
+					<button>削除</button>
+				</form>
+			</td>
+		</tr>
+
+
+	</table>
+	<a href="/manager">メニューに戻る</a>
 </body>
+
 </html>

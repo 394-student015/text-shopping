@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Professor;
+import com.example.demo.entity.Textbook;
 import com.example.demo.repository.ProfessorRepository;
+import com.example.demo.repository.TextRepository;
 
 @Controller
 public class ProfessorController {
@@ -20,11 +22,14 @@ public class ProfessorController {
 	@Autowired
 	ProfessorRepository professorRepository;
 
+	@Autowired
+	TextRepository textRepository;
+
 	//教授画面一覧表示
 	@GetMapping("/professor")
 	public String professor(Model model) {
 		List<Professor> professorList = professorRepository.findAll();
-		model.addAttribute("professor", professorList);
+		model.addAttribute("professors", professorList);
 		return "professor";
 	}
 
@@ -87,7 +92,7 @@ public class ProfessorController {
 			@RequestParam(value = "major", defaultValue = "") String major,
 			Model model) {
 
-		//エラーメッセージ表示、ここから
+		//エラーメッセージ表示
 		List<String> messages = new ArrayList<String>();
 		if (name == null || name.length() == 0) {
 			messages.add("教授名は必須です");
@@ -95,32 +100,12 @@ public class ProfessorController {
 		if (major == null || major.length() == 0) {
 			messages.add("専攻は必須です");
 		}
-
-		/*Professor messageList = new Professor(name, major);
-		model.addAttribute("message", messageList);*/
-		//エラーメッセージ表示
-		/*List<String> messages = new ArrayList<String>();
-		if (name == null || name.length() == 0) {
-			messages.add("教授名は必須です");
-		}
-		if (major == null || major.length() == 0) {
-			messages.add("専攻は必須です");
-		}
-		
-		Professor messageList = new Professor(name, major);
-		model.addAttribute("message", messageList);
-		if (messages.size() >= 1) {
-			model.addAttribute("message", messages);
-			return "professorAdd";
-		}*/
-
 		Professor professor = new Professor(id, name, major);
 		if (messages.size() >= 1) {
 			model.addAttribute("message", messages);
 			model.addAttribute("professor", professor);
 			return "professorUpdate";
 		}
-		//ここまで
 
 		professorRepository.save(professor);
 
@@ -129,9 +114,29 @@ public class ProfessorController {
 
 	//教授削除
 	@PostMapping("/professor/{id}/delete")
-	public String deleteProfessorf(
+	public String deleteProfessor(
 			@PathVariable("id") Integer id,
 			Model model) {
+
+		//エラーメッセージ表示
+		List<String> messages = new ArrayList<String>();
+
+		List<Textbook> textbookList = textRepository.findByProfessorId(id);
+
+		if (textbookList != null && textbookList.size() > 0) {
+			messages.add("削除を試みた教授情報が、追加済みの教科書情報により参照されています。");
+			messages.add("まずは教科書情報の削除をお試しください。");
+		}
+
+		if (messages.size() > 0) {
+			List<Professor> professorList = professorRepository.findAll();
+			model.addAttribute("professors", professorList);
+
+			model.addAttribute("message", messages);
+			return "professor";
+		}
+
+		//削除
 		professorRepository.deleteById(id);
 		return "redirect:/professor";
 	}
