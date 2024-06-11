@@ -28,9 +28,12 @@ public class ProfessorController {
 		return "professor";
 	}
 
-	//教授登録画面
+	//教授登録画面表示
 	@GetMapping("/professor/add")
 	public String addProfessor(Model model) {
+
+		Professor professor = new Professor();
+		model.addAttribute("professor", professor);
 		return "professorAdd";
 	}
 
@@ -95,6 +98,22 @@ public class ProfessorController {
 
 		/*Professor messageList = new Professor(name, major);
 		model.addAttribute("message", messageList);*/
+		//エラーメッセージ表示
+		/*List<String> messages = new ArrayList<String>();
+		if (name == null || name.length() == 0) {
+			messages.add("教授名は必須です");
+		}
+		if (major == null || major.length() == 0) {
+			messages.add("専攻は必須です");
+		}
+		
+		Professor messageList = new Professor(name, major);
+		model.addAttribute("message", messageList);
+		if (messages.size() >= 1) {
+			model.addAttribute("message", messages);
+			return "professorAdd";
+		}*/
+
 		Professor professor = new Professor(id, name, major);
 		if (messages.size() >= 1) {
 			model.addAttribute("message", messages);
@@ -104,10 +123,6 @@ public class ProfessorController {
 		//ここまで
 
 		professorRepository.save(professor);
-
-		//List<Professor> professorList = professorRepository.findAll();
-		//model.addAttribute("professor", professorList);
-		//return "professor";
 
 		return "redirect:/professor";
 	}
