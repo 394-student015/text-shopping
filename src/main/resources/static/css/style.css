@@ -36,18 +36,21 @@ li{margin:12px;
 /*テーブル*/
 table{
 	margin:5px auto;
-	background-color: rgb(128, 255, 128);
+	background-color: rgb(189, 255, 189);
 	border-collapse: collapse;
-	border:dashed 3px rgb(128, 128, 128);
+	border:solid 3px rgb(60, 60, 60);
 	
 }
 
 /*表見出しセル*/
-table th,table td{
-	
-	border:dashed 2px rgb(128, 128, 128);
+table td{	
+	border:solid 2px rgb(87, 87, 87);
 }
 
+table th{
+	border:solid 2px rgb(87, 87, 87);
+	background-color: rgb(176, 176, 176);
+}
 
 /*送信ボタン*/
 button{
