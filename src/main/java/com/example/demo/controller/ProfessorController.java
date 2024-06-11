@@ -32,6 +32,8 @@ public class ProfessorController {
 	@GetMapping("/professor/add")
 	public String addProfessor(Model model) {
 
+		Professor professor = new Professor();
+		model.addAttribute("professor", professor);
 		return "professorAdd";
 	}
 
