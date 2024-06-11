@@ -39,6 +39,14 @@ public class OrderDetail {
 		return textId;
 	}
 
+	public void setTextId(Integer textId) {
+		this.textId = textId;
+	}
+
+	public Integer C() {
+		return textId;
+	}
+
 	public Integer getQuantity() {
 		return quantity;
 	}

@@ -18,3 +18,6 @@ INSERT INTO management(id,password) VALUES(1,'himitu');
 --会員テーブルデータ
 INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(1,'watanabe','aaa','aaa','qqq','himitu',0);
 INSERT INTO member(id,name,address,tel,email,password,coupon) VALUES(2,'watanabe','aaa','aaa','x.com','himitu',2);
+--注文詳細データ
+INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,2,1,3);
+INSERT INTO order_details(id,text_id,information_id,quantity) VALUES(1,3,1,4);

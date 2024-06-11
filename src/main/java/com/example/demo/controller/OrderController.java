@@ -136,25 +136,26 @@ public class OrderController {
 		informationRepository.save(information);
 		//注文詳細情報をDBに格納する
 		List<Textbook> textbookList = cart.getTextbookList();
-		List<OrderDetail> orderDetails = new ArrayList<>();
+		//List<OrderDetail> orderDetails = new OrderDetail(textId, informationId, quantity);
 		for (Textbook textbook : textbookList) {
-			orderDetails.add(
-					new OrderDetail(
-							information.getId(),
-							textbook.getId(),
-							textbook.getQuantity()));
+			OrderDetail orderDetails = new OrderDetail(textbook.getId(),
+					information.getId(),
+					textbook.getQuantity());
+			orderDetailRepository.save(orderDetails);
 		}
-		orderDetailRepository.saveAll(orderDetails);
-		List<OrderDetail> orderDetailList = orderDetailRepository.findAll();
+
+		List<OrderDetail> orderDetailList = orderDetailRepository.findAllByInformationId(information.getId());
 		List<Textbook> TextbookIdList = textRepository.findAll();
-		for (OrderDetail orderDetail : orderDetailList) {
-			for (Textbook textBook : TextbookIdList) {
-				if (orderDetail.getId() == textBook.getId()) {
+
+		for (Textbook textBook : TextbookIdList) {
+			for (OrderDetail orderDetail : orderDetailList) {
+				if (orderDetail.getTextId() == textBook.getId()) {
 					textBook.setStock(textBook.getStock() - orderDetail.getQuantity());
 					textRepository.save(textBook);
 					break;
 				}
 			}
+			//textRepository.save(textBook);
 		}
 
 		//クーポンの所持数をレポジトリから呼び出す

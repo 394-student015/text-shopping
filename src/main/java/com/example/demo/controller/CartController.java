@@ -50,7 +50,7 @@ public class CartController {
 			Model model) {
 
 		//教科書一覧情報の取得
-		List<Book> textbookList = bookRepository.findAll();
+		List<Book> textbookList = bookRepository.findAllByOrderByIdAsc();
 		List<Book> bookListbrowse = new ArrayList<>();
 		for (Book book : textbookList) {
 			for (Textbook textbook : cart.getTextbookList()) {
