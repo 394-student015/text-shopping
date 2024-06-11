@@ -7,7 +7,7 @@
 </head>
 <body>
 	<h1>注文履歴管理</h1><!--管理者側-->
-	<table border="1">
+	<table>
 		<tr>
 			<th>注文番号</th>
 			<th>注文日</th>
@@ -17,7 +17,6 @@
 			<th>受取方法</th>
 			<th>注文詳細</th>
 		</tr>
-		<form action="/orderHistory/detail" method="post">
 		<tr th:each="information:${informationList}">
 			<td th:text="${information.id}"></td>
 			<td th:text="${information.date}"></td>
@@ -26,11 +25,12 @@
 			<td th:text="${information.payment}"></td>
 			<td th:text="${information.receive}"></td>
 			<td>
+				<form th:action="@{/orderHistory/{informationId}/detail(informationId=${information.id})}" method="get">
 					<button>詳細</button>
-				<input type="hidden" name="information.id" th:value="${information.id}">
+					<input type="hidden" name="informationId" th:value="${informationId}">
+				</form>
 			</td>
 		</tr>
-			</form>
 	</table>
 	<a href="/manager">メニューに戻る</a>
 </body>
