@@ -7,6 +7,10 @@
 </head>
 <body>
 	<h1>注文履歴管理</h1><!--管理者側-->
+	
+	<p>決済方法　1：現金　2：クレジットカード</p>
+	<p>受け取り方法　1：店頭受取　2：配送</p>
+		
 	<table>
 		<tr>
 			<th>注文番号</th>
@@ -14,7 +18,7 @@
 			<th>購入者ID</th>
 			<th>合計金額</th>
 			<th>決済方法</th>
-			<th>受取方法</th>
+			<th>受け取り方法</th>
 			<th>注文詳細</th>
 		</tr>
 		<tr th:each="information:${informationList}">
