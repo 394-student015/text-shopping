@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Information;
 import com.example.demo.entity.OrderDetail;
+import com.example.demo.entity.Textbook;
 import com.example.demo.model.Member;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
@@ -58,23 +59,19 @@ public class InformationController {
 			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
 			Model model) {
 
-		List<Information> informationIdList = informationRepository.findByMemberId(member.getId());
-
-		List<OrderDetail> orderDetailList = new ArrayList<>();
-		for (Information information : informationIdList) {
-			orderDetailList = orderDetailRepository.findByinformationId(information.getId());
-		}
+		List<OrderDetail> orderDetailList = orderDetailRepository.findByinformationId(informationId);
 
 		model.addAttribute("orderDetailList", orderDetailList);
 
-		/*
 		List<Textbook> textbookList = new ArrayList<>();
-		for(Integer textId : orderDetailList) {
-		textRepository.findById(textId).get();
+		for (OrderDetail text : orderDetailList) {
+			Textbook textbook = textRepository.findById(text.getTextId()).get();
+			textbookList.add(textbook);
 		}
-		model.addAttribute("textbookList", textbookList);*/
+		model.addAttribute("textbookList", textbookList);
 
 		return "informationDetail";
+
 	}
 
 	//管理者側履歴表示

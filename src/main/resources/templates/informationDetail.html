@@ -7,16 +7,30 @@
 </head>
 <body>
 <h1>注文履歴詳細</h1>
+
+<div class="line">
 	<table>
-	<tr>
-		<th>教科書タイトル</th>
-			<th>数量</th>
-	</tr>
-<tr th:each="order:${orderDetailList}">
-		<td th:text="${order.textId}"></td>
-		<td th:text="${order.quantity}"></td>	
-	</tr>
-</table>
+		<tr>
+			<th>教科書ID</th>
+			<th>教科書タイトル</th>
+			<th>価格</th>
+		</tr>
+		<tr th:each="textbook:${textbookList}" >
+			<td th:text="${textbook.id}"></td>
+			<td th:text="${textbook.title}"></td>
+			<td th:text="${textbook.price}"></td>
+		</tr>
+	</table>
+	
+	<table>
+		<tr>
+		<th>数量</th>
+		</tr>
+		<tr th:each="order:${orderDetailList}">
+		<td th:text="${order.quantity}"></td>
+		</tr>
+	</table>
+</div>
 <a href="/information">戻る</a>
 </body>
 </html>
