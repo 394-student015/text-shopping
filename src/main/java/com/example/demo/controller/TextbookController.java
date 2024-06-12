@@ -82,7 +82,6 @@ public class TextbookController {
 			messages.add("在庫は0以上の数字で入力してください");
 		}
 
-		//List<Textbook> textbookList = textRepository.findByProfessorId(professorId);
 		List<Professor> professorList = professorRepository.findIdById(professorId);
 
 		if (professorId == null) {
@@ -93,7 +92,6 @@ public class TextbookController {
 			messages.add("登録されていない教授IDです");
 		}
 
-		//List<Textbook> textbookLists = textRepository.findByLessonId(lessonId);
 		List<Lesson> lessonList = lessonRepository.findIdById(lessonId);
 
 		if (lessonId == null) {

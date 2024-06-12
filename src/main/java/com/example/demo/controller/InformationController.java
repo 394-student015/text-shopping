@@ -41,9 +41,6 @@ public class InformationController {
 	public String information(
 			@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
 			Model model) {
-		//List<Information> informationOrder = informationRepository
-		//	.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
-
 		List<Information> informationList = informationRepository.findByMemberId(member.getId());
 
 		model.addAttribute("informationList", informationList);
@@ -79,10 +76,8 @@ public class InformationController {
 	public String orderHistory(
 			Model model) {
 		List<Information> informationList = informationRepository.findAll();
-		//List<Account> accountList = accountRepository.findAll();
 
 		model.addAttribute("informationList", informationList);
-		//model.addAttribute("accountList", accountList);
 
 		return "informationHistory";
 	}
@@ -90,11 +85,6 @@ public class InformationController {
 	//管理者側履歴詳細表示
 	@GetMapping("/orderHistory/{id}/detail")
 	public String detail(
-			//@PathVariable(name = "id") Integer id,
-			//@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
-			//@RequestParam(name = "textId", defaultValue = "") Integer textId,
-			//@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
-
 			@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
 			@RequestParam(name = "textId", defaultValue = "") Integer textId,
 			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,

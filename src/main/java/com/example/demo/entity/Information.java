@@ -20,9 +20,6 @@ public class Information {
 	@Column(name = "member_id")
 	private Integer memberId;
 
-	/*@Column(name = "text_id")
-	private Integer textId;*/
-
 	private LocalDate date;
 
 	private Integer totalprice;
@@ -63,15 +60,6 @@ public class Information {
 		this.memberId = memberId;
 	}
 
-	/*
-		public Integer getTextId() {
-			return textId;
-		}
-	
-		public void setTextId(Integer textId) {
-			this.textId = textId;
-		}
-	*/
 	public LocalDate getDate() {
 		return date;
 	}
