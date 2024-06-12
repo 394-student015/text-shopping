@@ -177,9 +177,9 @@ public class AccountController {
 
 		Account accountUpdate = new Account(name, email, tel, address, password, coupon);
 		accountUpdate.setId(member.getId());
+		member.setName(accountUpdate.getName());
 		accountRepository.save(accountUpdate);
 		return "redirect:/shopMenu";
-
 	}
 
 	//会員更新画面

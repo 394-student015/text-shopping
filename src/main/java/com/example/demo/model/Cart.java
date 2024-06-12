@@ -50,24 +50,6 @@ public class Cart {
 			existsTextbook.setStock(existsTextbook.getStock() - 1);
 		}
 	}
-	/*
-	Textbook existsItem=null;
-	for(Textbook item:itemList) {
-		if(item.getId()==newItem.getId())
-			existsItem=cart;
-			break;
-		}
-	}
-	
-	if(existsItem==null)
-	
-	{
-	cartList.add(newItem);
-	}else
-	{
-	existsItem.setQuantity(
-			existsItem.getQuantity() + newItem.getQuantity());
-	}*/
 
 	//カートから商品を削除
 

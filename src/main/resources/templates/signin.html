@@ -8,8 +8,8 @@
 <body>
 	<h1>管理者ログイン画面</h1>
 	<form action="/entry" method="post">
-		パスワード<input type="text" name="password">
-		<br><span th:text="${message}"></span>
+		パスワード<input type="text" name="password" maxlength="10">
+		<br><span th:text="${message}" style="color:red"></span><br>
 <button>ログイン</button>
 </form>
 <a href="/">購入者ログイン画面へ戻る</a>

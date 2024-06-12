@@ -10,13 +10,9 @@ public class Member {
 	private Integer id;
 	private String name;
 
+	//コンストラクタ
 	public Member() {
-
 	}
-
-	//メソッド
-	//public Member(List<Account> accountSession) {
-	//}
 
 	public Member(Integer id) {
 		this.id = id;

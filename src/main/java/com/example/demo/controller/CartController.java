@@ -22,7 +22,7 @@ import com.example.demo.repository.TextRepository;
 
 @Controller
 public class CartController {
-	//内部設計書CL015参照
+
 	@Autowired
 	Cart cart;
 

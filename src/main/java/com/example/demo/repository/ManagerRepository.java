@@ -10,5 +10,4 @@ public interface ManagerRepository extends JpaRepository<Manager, Integer> {
 
 	List<Manager> findByPassword(String password);
 
-	//内部設計書CL012参照
 }

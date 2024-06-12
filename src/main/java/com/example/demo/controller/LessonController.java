@@ -18,7 +18,6 @@ import com.example.demo.repository.TextRepository;
 
 @Controller
 public class LessonController {
-	//内部設計書CL020参照
 	@Autowired
 	LessonRepository lessonRepository;
 
@@ -46,7 +45,6 @@ public class LessonController {
 			Model model) {
 
 		//エラーメッセージ表示、ここから
-		//List<Lesson> lessonList = lessonRepository.findByName(name);
 		if (name == null || name.length() == 0) {
 			model.addAttribute("message", "授業名は必須です");
 			return "lessonAdd";
@@ -76,7 +74,7 @@ public class LessonController {
 			Model model) {
 
 		//エラーメッセージ表示、ここから
-		//List<Lesson> lessonList = lessonRepository.findByName(name);
+
 		if (name == null || name.length() == 0) {
 			model.addAttribute("message", "授業名は必須です");
 			return "lessonAdd";

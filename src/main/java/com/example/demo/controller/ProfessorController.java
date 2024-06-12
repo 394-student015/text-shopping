@@ -18,7 +18,7 @@ import com.example.demo.repository.TextRepository;
 
 @Controller
 public class ProfessorController {
-	//内部設計書CL019参照
+
 	@Autowired
 	ProfessorRepository professorRepository;
 
