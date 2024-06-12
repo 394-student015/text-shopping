@@ -83,3 +83,11 @@ button:hover{
 	justify-content:center;
 	align-items:center;
 }
+
+.table {
+	display:table;
+}
+.cell {
+	display:table-cell;
+         border: 1px solid;
+}

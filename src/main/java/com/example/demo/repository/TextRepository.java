@@ -14,9 +14,4 @@ public interface TextRepository extends JpaRepository<Textbook, Integer> {
 	List<Textbook> findByLessonId(Integer lessonId);
 
 	List<Textbook> findStockById(Integer id);
-
-<<<<<<< HEAD
-	//List<Textbook> findById(Integer text.getTextId());
-=======
->>>>>>> branch 'master' of git@github.com:394-student015/text-shopping.git
 }
