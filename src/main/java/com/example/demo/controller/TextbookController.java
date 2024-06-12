@@ -11,7 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Lesson;
+import com.example.demo.entity.Professor;
 import com.example.demo.entity.Textbook;
+import com.example.demo.repository.LessonRepository;
+import com.example.demo.repository.ProfessorRepository;
 import com.example.demo.repository.TextRepository;
 
 @Controller
@@ -19,6 +23,12 @@ public class TextbookController {
 
 	@Autowired
 	TextRepository textRepository;
+
+	@Autowired
+	ProfessorRepository professorRepository;
+
+	@Autowired
+	LessonRepository lessonRepository;
 
 	//教科書画面表示一覧
 	@GetMapping("/textbook")
@@ -72,21 +82,25 @@ public class TextbookController {
 			messages.add("在庫は0以上の数字で入力してください");
 		}
 
-		List<Textbook> textbookList = textRepository.findByProfessorId(professorId);
+		//List<Textbook> textbookList = textRepository.findByProfessorId(professorId);
+		List<Professor> professorList = professorRepository.findIdById(professorId);
+
 		if (professorId == null) {
 			messages.add("教授IDは必須です");
 		} else if (professorId < 0) {
 			messages.add("教授IDは0以上の数字で入力してください");
-		} else if (textbookList == null || textbookList.size() == 0) {
+		} else if (professorList == null || professorList.size() == 0) {
 			messages.add("登録されていない教授IDです");
 		}
 
-		List<Textbook> textbookLists = textRepository.findByLessonId(lessonId);
+		//List<Textbook> textbookLists = textRepository.findByLessonId(lessonId);
+		List<Lesson> lessonList = lessonRepository.findIdById(lessonId);
+
 		if (lessonId == null) {
 			messages.add("授業IDは必須です");
 		} else if (lessonId < 0) {
 			messages.add("授業IDは0以上の数字で入力してください");
-		} else if (textbookLists == null || textbookLists.size() == 0) {
+		} else if (lessonList == null || lessonList.size() == 0) {
 			messages.add("登録されていない授業IDです");
 		}
 		//エラーチェック、ここまで

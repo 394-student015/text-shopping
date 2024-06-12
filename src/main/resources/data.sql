@@ -1,8 +1,8 @@
 -- カテゴリーテーブルデータ
---INSERT INTO professor(name,major) VALUES('アンパンマン','量子宇宙論');
+INSERT INTO professor(name,major) VALUES('アンパンマン','量子宇宙論');
 --INSERT INTO professor(name,major) VALUES('ねこねこ','文学部');
 --INSERT INTO professor(name,major) VALUES('イーロンマスク','社会学部');
---INSERT INTO lesson(name) VALUES('水中におけるダンスの効用');
+INSERT INTO lesson(name) VALUES('水中におけるダンスの効用');
 --INSERT INTO lesson(name) VALUES('文学概論');
 --INSERT INTO lesson(name) VALUES('社会学概論');
 

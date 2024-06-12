@@ -10,4 +10,5 @@ public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 
 	List<Lesson> findByName(String name);
 
+	List<Lesson> findIdById(Integer lessonId);
 }
