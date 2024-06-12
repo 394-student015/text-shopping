@@ -43,10 +43,6 @@ public class OrderDetail {
 		this.textId = textId;
 	}
 
-	public Integer C() {
-		return textId;
-	}
-
 	public Integer getQuantity() {
 		return quantity;
 	}
