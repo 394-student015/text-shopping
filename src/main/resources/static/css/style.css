@@ -45,6 +45,7 @@ table{
 /*表見出しセル*/
 table td{	
 	border:solid 2px rgb(87, 87, 87);
+	width: 300px;
 }
 
 table th{
