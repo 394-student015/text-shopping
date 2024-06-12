@@ -10,7 +10,7 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "textbook")
-//内部設計書CL01参照
+
 public class Textbook {
 	//フィールド
 	//@OrderBy(value = "id asc")

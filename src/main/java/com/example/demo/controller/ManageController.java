@@ -39,7 +39,7 @@ public class ManageController {
 			model.addAttribute("message", "正しく入力してください");
 			return "signin";
 		}
-		//Account account = accountList.get(0);
+
 		return "manager";
 	}
 

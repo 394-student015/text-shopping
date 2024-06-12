@@ -8,7 +8,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "management")
-//内部設計書CL06参照
+
 public class Manager {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

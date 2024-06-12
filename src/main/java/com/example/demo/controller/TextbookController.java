@@ -16,7 +16,7 @@ import com.example.demo.repository.TextRepository;
 
 @Controller
 public class TextbookController {
-	//内部設計書CL018参照
+
 	@Autowired
 	TextRepository textRepository;
 
@@ -186,13 +186,7 @@ public class TextbookController {
 	@GetMapping("/stock")
 	public String stock(Model model) {
 		List<Textbook> textbook = textRepository.findAll();
-		/*
-		for (Textbook text : textbook) {
-			//Textbook text = textRepository.findStockById(id);
-			if (text.getStock() <= 10) {
-				model.addAttribute("attention", "attention");
-			}
-		}*/
+
 		model.addAttribute("textbook", textbook);
 		return "stock";
 	}
@@ -222,7 +216,6 @@ public class TextbookController {
 			Model model) {
 
 		//エラーメッセージ表示、ここから
-		//Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		List<String> messages = new ArrayList<String>();
 		if (stock == null) {
 			messages.add("在庫は必須です");
@@ -239,7 +232,6 @@ public class TextbookController {
 		}
 		//ここまで
 
-		//Textbook textbook = new Textbook(id, title, author, price, stock, professorId, lessonId);
 		textRepository.save(textbook);
 
 		return "redirect:/stock";

@@ -6,8 +6,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
 
-//View作った。HTMLでもv_textbookを使う。
-
 @Entity
 @Table(name = "v_textbook")
 public class Book {

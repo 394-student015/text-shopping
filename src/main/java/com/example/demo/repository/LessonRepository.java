@@ -9,5 +9,5 @@ import com.example.demo.entity.Lesson;
 public interface LessonRepository extends JpaRepository<Lesson, Integer> {
 
 	List<Lesson> findByName(String name);
-	//内部設計書CL010参照
+
 }
