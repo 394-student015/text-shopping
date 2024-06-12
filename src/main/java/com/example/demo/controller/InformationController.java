@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.entity.Account;
 import com.example.demo.entity.Information;
 import com.example.demo.entity.OrderDetail;
 import com.example.demo.model.Member;
@@ -64,10 +63,10 @@ public class InformationController {
 	public String orderHistory(
 			Model model) {
 		List<Information> informationList = informationRepository.findAll();
-		List<Account> accountList = accountRepository.findAll();
+		//List<Account> accountList = accountRepository.findAll();
 
 		model.addAttribute("informationList", informationList);
-		model.addAttribute("accountList", accountList);
+		//model.addAttribute("accountList", accountList);
 
 		return "informationHistory";
 	}
