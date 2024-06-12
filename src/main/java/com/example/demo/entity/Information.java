@@ -32,29 +32,11 @@ public class Information {
 	//コンストラクタ
 	public Information() {
 	}
-	/*
-		public Information(Integer id, Integer memberId, Integer textId, Integer totalprice,
-				Integer payment, Integer receive) {
-			this.id = id;
-			this.memberId = memberId;
-			this.textId = textId;
-			this.totalprice = totalprice;
-			this.payment = payment;
-			this.receive = receive;
-		}
-	
-		//textIdありバージョン
-		public Information(Integer memberId, Integer textId, LocalDate date, Integer totalprice,
-				Integer payment, Integer receive) {
-			this.memberId = memberId;
-			this.textId = textId;
-			this.date = date;
-			this.totalprice = totalprice;
-			this.payment = payment;
-			this.receive = receive;
-		}*/
 
-	//textIdなしバージョン
+	public Information(Integer id) {
+		this.id = id;
+	}
+
 	public Information(Integer memberId, LocalDate date, Integer totalprice,
 			Integer payment, Integer receive) {
 		this.memberId = memberId;
@@ -63,17 +45,6 @@ public class Information {
 		this.payment = payment;
 		this.receive = receive;
 	}
-
-	/*public Information(Integer id, Integer memberId, Integer textId, LocalDate date, Integer totalprice,
-			Integer payment, Integer receive) {
-		this.id = id;
-		this.memberId = memberId;
-		this.textId = textId;
-		this.date = date;
-		this.totalprice = totalprice;
-		this.payment = payment;
-		this.receive = receive;
-	}*/
 
 	//ゲッターとセッター
 	public Integer getId() {

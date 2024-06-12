@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.BookRepository;
 import com.example.demo.repository.InformationRepository;
 import com.example.demo.repository.OrderDetailRepository;
+import com.example.demo.repository.TextRepository;
 
 @Controller
 
@@ -23,6 +25,8 @@ public class InformationController {
 	AccountRepository accountRepository;
 	@Autowired
 	InformationRepository informationRepository;
+	@Autowired
+	TextRepository textRepository;
 	@Autowired
 	BookRepository bookRepository;
 	@Autowired
@@ -40,22 +44,37 @@ public class InformationController {
 		//	.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
 
 		List<Information> informationList = informationRepository.findByMemberId(member.getId());
-		List<OrderDetail> orderDetailList = orderDetailRepository.findByInformationId(informationId);
 
 		model.addAttribute("informationList", informationList);
+
+		return "information";
+	}
+
+	//購入者側履歴詳細表示
+	@GetMapping("/information/{id}/detail")
+	public String detailInfo(
+			@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
+			@RequestParam(name = "textId", defaultValue = "") Integer textId,
+			@RequestParam(name = "quantity", defaultValue = "") Integer quantity,
+			Model model) {
+
+		List<Information> informationIdList = informationRepository.findByMemberId(member.getId());
+
+		List<OrderDetail> orderDetailList = new ArrayList<>();
+		for (Information information : informationIdList) {
+			orderDetailList = orderDetailRepository.findByinformationId(information.getId());
+		}
+
 		model.addAttribute("orderDetailList", orderDetailList);
 
-		//List<Information> information = informationOrder.get(0);
-		//informationHistory.add(information);
-		//List<Book> textbookList = new ArrayList();
-		//for (Textbook text : cart.getTextbookList()) {
-		//textbookList.add(bookRepository.findById(text.getId()).get());
-		//}
-		//for (InformationHistory info : informationHistory.getInformationList()) {
-		//info.add(accountRepository.findNameAndEmailAndTelById(member.getId()));
-		//model.addAttribute("informationList", informationList);
-		//}
-		return "information";
+		/*
+		List<Textbook> textbookList = new ArrayList<>();
+		for(Integer textId : orderDetailList) {
+		textRepository.findById(textId).get();
+		}
+		model.addAttribute("textbookList", textbookList);*/
+
+		return "informationDetail";
 	}
 
 	//管理者側履歴表示

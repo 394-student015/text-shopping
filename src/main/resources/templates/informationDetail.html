@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>注文情報詳細</title>
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+<h1>注文履歴詳細</h1>
+	<table>
+	<tr>
+		<th>教科書タイトル</th>
+			<th>数量</th>
+	</tr>
+<tr th:each="order:${orderDetailList}">
+		<td th:text="${order.textId}"></td>
+		<td th:text="${order.quantity}"></td>	
+	</tr>
+</table>
+<a href="/information">戻る</a>
+</body>
+</html>

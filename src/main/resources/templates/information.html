@@ -17,8 +17,7 @@
 			<th>合計価格</th>
 			<th>支払い方法</th>
 			<th>受け取り方法</th>
-			<th>教科書タイトル</th>
-			<th>数量</th>
+			<th>詳細表示</th>
 		</tr>
 		<tr th:each="info:${informationList}">
 			<td th:text="${info.id}"></td>
@@ -28,6 +27,12 @@
 			<td th:if="${info.payment}==2">クレジットカード</td>
 			<td th:if="${info.receive}==1">店頭受け取り</td>
 			<td th:if="${info.receive}==2">配送</td>
+			<td>	
+				<form th:action="@{/information/{informationId}/detail(informationId=${info.id})}" method="get">
+					<button>詳細</button>
+					<input type="hidden" name="informationId" th:value="${info.id}">
+				</form>
+			</td>
 		</tr>
 	</table>
 	<a href="/shopMenu">ホームに戻る</a>
