@@ -22,7 +22,7 @@
 				<th>名前</th>
 				<td th:text="${account.name}"></td>
 				<td>
-					<input type="text" name="member_name">
+					<input type="text" name="member_name" maxlength="30">
 					<input type="hidden" name="old_member_name" th:value="${account.name}">
 				</td>
 			</tr>
@@ -31,7 +31,7 @@
 				<th>住所</th>
 				<td th:text="${account.address}"></td>
 				<td>
-					<input type="text" name="member_address">
+					<input type="text" name="member_address" maxlength="40">
 					<input type="hidden" name="old_member_address" th:value="${account.address}">
 				</td>
 			</tr>
@@ -40,7 +40,7 @@
 				<th>電話番号</th>
 				<td th:text="${account.tel}"></td>
 				<td>
-					<input type="text" name="member_tel">
+					<input type="text" name="member_tel" maxlength="12">
 					<input type="hidden" name="old_member_tel" th:value="${account.tel}">
 				</td>
 			</tr>
@@ -49,7 +49,7 @@
 				<th>メールアドレス</th>
 				<td th:text="${account.email}"></td>
 				<td>
-					<input type="text" name="member_email">
+					<input type="text" name="member_email" maxlength="50">
 					<input type="hidden" name="old_member_email" th:value="${account.email}">
 				</td>
 			</tr>
@@ -58,7 +58,7 @@
 				<th>パスワード</th>
 				<td th:text="${account.password}"></td>
 				<td>
-					<input type="text" name="member_password">
+					<input type="text" name="member_password" maxlength="10">
 					<input type="hidden" name="old_member_password" th:value="${account.password}">
 				</td>
 			</tr>

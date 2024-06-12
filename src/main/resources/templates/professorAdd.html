@@ -12,13 +12,13 @@
 			<tr>
 				<th>教授名</th>
 					<td>
-						<input type="text" name="name" th:value="${professor.name}">
+						<input type="text" name="name" th:value="${professor.name}"  maxlength="30">
 					</td>
 				</tr>
 			<tr>
 				<th>専攻</th>
 					<td>
-						<input type="text" name="major" th:value="${professor.major}">
+						<input type="text" name="major" th:value="${professor.major}" maxlength="30">
 					</td>
 				</tr>
 		</table>
