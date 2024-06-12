@@ -13,22 +13,24 @@
 <table>
 		<tr>
 			<th>注文番号</th>
-			
-			<th>教科書タイトル</th>
-			<th>数量</th>
-			
+			<th>注文日時</th>
 			<th>合計価格</th>
 			<th>支払い方法</th>
 			<th>受け取り方法</th>
+			<th>教科書タイトル</th>
+			<th>数量</th>
 		</tr>
-		<!--<tr th:each="info:${informationOrder}">
-			<td th:text="${info.title}"></td>
+		<tr th:each="info:${informationList}">
+			<td th:text="${info.id}"></td>
+			<td th:text="${info.date}"></td>
 			<td th:text="${info.totalprice}"></td>
-			<td th:text="${info.payment}"></td>
-			<td th:text="${info.receive}"></td>
-		</tr>-->
+			<td th:if="${info.payment}==1">現金</td>
+			<td th:if="${info.payment}==2">クレジットカード</td>
+			<td th:if="${info.receive}==1">店頭受け取り</td>
+			<td th:if="${info.receive}==2">配送</td>
+		</tr>
 	</table>
-	<a href="/manager">メニューに戻る</a>
+	<a href="/shopMenu">ホームに戻る</a>
 </main>
 	<hr>
 	<footer th:replace="footer"></footer>

@@ -7,10 +7,6 @@
 </head>
 <body>
 	<h1>注文履歴管理</h1><!--管理者側-->
-	
-	<p>決済方法　1：現金　2：クレジットカード</p>
-	<p>受け取り方法　1：店頭受取　2：配送</p>
-		
 	<table>
 		<tr>
 			<th>注文番号</th>
@@ -24,10 +20,13 @@
 		<tr th:each="information:${informationList}">
 			<td th:text="${information.id}"></td>
 			<td th:text="${information.date}"></td>
-			<td th:text="${information.memberId}"></td>
+			<td th:text="${accountList.memberId}"></td>
 			<td th:text="${information.totalprice}"></td>
-			<td th:text="${information.payment}"></td>
-			<td th:text="${information.receive}"></td>
+			<td th:if="${information.payment}==1">現金</td>
+			<td th:if="${information.payment}==2">クレジットカード</td>
+			<td th:if="${information.receive}==1">店頭受け取り</td>
+			<td th:if="${information.receive}==2">配送</td>
+			
 			<td>
 				<form th:action="@{/orderHistory/{informationId}/detail(informationId=${information.id})}" method="get">
 					<button>詳細</button>

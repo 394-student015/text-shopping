@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.demo.entity.Account;
 import com.example.demo.entity.Information;
 import com.example.demo.entity.OrderDetail;
 import com.example.demo.model.Member;
@@ -34,24 +35,26 @@ public class InformationController {
 	//購入者側履歴表示
 	@GetMapping("/information")
 	public String information(
+			@RequestParam(name = "informationId", defaultValue = "") Integer informationId,
 			Model model) {
-		List<Information> informationOrder = informationRepository
-				.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
-		model.addAttribute("informationOrder", informationOrder);
+		//List<Information> informationOrder = informationRepository
+		//	.findTitleAndTotalpriceAndPaymentAndReceivefindByMemberId(member.getId());
+
+		List<Information> informationList = informationRepository.findByMemberId(member.getId());
+		List<OrderDetail> orderDetailList = orderDetailRepository.findByInformationId(informationId);
+
+		model.addAttribute("informationList", informationList);
+		model.addAttribute("orderDetailList", orderDetailList);
+
 		//List<Information> information = informationOrder.get(0);
 		//informationHistory.add(information);
 		//List<Book> textbookList = new ArrayList();
 		//for (Textbook text : cart.getTextbookList()) {
-
 		//textbookList.add(bookRepository.findById(text.getId()).get());
-
 		//}
 		//for (InformationHistory info : informationHistory.getInformationList()) {
-
 		//info.add(accountRepository.findNameAndEmailAndTelById(member.getId()));
-
 		//model.addAttribute("informationList", informationList);
-
 		//}
 		return "information";
 	}
@@ -61,7 +64,10 @@ public class InformationController {
 	public String orderHistory(
 			Model model) {
 		List<Information> informationList = informationRepository.findAll();
+		List<Account> accountList = accountRepository.findAll();
+
 		model.addAttribute("informationList", informationList);
+		model.addAttribute("accountList", accountList);
 
 		return "informationHistory";
 	}
